@@ -1,32 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Slide from './Slide/Slide';
+import VideoCarousel from './VideoCarousel/VideoCarousel';
 
 class Tealist extends React.Component {
+  swiperTeaName = [
+    { id: 1, name: '명차' },
+    { id: 2, name: '녹차/발효차/홍차' },
+    { id: 3, name: '허브티(무카페인)' },
+    { id: 4, name: '블렌디드티' },
+    { id: 5, name: '웰니스티' },
+    { id: 6, name: '파우더' },
+    { id: 7, name: '세트' },
+  ];
+
   render() {
     return (
       <div className="wrapper">
         {/*video slider*/}
         <div className="tea-carousel">
-          <div className="swiper-container">
-            <ul className="swiper">
-              <Slide />
-              <Slide />
-              <Slide />
-              <Slide />
-              <Slide />
-              <Slide />
-              <Slide />
-            </ul>
-          </div>
+          <VideoCarousel />
           <div className="swiper-teaname">
-            <Link className="teaname">명차</Link>
-            <Link className="">녹차/발효차/홍차</Link>
-            <Link className="">허브티(무카페인)</Link>
-            <Link className="">블렌디드티</Link>
-            <Link className="">웰니스티</Link>
-            <Link className="">파우더</Link>
-            <Link className="">세트</Link>
+            {this.swiperTeaName.map(menu => {
+              return (
+                <Link className="teaname" key={menu.id}>
+                  {menu.name}
+                </Link>
+              );
+            })}
           </div>
         </div>
         <main className="main-container">
@@ -35,27 +35,13 @@ class Tealist extends React.Component {
             <h1 className="title">TEA SHOP</h1>
             <ul>
               <li className="list-in-title">TEA</li>
-              <li className="menu-name">
-                <Link to="#">명차</Link>
-              </li>
-              <li className="menu-name">
-                <Link to="#">녹차/발효차/홍차</Link>
-              </li>
-              <li className="menu-name">
-                <Link to="#">허브티(무카페인)</Link>
-              </li>
-              <li className="menu-name">
-                <Link to="#">블렌디드티</Link>
-              </li>
-              <li className="menu-name">
-                <Link to="#">웰니스티</Link>
-              </li>
-              <li className="menu-name">
-                <Link to="#">파우더</Link>
-              </li>
-              <li className="menu-name">
-                <Link to="#">세트</Link>
-              </li>
+              {this.swiperTeaName.map(menu => {
+                return (
+                  <li className="menu-name" key={menu.id}>
+                    <Link to="#">{menu.name}</Link>
+                  </li>
+                );
+              })}
             </ul>
           </aside>
           {/*list*/}
