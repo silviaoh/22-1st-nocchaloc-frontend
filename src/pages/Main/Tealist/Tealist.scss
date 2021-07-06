@@ -1,0 +1,296 @@
+@import '../../../styles/variable.scss';
+@import '../../../styles/variableTeaList.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .tea-carousel {
+    flex: 0 0 40%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .swiper-container {
+      flex: 0 0 75%;
+      position: relative;
+      width: 100%;
+
+      .swiper {
+        display: flex;
+        overflow-x: scroll;
+        padding: 0 25%;
+      }
+
+      .swiper::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .lightblackbox {
+      position: absolute;
+      width: 25vw;
+      height: 100%;
+      top: 0;
+      border-right: 1px solid black;
+      background-color: #1c1c1c;
+      opacity: 0.5;
+
+      .left {
+        position: absolute;
+        top: 45%;
+        right: 10%;
+        font-size: $font-xxlarge;
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    .blackbox {
+      position: absolute;
+      width: 25vw;
+      height: 100%;
+      top: 0;
+      right: 0;
+      background-color: black;
+
+      .right {
+        position: absolute;
+        top: 45%;
+        left: 10%;
+        font-size: $font-xxlarge;
+        color: white;
+        cursor: pointer;
+      }
+    }
+
+    .swiper-teaname {
+      flex: 0 0 25%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 745px;
+      padding: 0 280px;
+      background-color: $bgColor-videoMenu;
+
+      .teaname-overflow {
+        display: flex;
+        width: 100%;
+        min-width: 745px;
+        overflow-x: scroll;
+
+        .teaname {
+          display: flex;
+          flex: 0 0 40%;
+          justify-content: center;
+          padding: 40px 0;
+          text-decoration: none;
+          color: $font-color-videoMenu;
+          font-size: $font-xlarge;
+
+          &:active {
+            color: $font-color-videoMenu;
+          }
+
+          &:visited {
+            color: $font-color-videoMenu;
+          }
+        }
+      }
+    }
+  }
+
+  .main-container {
+    flex: 0 0 60%;
+    display: flex;
+    justify-content: center;
+    margin-top: calc(#{$margin-value} + 10px);
+
+    .aside-menu {
+      flex: 0 0 10%;
+      min-width: 200px;
+      margin-right: calc(#{$margin-value} + 8px);
+
+      .title {
+        margin-bottom: calc(#{$margin-value} + 4px);
+        color: $color-black;
+        font-size: $font-large;
+      }
+      .aside-menu-container {
+        width: 100%;
+        margin-bottom: $margin-value;
+        cursor: pointer;
+
+        // &:hover,
+        // &.active {
+        //   background-color: $color-green;
+        // }
+
+        .list-in-title {
+          margin: calc(#{$margin-value} + 4px) 0;
+          font-size: $font-large;
+          text-align: left;
+        }
+
+        .menu-name {
+          margin: 0 0 30px 40px;
+          color: $color-black;
+
+          .name-item {
+            margin-bottom: margin-value;
+            color: $color-black;
+            font-size: $font-large;
+            text-decoration: none;
+
+            &:hover,
+            &.active {
+              border-bottom: 3px solid $color-green;
+            }
+
+            &:active,
+            &:visited {
+              color: $color-black;
+            }
+          }
+        }
+      }
+    }
+
+    .teashop {
+      flex: 0 0 55%;
+      display: flex;
+      flex-direction: column;
+      min-width: 600px;
+
+      .teashop-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: $margin-value;
+
+        border-bottom: 1px solid $color-border;
+
+        .title {
+          padding-bottom: calc(#{$margin-value} - 4px);
+          font-size: $font-large;
+          text-transform: uppercase;
+        }
+
+        .header-sort {
+          button {
+            margin-right: $margin-value;
+            padding-bottom: calc(#{$margin-value} - 4px);
+            border-bottom: 2.5px solid transparent;
+            font-size: $font-large;
+
+            &:hover,
+            &.active {
+              color: $color-green;
+              border-bottom: 2.5px solid $color-green;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .teashop-filter {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: $margin-value;
+
+        .filter-button {
+          display: flex;
+          button {
+            flex-wrap: nowrap;
+            box-sizing: content-box;
+            min-width: 50px;
+            margin-left: calc(#{$margin-value} - 4px);
+            padding: 3px calc(#{$margin-value} - 4px);
+            font-size: $font-large;
+            color: $font-color-filterBtn;
+            background-color: $color-filterBtn;
+            border-radius: 38px;
+
+            &.active {
+              color: white;
+              background-color: $color-green;
+            }
+
+            &:hover {
+              cursor: pointer;
+              color: white;
+              background-color: $color-green;
+            }
+          }
+        }
+      }
+    }
+
+    .pagination {
+      .pagination-in {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: $margin-value 0;
+
+        button {
+          border: 1px solid $color-border;
+          width: 50px;
+          height: 50px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $color-filterBtn;
+          }
+
+          i {
+            font-size: $font-large;
+            color: $color-border;
+          }
+        }
+
+        .btn-home {
+          border-right: 0;
+        }
+
+        .btn-right {
+          border-right: 0;
+        }
+
+        .nums {
+          flex: 0 0 40%;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          margin: 0 $margin-value;
+          color: $font-color-filterBtn;
+
+          .num {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 100%;
+            text-decoration: none;
+
+            &:active,
+            &:visited {
+              color: $font-color-filterBtn;
+            }
+
+            &:hover {
+              color: $color-black;
+            }
+
+            &.active {
+              background-color: $color-filterBtn;
+              color: $color-black;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ class Slide extends React.Component {
     return (
       <li className="slide">
         <div className="tea-video">
-          <video className="video" autoplay="autoplay" muted>
+          <video className="video" autoplay="autoplay" muted loop>
             <source src="video/China.mp4" />
           </video>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import VideoCarousel from './VideoCarousel/VideoCarousel';
+import Slide from './Slide/Slide';
+import './TeaList.scss';
 
 class Tealist extends React.Component {
   swiperTeaName = [
@@ -18,27 +19,51 @@ class Tealist extends React.Component {
       <div className="wrapper">
         {/*video slider*/}
         <div className="tea-carousel">
-          <VideoCarousel />
+          <div className="swiper-container">
+            <ul className="swiper">
+              <Slide />
+              <Slide />
+              <Slide />
+              <Slide />
+              <Slide />
+              <Slide />
+              <Slide />
+            </ul>
+            <div className="lightblackbox">
+              <button className="left">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+            </div>
+            <div className="blackbox">
+              <button className="right">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
           <div className="swiper-teaname">
-            {this.swiperTeaName.map(menu => {
-              return (
-                <Link className="teaname" key={menu.id}>
-                  {menu.name}
-                </Link>
-              );
-            })}
+            <div className="teaname-overflow">
+              {this.swiperTeaName.map(menu => {
+                return (
+                  <Link className="teaname" key={menu.id}>
+                    {menu.name}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
         <main className="main-container">
           {/*aside menu*/}
           <aside className="aside-menu">
             <h1 className="title">TEA SHOP</h1>
-            <ul>
+            <ul className="aside-menu-container">
               <li className="list-in-title">TEA</li>
               {this.swiperTeaName.map(menu => {
                 return (
                   <li className="menu-name" key={menu.id}>
-                    <Link to="#">{menu.name}</Link>
+                    <Link to="#" className="name-item">
+                      {menu.name}
+                    </Link>
                   </li>
                 );
               })}
@@ -49,7 +74,7 @@ class Tealist extends React.Component {
             <header className="teashop-header">
               <h1 className="title">Tea shop</h1>
               <div className="header-sort">
-                <button className="new">신상품순</button>
+                <button className="new active">신상품순</button>
                 <button className="descending">높은 가격순</button>
                 <button className="ascending">낮은 가격순</button>
               </div>
@@ -57,14 +82,41 @@ class Tealist extends React.Component {
             <section className="teashop-filter">
               <span className="total">총 0개의 상품이 있습니다.</span>
               <div className="filter-button">
-                <button className="all">전체</button>
-                <button className="leaf-tea">잎차</button>
-                <button className="pyramid">피라미드</button>
-                <button className="teabag">티백</button>
-                <button className="powder">파우더</button>
+                <button className="active">전체</button>
+                <button>잎차</button>
+                <button>피라미드</button>
+                <button>티백</button>
+                <button>파우더</button>
               </div>
             </section>
             <section className="teashop-list">{/*Tea 컴포넌트*/}</section>
+            <section className="pagination">
+              <div className="pagination-in">
+                <div className="lefts">
+                  <button className="btn-home">
+                    <i class="fas fa-angle-double-left"></i>
+                  </button>
+                  <button className="btn-left">
+                    <i class="fas fa-chevron-left"></i>
+                  </button>
+                </div>
+                <div className="nums">
+                  <Link className="num active">1</Link>
+                  <Link className="num">2</Link>
+                  <Link className="num">3</Link>
+                  <Link className="num">4</Link>
+                  <Link className="num">5</Link>
+                </div>
+                <div className="rights">
+                  <button className="btn-right">
+                    <i class="fas fa-chevron-right"></i>
+                  </button>
+                  <button className="btn-end">
+                    <i class="fas fa-angle-double-right"></i>
+                  </button>
+                </div>
+              </div>
+            </section>
           </section>
         </main>
       </div>
