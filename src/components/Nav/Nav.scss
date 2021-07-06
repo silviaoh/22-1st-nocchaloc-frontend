@@ -1,0 +1,64 @@
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: #fafafa;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  height: 80px;
+  padding: 0 80px;
+}
+
+.navbar-menu {
+  display: flex;
+  justify-content: space-between;
+}
+.navbar-menu li a {
+  padding: 0 12px 0 12px;
+  color: #555555;
+}
+
+.nav-right {
+  display: flex;
+}
+.nav-right i {
+  margin-right: 12px;
+}
+.fa-search,
+.fa-cart-plus {
+  cursor: pointer;
+}
+
+.login {
+  padding: 10px;
+  color: #555555;
+}
+.signUp {
+  padding: 0 20px 0 10px;
+  color: #555555;
+}
+
+.dropDown {
+}
+// .dropDown {
+//   &:hover .navbar-menu {
+//     display: flex;
+//     justify-content: center;
+//     position: absolute;
+//     top: 100px;
+//     left: 0;
+//     width: 100%;
+//     padding: 10px 0 30px;
+//     text-align: left;
+//     background-color: #fafafa;
+//   }
+
+//   .dropDownMenu {
+//     display: none;
+//   }
+// }
