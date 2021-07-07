@@ -22,7 +22,7 @@ class Tea extends Component {
           </Link>
         </Link>
         <p className="name">
-          <Link href="" className="name-link">
+          <Link to="" className="name-link">
             녹차밀크스프레드
           </Link>
         </p>
