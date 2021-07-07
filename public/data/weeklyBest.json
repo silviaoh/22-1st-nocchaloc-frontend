@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "산호섬 20입(아이스티)",
+    "img": "https://via.placeholder.com/248x248",
+    "price": "12,000원"
+  },
+  {
+    "id": 2,
+    "title": "찬물녹차 20입(아이스티)",
+    "img": "https://via.placeholder.com/248x248",
+    "price": "8,500원"
+  },
+  {
+    "id": 3,
+    "title": "영귤섬 20입(아이스티)",
+    "img": "https://via.placeholder.com/248x248",
+    "price": "12,000원"
+  },
+  {
+    "id": 4,
+    "title": "그린티웨하우스 100g",
+    "img": "https://via.placeholder.com/248x248",
+    "price": "5,000원"
+  },
+  {
+    "id": 5,
+    "title": "제주삼다영귤티 20입(티백)",
+    "img": "https://via.placeholder.com/248x248",
+    "price": "8,800원"
+  },
+  {
+    "id": 6,
+    "title": "오땡큐 티박스6종",
+    "img": "https://via.placeholder.com/248x248",
+    "price": "22,000원"
+  },
+  {
+    "id": 7,
+    "title": "프리미엄 녹차와플",
+    "img": "https://via.placeholder.com/248x248",
+    "price": "5,000원"
+  },
+  {
+    "id": 8,
+    "title": "그린티 랑드샤 10입",
+    "img": "https://via.placeholder.com/248x248",
+    "price": "12,000원"
+  },
+  {
+    "id": 9,
+    "title": "프리미엄 티 컬렉션",
+    "img": "https://via.placeholder.com/248x248",
+    "price": "25,000원"
+  },
+  {
+    "id": 10,
+    "title": "녹차밀크스프레드 200g",
+    "img": "https://via.placeholder.com/248x248",
+    "price": "8,500원"
+  }
+]
