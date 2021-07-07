@@ -1,0 +1,94 @@
+@import '../../../../styles/variable.scss';
+@import '../../../../styles/variableTeaList.scss';
+
+.product-tea {
+  flex: 0 0 25%;
+  margin: 0;
+  padding: 0 calc(#{$margin-value} + 8px) 70px;
+  border-right: 1px solid $color-list-border;
+
+  @media screen and (min-width: 0px) and(max-width: 1100px) {
+    flex: 0 0 33%;
+  }
+
+  .tea-img-container {
+    display: block;
+    position: relative;
+
+    .tea-img-before {
+      width: 100%;
+    }
+
+    .tea-img-after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      transition: all 300ms ease-in-out;
+    }
+
+    .cart {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      width: 65px;
+      height: 65px;
+      font-size: $font-xxlarge;
+      color: white;
+      background-color: black;
+      opacity: 0;
+      border-radius: 50%;
+    }
+
+    &:hover > .tea-img-after {
+      opacity: 1;
+    }
+
+    &:hover > .cart {
+      opacity: 0.6;
+    }
+  }
+
+  .name {
+    height: 48px;
+    margin-top: calc(#{$margin-value} * 3);
+    font-family: $font-buri;
+
+    .name-link {
+      font-size: $font-xlarge;
+      text-decoration: none;
+      color: $color-black;
+    }
+
+    &:active,
+    &:visited {
+      color: $color-black;
+    }
+  }
+
+  .price {
+    height: 50px;
+    font-size: $font-xlarge;
+  }
+
+  .count-container {
+    position: relative;
+
+    .view-icon {
+      position: absolute;
+      top: -3px;
+      font-size: $font-xlarge;
+      color: $color-icon-views;
+    }
+
+    .count {
+      position: relative;
+      padding-left: 29px;
+      color: $color-icon-views;
+    }
+  }
+}

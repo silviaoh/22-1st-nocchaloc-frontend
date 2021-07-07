@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Slide from './Slide/Slide';
+import Tea from './Tea/Tea';
 import './TeaList.scss';
 
-class Tealist extends React.Component {
+class TeaList extends React.Component {
   swiperTeaName = [
     { id: 1, name: '명차' },
     { id: 2, name: '녹차/발효차/홍차' },
@@ -56,8 +57,8 @@ class Tealist extends React.Component {
           {/*aside menu*/}
           <aside className="aside-menu">
             <h1 className="title">TEA SHOP</h1>
+            <h2 className="list-in-title">TEA</h2>
             <ul className="aside-menu-container">
-              <li className="list-in-title">TEA</li>
               {this.swiperTeaName.map(menu => {
                 return (
                   <li className="menu-name" key={menu.id}>
@@ -80,7 +81,9 @@ class Tealist extends React.Component {
               </div>
             </header>
             <section className="teashop-filter">
-              <span className="total">총 0개의 상품이 있습니다.</span>
+              <span className="total">
+                총 <strong id="sum">0</strong>개의 상품이 있습니다.
+              </span>
               <div className="filter-button">
                 <button className="active">전체</button>
                 <button>잎차</button>
@@ -89,7 +92,19 @@ class Tealist extends React.Component {
                 <button>파우더</button>
               </div>
             </section>
-            <section className="teashop-list">{/*Tea 컴포넌트*/}</section>
+            <section className="teashop-list">
+              <ul className="list-tea">
+                <Tea />
+                <Tea />
+                <Tea />
+                <Tea />
+                <Tea />
+                <Tea />
+                <Tea />
+                <Tea />
+                <Tea />
+              </ul>
+            </section>
             <section className="pagination">
               <div className="pagination-in">
                 <div className="lefts">
@@ -118,10 +133,13 @@ class Tealist extends React.Component {
               </div>
             </section>
           </section>
+          <Link className="top">
+            <i class="fas fa-arrow-up"></i>
+          </Link>
         </main>
       </div>
     );
   }
 }
 
-export default Tealist;
+export default TeaList;

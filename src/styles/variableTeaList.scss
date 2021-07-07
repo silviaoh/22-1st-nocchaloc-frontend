@@ -1,5 +1,17 @@
+@font-face {
+  font-family: 'Arita-buri-SemiBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-buri-SemiBold.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 $bgColor-videoMenu: #000000;
 $color-filterBtn: #f1f1f1;
 $font-color-videoMenu: #969696;
 $font-color-filterBtn: #a5a5a5;
 $margin-value: 14px;
+
+$color-list-border: #f6f6f6;
+$color-icon-views: #727272;
+$font-buri: 'Arita-buri-SemiBold', sans-serif;

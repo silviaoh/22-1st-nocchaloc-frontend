@@ -103,35 +103,33 @@
   .main-container {
     flex: 0 0 60%;
     display: flex;
+    position: relative;
     justify-content: center;
     margin-top: calc(#{$margin-value} + 10px);
 
     .aside-menu {
-      flex: 0 0 10%;
+      flex: 0 0 8%;
       min-width: 200px;
       margin-right: calc(#{$margin-value} + 8px);
 
       .title {
-        margin-bottom: calc(#{$margin-value} + 4px);
+        margin-bottom: calc(#{$margin-value} * 2.5);
         color: $color-black;
         font-size: $font-large;
       }
+
+      // &:hover,
+      // &.active {
+      //   background-color: $color-green;
+      // }
+
+      .list-in-title {
+        margin: calc(#{$margin-value} * 2) 0;
+        font-size: $font-large;
+        text-align: left;
+      }
+
       .aside-menu-container {
-        width: 100%;
-        margin-bottom: $margin-value;
-        cursor: pointer;
-
-        // &:hover,
-        // &.active {
-        //   background-color: $color-green;
-        // }
-
-        .list-in-title {
-          margin: calc(#{$margin-value} + 4px) 0;
-          font-size: $font-large;
-          text-align: left;
-        }
-
         .menu-name {
           margin: 0 0 30px 40px;
           color: $color-black;
@@ -139,7 +137,7 @@
           .name-item {
             margin-bottom: margin-value;
             color: $color-black;
-            font-size: $font-large;
+            font-size: calc(#{$font-small} + 2px);
             text-decoration: none;
 
             &:hover,
@@ -157,18 +155,17 @@
     }
 
     .teashop {
-      flex: 0 0 55%;
+      flex: 0 0 60%;
       display: flex;
       flex-direction: column;
-      min-width: 600px;
 
       .teashop-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: $margin-value;
-
         border-bottom: 1px solid $color-border;
+        min-width: 700px;
 
         .title {
           padding-bottom: calc(#{$margin-value} - 4px);
@@ -178,8 +175,9 @@
 
         .header-sort {
           button {
-            margin-right: $margin-value;
+            margin-right: calc(#{$margin-value} * 3);
             padding-bottom: calc(#{$margin-value} - 4px);
+
             border-bottom: 2.5px solid transparent;
             font-size: $font-large;
 
@@ -199,14 +197,26 @@
         align-items: center;
         padding-top: $margin-value;
 
+        .total {
+          color: $color-black;
+
+          #sum {
+            font-weight: bold;
+            color: $color-green;
+          }
+        }
+
         .filter-button {
           display: flex;
+
           button {
             flex-wrap: nowrap;
             box-sizing: content-box;
             min-width: 50px;
-            margin-left: calc(#{$margin-value} - 4px);
-            padding: 3px calc(#{$margin-value} - 4px);
+            height: 38px;
+            margin-left: calc(#{$margin-value} - 5px);
+            padding: 0 calc(#{$margin-value} - 4px);
+            line-height: 38px;
             font-size: $font-large;
             color: $font-color-filterBtn;
             background-color: $color-filterBtn;
@@ -227,12 +237,24 @@
       }
     }
 
+    .teashop-list {
+      display: flex;
+      align-items: flex-start;
+
+      .list-tea {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: calc(#{$margin-value} * 3);
+        overflow: hidden;
+      }
+    }
+
     .pagination {
       .pagination-in {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: $margin-value 0;
+        margin: calc(#{$margin-value} + 10px) 0;
 
         button {
           border: 1px solid $color-border;
@@ -292,5 +314,52 @@
         }
       }
     }
+
+    .top {
+      position: fixed;
+      padding: calc(#{$margin-value} - 6px);
+      right: 20px;
+      bottom: 50px;
+      color: $color-border;
+      background-color: $font-color-filterBtn;
+      border-radius: 50%;
+    }
   }
+
+  @media screen and (min-width: 1100px) and (max-width: 1280px) {
+    .main-container {
+      .aside-menu {
+        flex: 0 0 8%;
+      }
+
+      .teashop {
+        flex: 0 0 75%;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1430px) {
+    .main-container {
+      .aside-menu {
+        flex: 0 0 8%;
+      }
+
+      .teashop {
+        flex: 0 0 75%;
+        max-width: 1072px;
+      }
+    }
+  }
+
+  // @media screen and (min-width: 1280px) {
+  //   .main-container {
+  //     .aside-menu {
+  //       flex: 0 0 8%;
+  //     }
+
+  //     .teashop {
+  //       flex: 0 0 75%;
+  //     }
+  //   }
+  // }
 }
