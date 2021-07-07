@@ -1,0 +1,20 @@
+@import '../../../../styles/variable.scss';
+@import '../../../../styles/variableListDetail.scss';
+
+.detail-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: calc(#{$margin-value} + 10px);
+
+  .item-thumbnail-wrapper {
+    position: relative;
+    width: 49.5%;
+    padding: 30px 40px 110px;
+    background-color: #f8f9fb;
+
+    .thumbnail {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
