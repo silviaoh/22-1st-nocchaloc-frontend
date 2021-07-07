@@ -2,9 +2,6 @@
 @import '../../../styles/variableTeaList.scss';
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
-
   .tea-carousel {
     flex: 0 0 40%;
     position: relative;
@@ -350,16 +347,4 @@
       }
     }
   }
-
-  // @media screen and (min-width: 1280px) {
-  //   .main-container {
-  //     .aside-menu {
-  //       flex: 0 0 8%;
-  //     }
-
-  //     .teashop {
-  //       flex: 0 0 75%;
-  //     }
-  //   }
-  // }
 }
