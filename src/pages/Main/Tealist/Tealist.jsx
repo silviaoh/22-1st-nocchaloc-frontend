@@ -2,19 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Slide from './Slide/Slide';
 import Tea from './Tea/Tea';
-import './TeaList.scss';
+import './Tealist.scss';
 
 class TeaList extends React.Component {
-  swiperTeaName = [
-    { id: 1, name: '명차' },
-    { id: 2, name: '녹차/발효차/홍차' },
-    { id: 3, name: '허브티(무카페인)' },
-    { id: 4, name: '블렌디드티' },
-    { id: 5, name: '웰니스티' },
-    { id: 6, name: '파우더' },
-    { id: 7, name: '세트' },
-  ];
-
   render() {
     return (
       <div className="wrapper">
@@ -43,7 +33,7 @@ class TeaList extends React.Component {
           </div>
           <div className="swiper-teaname">
             <div className="teaname-overflow">
-              {this.swiperTeaName.map(menu => {
+              {this.CATEGORY.map(menu => {
                 return (
                   <Link className="teaname" key={menu.id}>
                     {menu.name}
@@ -141,5 +131,15 @@ class TeaList extends React.Component {
     );
   }
 }
+
+CATEGORY = [
+  { id: 1, name: '명차' },
+  { id: 2, name: '녹차/발효차/홍차' },
+  { id: 3, name: '허브티(무카페인)' },
+  { id: 4, name: '블렌디드티' },
+  { id: 5, name: '웰니스티' },
+  { id: 6, name: '파우더' },
+  { id: 7, name: '세트' },
+];
 
 export default TeaList;

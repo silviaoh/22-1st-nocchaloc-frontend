@@ -4,8 +4,8 @@ import Nav from './components/Nav/Nav';
 import Main from './pages/Main/Main';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
-import TeaList from './pages/Main/TeaList/TeaList';
-import Detail from './pages/Main/TeaList/Detail/Detail';
+import Tealist from './pages/Main/Tealist/Tealist';
+import Detail from './pages/Main/Tealist/Detail/Detail';
 import Footer from './components/Footer/Footer';
 
 class Routes extends React.Component {
@@ -17,7 +17,7 @@ class Routes extends React.Component {
           <Route exact path="/" component={Main} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/tealist" component={TeaList} />
+          <Route exact path="/tealist" component={Tealist} />
           <Route exact path="/detail" component={Detail} />
         </Switch>
         <Footer />
