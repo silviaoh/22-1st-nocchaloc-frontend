@@ -17,6 +17,7 @@
 
     .tea-img-before {
       width: 100%;
+      transition: all 300ms ease-in-out;
     }
 
     .tea-img-after {
@@ -44,6 +45,10 @@
       border-radius: 50%;
     }
 
+    &:hover > .tea-img-before {
+      opacity: 0;
+    }
+
     &:hover > .tea-img-after {
       opacity: 1;
     }
@@ -56,6 +61,7 @@
   .name {
     height: 48px;
     margin-top: calc(#{$margin-value} * 3);
+    margin-bottom: $margin-value;
     font-family: $font-buri;
 
     .name-link {

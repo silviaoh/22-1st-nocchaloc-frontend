@@ -5,19 +5,24 @@ import Tea from './Tea/Tea';
 import './Tealist.scss';
 
 class TeaList extends React.Component {
+  state = {
+    products: [],
+  };
+
+  componentDidMount() {
+    fetch('http://10.58.5.117:8000/products/product')
+      .then(response => response.json())
+      .then(data => this.setState({ products: data.results }));
+  }
+
   render() {
+    const TOTAL = this.state.products.length;
     return (
       <div className="wrapper">
         {/*video slider*/}
         <div className="tea-carousel">
           <div className="swiper-container">
             <ul className="swiper">
-              <Slide />
-              <Slide />
-              <Slide />
-              <Slide />
-              <Slide />
-              <Slide />
               <Slide />
             </ul>
             <div className="lightblackbox">
@@ -68,7 +73,7 @@ class TeaList extends React.Component {
             </header>
             <section className="teashop-filter">
               <span className="total">
-                총 <strong id="sum">0</strong>개의 상품이 있습니다.
+                총 <strong id="sum">{TOTAL}</strong>개의 상품이 있습니다.
               </span>
               <div className="filter-button">
                 <button className="active">전체</button>
@@ -80,15 +85,9 @@ class TeaList extends React.Component {
             </section>
             <section className="teashop-list">
               <ul className="list-tea">
-                <Tea />
-                <Tea />
-                <Tea />
-                <Tea />
-                <Tea />
-                <Tea />
-                <Tea />
-                <Tea />
-                <Tea />
+                {this.state.products.map((product, idx) => (
+                  <Tea key={idx} product={product} />
+                ))}
               </ul>
             </section>
             <section className="pagination">
