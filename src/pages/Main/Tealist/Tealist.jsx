@@ -33,13 +33,11 @@ class TeaList extends React.Component {
           </div>
           <div className="swiper-teaname">
             <div className="teaname-overflow">
-              {this.CATEGORY.map(menu => {
-                return (
-                  <Link className="teaname" key={menu.id}>
-                    {menu.name}
-                  </Link>
-                );
-              })}
+              {CATEGORY.map(menu => (
+                <Link className="teaname" key={menu.id}>
+                  {menu.name}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -49,15 +47,13 @@ class TeaList extends React.Component {
             <h1 className="title">TEA SHOP</h1>
             <h2 className="list-in-title">TEA</h2>
             <ul className="aside-menu-container">
-              {this.swiperTeaName.map(menu => {
-                return (
-                  <li className="menu-name" key={menu.id}>
-                    <Link to="#" className="name-item">
-                      {menu.name}
-                    </Link>
-                  </li>
-                );
-              })}
+              {CATEGORY.map(menu => (
+                <li className="menu-name" key={menu.id}>
+                  <Link to="#" className="name-item">
+                    {menu.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </aside>
           {/*list*/}
@@ -132,7 +128,7 @@ class TeaList extends React.Component {
   }
 }
 
-CATEGORY = [
+const CATEGORY = [
   { id: 1, name: '명차' },
   { id: 2, name: '녹차/발효차/홍차' },
   { id: 3, name: '허브티(무카페인)' },
