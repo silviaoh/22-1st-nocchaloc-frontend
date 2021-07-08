@@ -19,7 +19,7 @@ class TeaList extends React.Component {
     console.log(this.state.products);
     const totalProductsCount = this.state.products.length;
     return (
-      <div className="wrapper">
+      <div className="tealist">
         {/*video slider*/}
         <div className="tea-carousel">
           <div className="swiper-container">
