@@ -10,7 +10,7 @@ class TeaList extends React.Component {
   };
 
   componentDidMount() {
-    fetch('http://10.58.5.117:8000/products/product')
+    fetch('http://10.58.7.49:8000/products/product')
       .then(response => response.json())
       .then(data => this.setState({ products: data.results }));
   }
