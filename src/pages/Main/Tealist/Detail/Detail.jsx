@@ -16,7 +16,6 @@ class Detail extends React.Component {
   }
 
   render() {
-    console.log(this.state.data);
     return (
       <div className="detail-wrapper">
         <section className="item-thumbnail-wrapper">
