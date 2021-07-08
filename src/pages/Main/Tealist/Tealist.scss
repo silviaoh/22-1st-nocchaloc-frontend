@@ -46,6 +46,7 @@
 
     .swiper-teaname {
       @include flex-common(25%, center, center);
+      width: 100%;
       min-width: 745px;
       padding: 0 280px;
       background-color: $bgColor-videoMenu;
