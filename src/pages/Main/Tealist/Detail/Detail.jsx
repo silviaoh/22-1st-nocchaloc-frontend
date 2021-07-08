@@ -5,7 +5,18 @@ import Selectlist from './Selectlist/Selectlist';
 import './Detail.scss';
 
 class Detail extends React.Component {
+  state = {
+    data: [],
+  };
+
+  componentDidMount() {
+    fetch('http://10.58.7.49:8000/products/product/1')
+      .then(response => response.json())
+      .then(data => this.setState({ data: data }));
+  }
+
   render() {
+    console.log(this.state.data);
     return (
       <div className="detail-wrapper">
         <section className="item-thumbnail-wrapper">
