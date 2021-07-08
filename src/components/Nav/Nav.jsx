@@ -50,7 +50,7 @@ class Nav extends React.Component {
                   <Link to="/Login">로그인</Link>
                 </div>
                 <div className="nav-signup">
-                  <Link to="/">회원가입</Link>
+                  <Link to="/Signup">회원가입</Link>
                 </div>
               </div>
             </div>

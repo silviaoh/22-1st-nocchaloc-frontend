@@ -1,0 +1,135 @@
+.header {
+  position: absolute;
+  width: 460px;
+  height: 60px;
+  top: 0;
+  left: 0;
+  text-align: center;
+  margin-top: 80px;
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #d2d2d2;
+  background-color: #f3f3f3;
+
+  .header-text {
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 67px;
+    vertical-align: middle;
+    font-weight: bold;
+    box-sizing: border-box;
+    color: #062c5e;
+  }
+}
+
+.signup-container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 460px;
+  border: 1px;
+
+  .signup-text {
+    display: block;
+    color: #333;
+    text-align: center;
+    font-size: 34px;
+    margin: 0 0 27px 0;
+  }
+
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.input-signup-box {
+  width: 440px;
+  height: 170px;
+
+  .input-username,
+  .input-Num,
+  .input-userId,
+  .input-userPw,
+  .input-pw-confirm {
+    width: 440px;
+    height: 54px;
+    padding: 10px 14px 10px 14px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+  }
+
+  .input-DOB {
+    width: 258px;
+    height: 54px;
+    padding: 10px 14px 10px 14px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+
+  .gender {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    label {
+      user-select: none;
+    }
+    input[type='radio'] {
+      display: none;
+    }
+    .nput[type='radio'] + label {
+      position: relative;
+      border: 1px solid #ccc;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 200ms ease;
+    }
+    input[type='radio']:checked + label {
+      color: #6c801d;
+      border: 1px solid #6c801d;
+    }
+    input[type='radio'] + label {
+      padding: 16px 20px;
+      border: 1px solid #ccc;
+    }
+  }
+}
+
+// .login-btn {
+//   width: 440px;
+//   height: 55px;
+//   font-size: 16px;
+//   border: none;
+//   cursor: pointer;
+//   background-color: #74824c;
+//   color: #fff;
+// }
+
+// .login-link-box {
+//   display: flex;
+//   width: 440px;
+//   height: 37px;
+//   margin: 30px 0;
+//   padding-top: 15px;
+//   text-align: center;
+//   border-top: 1px solid #ccc;
+
+//   a {
+//     color: #727272;
+//     margin: 0 auto;
+//     cursor: pointer;
+//   }
+//   .bar {
+//     margin: 0 12px 0 12px;
+//     color: #727272;
+//   }
+// }
