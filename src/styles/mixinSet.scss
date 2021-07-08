@@ -1,0 +1,41 @@
+@mixin flex-common($ratio: 0, $justify: flex-start, $align: flex-start) {
+  flex: 0 0 $ratio;
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin position-set(
+  $position: static,
+  $top: auto,
+  $right: auto,
+  $bottom: auto,
+  $left: auto
+) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin width-height($width: auto, $height: auto) {
+  width: $width;
+  height: $height;
+}
+
+// tealist-video
+@mixin carousel-side-box($right: auto, $bg-color: transparent) {
+  position: absolute;
+  width: 25vw;
+  height: 100%;
+  background-color: $bg-color;
+  top: 0;
+  right: $right;
+}
+
+@mixin leftright-design {
+  font-size: $font-xxlarge;
+  color: white;
+  cursor: pointer;
+}
