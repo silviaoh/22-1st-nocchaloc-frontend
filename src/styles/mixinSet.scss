@@ -1,4 +1,4 @@
-@mixin flex-common($ratio: 0, $justify: flex-start, $align: flex-start) {
+@mixin flex-common($ratio: auto, $justify: flex-start, $align: flex-start) {
   flex: 0 0 $ratio;
   display: flex;
   justify-content: $justify;
@@ -22,6 +22,11 @@
 @mixin width-height($width: auto, $height: auto) {
   width: $width;
   height: $height;
+}
+
+@mixin bold($color: inherit) {
+  font-weight: bold;
+  color: $color;
 }
 
 // tealist-video
