@@ -24,16 +24,16 @@ class MainPageLayout extends React.Component {
   render() {
     return (
       <>
-        <div className="item_inner">
+        <div className="item-inner">
           <div className="inner">
-            <div className="box_wrap">
+            <div className="box-wrap">
               <div className="descbox">
-                <h3 className="promo_title">
+                <h3 className="promo-title">
                   텍스트가 이렇게 <br />
                   들어갑니다다다다다다다
                 </h3>
-                <p className="promo_date">07.01 - 07.31</p>
-                <p className="promo_onepoint">텍스트가 들어갑니다다다다다</p>
+                <p className="promo-date">07.01 - 07.31</p>
+                <p className="promo-onepoint">텍스트가 들어갑니다다다다다</p>
                 <div className="left-btn">
                   <Link to="/">바로보기</Link>
                 </div>
@@ -56,6 +56,13 @@ class MainPageLayout extends React.Component {
                 />
               ))}
             </div>
+            <button onClick={'/'} className="left-arrow">
+              1
+            </button>
+            <button onClick={'/'} className="right-arrow">
+              2
+            </button>
+
             <div className="btn-box">
               <div className="weeklybest-btn">
                 <Link to="/">바로가기</Link>

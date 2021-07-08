@@ -1,4 +1,4 @@
-.item_inner {
+.item-inner {
   left: 0;
   width: 100%;
   // background-color: #f6f5ee;
@@ -11,6 +11,7 @@
     margin: 0 auto;
     height: 520px;
     padding: 90px 80px 80px 80px;
+    margin-top: 80px;
     background-color: #f6f5ee;
   }
 
@@ -18,7 +19,7 @@
     width: 616px;
     height: 100%;
 
-    .promo_title {
+    .promo-title {
       position: relative;
       font-size: 32px;
       margin-bottom: 14px;
@@ -34,12 +35,12 @@
       }
     }
 
-    .promo_date {
+    .promo-date {
       position: relative;
       margin: 0 0 36px;
     }
 
-    .promo_onepoint {
+    .promo-onepoint {
       position: relative;
       display: block;
       display: -webkit-box;
@@ -106,6 +107,7 @@
 }
 .slide-weeklybest {
   display: flex;
+  width: 300vw;
 }
 
 .btn-box {
@@ -129,6 +131,7 @@
   }
 }
 
+// Sns
 .main-sns {
   left: 0;
   width: 100%;
