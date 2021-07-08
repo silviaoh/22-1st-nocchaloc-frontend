@@ -244,7 +244,7 @@
           color: $font-color-filterBtn;
 
           .num {
-            @include flex-common(center, center);
+            @include flex-common(auto, center, center);
             @include width-height(42px, 42px);
             border-radius: 100%;
             text-decoration: none;

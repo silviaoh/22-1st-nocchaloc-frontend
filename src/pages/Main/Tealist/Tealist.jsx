@@ -10,13 +10,12 @@ class TeaList extends React.Component {
   };
 
   componentDidMount() {
-    // fetch('http://10.58.7.49:8000/products/product)
-    //   .then(response => response.json())
-    //   .then(data => this.setState({ products: data.products_info }));
+    fetch('http://10.58.7.49:8000/products/product')
+      .then(response => response.json())
+      .then(data => this.setState({ products: data.products_info }));
   }
 
   render() {
-    console.log(this.state.products);
     const totalProductsCount = this.state.products.length;
     return (
       <div className="tealist">
@@ -74,8 +73,8 @@ class TeaList extends React.Component {
             </header>
             <section className="teashop-filter">
               <span className="total">
-                총 <strong class="bold">{totalProductsCount}</strong>개의 상품이
-                있습니다.
+                총 <strong className="bold">{totalProductsCount}</strong>개의
+                상품이 있습니다.
               </span>
               <div className="filter-button">
                 <button className="active">전체</button>
