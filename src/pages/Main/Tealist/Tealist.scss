@@ -12,11 +12,16 @@
       flex: 0 0 75%;
       position: relative;
       width: 100%;
+      overflow: hidden;
 
       .swiper {
-        display: flex;
-        overflow-x: scroll;
-        padding: 0 25%;
+        .swiper-inner {
+          display: flex;
+          position: relative;
+          width: 100%;
+          left: 25%;
+          overflow: hidden;
+        }
       }
 
       .swiper::-webkit-scrollbar {

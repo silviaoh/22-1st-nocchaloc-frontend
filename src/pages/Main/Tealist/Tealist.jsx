@@ -5,15 +5,27 @@ import Tea from './Tea/Tea';
 import './Tealist.scss';
 
 class TeaList extends React.Component {
-  state = {
-    products: [],
-  };
+  constructor() {
+    super();
+    this.state = {
+      products: [],
+      pressed: false,
+      originalX: 0,
+    };
+    this.slide = React.createRef();
+  }
 
   componentDidMount() {
     fetch('http://10.58.7.49:8000/products/product')
       .then(response => response.json())
       .then(data => this.setState({ products: data.products_info }));
   }
+
+  handleMouseDown = e => {
+    // this.setState({ pressed: true, originalX: e.clientX - this.slide. });
+    console.log(e);
+    console.log(this.slide.current.offsetLeft);
+  };
 
   render() {
     const totalProductsCount = this.state.products.length;
@@ -22,9 +34,13 @@ class TeaList extends React.Component {
         {/*video slider*/}
         <div className="tea-carousel">
           <div className="swiper-container">
-            <ul className="swiper">
-              <Slide />
-            </ul>
+            <div className="swiper" onMouseDown={this.handleMouseDown}>
+              <ul className="swiper-inner">
+                {VIDEOSRC.map(video => (
+                  <Slide key={video.id} src={video.src} slide={this.slide} />
+                ))}
+              </ul>
+            </div>
             <div className="lightblackbox">
               <button className="left">
                 <i className="fas fa-chevron-left" />
@@ -146,6 +162,14 @@ const CATEGORY = [
   { id: 5, name: '웰니스티' },
   { id: 6, name: '파우더' },
   { id: 7, name: '세트' },
+];
+
+const VIDEOSRC = [
+  { id: 1, src: 'video/China.mp4' },
+  { id: 2, src: 'video/China.mp4' },
+  { id: 3, src: 'video/China.mp4' },
+  { id: 4, src: 'video/China.mp4' },
+  { id: 5, src: 'video/China.mp4' },
 ];
 
 export default TeaList;
