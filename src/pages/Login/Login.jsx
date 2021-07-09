@@ -1,6 +1,6 @@
 import React from 'react';
-import './Login.scss';
 import { Link } from 'react-router-dom';
+import './Login.scss';
 
 class Login extends React.Component {
   constructor() {
@@ -21,23 +21,24 @@ class Login extends React.Component {
 
   handleButton = () => {
     const { userId, userPw } = this.state;
-    return userId.includes('@') && userPw.length >= 5;
+    return userId.includes('Number') && userPw.length >= 8;
   };
 
   signInSuccess = () => {
     this.props.history.push('/');
-    fetch('http://10.58.0.109:8000/user/signin', {
+    fetch('http://10.58.2.59:8000/users/signin', {
       method: 'POST',
       body: JSON.stringify({
-        email: this.state.userId,
+        account: this.state.userId,
         password: this.state.userPw,
       }),
     })
       .then(response => response.json())
-      .then(res => {
-        if (res.message === 'Success') {
+      .then(data => {
+        console.log(data);
+        if (data.message === 'SUCCESS') {
           this.props.history.push('/');
-          // localStorage.setItem("TOKEN, result.token");
+          localStorage.setItem('TOKEN', data.TOKEN);
         } else {
           alert('아이디나 비밀번호를 확인해주세요.');
         }
@@ -45,39 +46,37 @@ class Login extends React.Component {
   };
 
   render() {
-    const isEnabled = this.handleButton();
+    const BtnIsEnabled = this.handleButton();
 
     return (
       <>
-        <div className="login-container">
+        <section className="login-container">
           <div className="wrap">
             <h1 className="login-text">Log in</h1>
             <div className="input-login-box">
               <input
                 type="text"
-                class="input-login"
+                className="input-login"
                 id="userId"
                 name="userId"
                 placeholder="아이디"
                 onChange={this.handleInput}
-                onKeyUp={this.handleButton}
               />
               <input
                 type="password"
-                class="input-password"
+                className="input-password"
                 id="userPw"
                 name="userPw"
                 placeholder="비밀번호"
                 onChange={this.handleInput}
-                onKeyUp={this.handleButton}
               />
             </div>
             <button
               className="login-btn"
               id="btnLogin"
               onClick={this.signInSuccess}
-              disabled={!isEnabled}
-              style={{ opacity: isEnabled ? 1 : 0.5 }}
+              disabled={!BtnIsEnabled}
+              style={{ opacity: BtnIsEnabled ? 1 : 0.5 }}
             >
               로그인
             </button>
@@ -89,7 +88,7 @@ class Login extends React.Component {
               <Link to="/">비밀번호 찾기</Link>
             </div>
           </div>
-        </div>
+        </section>
       </>
     );
   }
