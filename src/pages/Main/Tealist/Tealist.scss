@@ -9,43 +9,55 @@
     flex-direction: column;
 
     .swiper-container {
-      flex: 0 0 75%;
-      position: relative;
       width: 100%;
-      overflow: hidden;
 
       .swiper {
+        display: flex;
+        align-items: stretch;
+        overflow: hidden;
+        background-color: black;
+
         .swiper-inner {
           display: flex;
-          position: relative;
           width: 100%;
-          left: 25%;
-          overflow: hidden;
+          height: 100%;
+          transform: translate3d(25%, 0, 0);
+          overflow: scroll;
+          z-index: 1;
+        }
+
+        @keyframes scroll {
+          0% {
+            //trans
+          }
+        }
+
+        .transparentbox {
+          @include carousel-side-box;
+          z-index: 3;
+
+          &.left-0 {
+            left: 0;
+          }
+
+          &.right-0 {
+            right: 0;
+          }
+
+          .left {
+            @include position-set(absolute, 45%, 10%);
+            @include leftright-design;
+          }
+
+          .right {
+            @include position-set(absolute, 45%, auto, auto, 10%);
+            @include leftright-design;
+          }
         }
       }
 
       .swiper::-webkit-scrollbar {
         display: none;
-      }
-    }
-
-    .lightblackbox {
-      @include carousel-side-box(auto, #1c1c1c);
-      border-right: 1px solid black;
-      opacity: 0.5;
-
-      .left {
-        @include position-set(absolute, 45%, 10%);
-        @include leftright-design;
-      }
-    }
-
-    .blackbox {
-      @include carousel-side-box(0, black);
-
-      .right {
-        @include position-set(absolute, 45%, auto, auto, 10%);
-        @include leftright-design;
       }
     }
 

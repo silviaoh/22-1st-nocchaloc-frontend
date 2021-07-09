@@ -3,9 +3,9 @@ import './Slide.scss';
 
 class Slide extends React.Component {
   render() {
-    const { src } = this.props;
+    const { src, innerli } = this.props;
     return (
-      <li className="slide" ref={this.props.slide}>
+      <li className="slide" ref={innerli}>
         <div className="tea-video">
           <video className="video" autoPlay muted loop>
             <source src={src} />

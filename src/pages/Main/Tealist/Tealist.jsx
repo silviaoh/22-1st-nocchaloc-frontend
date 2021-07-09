@@ -11,8 +11,10 @@ class TeaList extends React.Component {
       products: [],
       pressed: false,
       originalX: 0,
+      translateX: 0,
     };
-    this.slide = React.createRef();
+    this.outerul = React.createRef();
+    this.innerli = React.createRef();
   }
 
   componentDidMount() {
@@ -22,10 +24,28 @@ class TeaList extends React.Component {
   }
 
   handleMouseDown = e => {
-    // this.setState({ pressed: true, originalX: e.clientX - this.slide. });
-    console.log(e);
-    console.log(this.slide.current.offsetLeft);
+    console.log(e.nativeEvent.offsetX);
+    console.log(
+      'this.innerli x: ',
+      this.innerli.current.getBoundingClientRect().x
+    );
+    this.setState({
+      pressed: true,
+      originalX: e.nativeEvent.offsetX,
+    });
   };
+
+  handleMouseMove = e => {
+    this.setState({
+      translateX:
+        this.state.originalX - this.innerli.current.getBoundingClientRect().x,
+    });
+    this.outerul.current.style.transform = `translate3d(${this.state.translateX},0,0)`;
+  };
+
+  handleMouseUp = e => {};
+
+  checkBoundary = () => {};
 
   render() {
     const totalProductsCount = this.state.products.length;
@@ -34,22 +54,32 @@ class TeaList extends React.Component {
         {/*video slider*/}
         <div className="tea-carousel">
           <div className="swiper-container">
-            <div className="swiper" onMouseDown={this.handleMouseDown}>
-              <ul className="swiper-inner">
+            <div
+              className="swiper"
+              pressed={this.state.pressed}
+              onMouseDown={this.handleMouseDown}
+              onMouseMove={this.handleMouseMove}
+              onMouseUp={this.handleMouseUp}
+            >
+              <ul className="swiper-inner" ref={this.outerul}>
                 {VIDEOSRC.map(video => (
-                  <Slide key={video.id} src={video.src} slide={this.slide} />
+                  <Slide
+                    key={video.id}
+                    src={video.src}
+                    innerli={this.innerli}
+                  />
                 ))}
               </ul>
-            </div>
-            <div className="lightblackbox">
-              <button className="left">
-                <i className="fas fa-chevron-left" />
-              </button>
-            </div>
-            <div className="blackbox">
-              <button className="right">
-                <i className="fas fa-chevron-right" />
-              </button>
+              <div className="transparentbox left-0">
+                <button className="left">
+                  <i className="fas fa-chevron-left" />
+                </button>
+              </div>
+              <div className="transparentbox right-0">
+                <button className="right">
+                  <i className="fas fa-chevron-right" />
+                </button>
+              </div>
             </div>
           </div>
           <div className="swiper-teaname">
