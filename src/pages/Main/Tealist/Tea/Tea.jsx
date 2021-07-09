@@ -4,14 +4,14 @@ import './Tea.scss';
 
 class Tea extends Component {
   render() {
-    const { name, price, main_img_url, hover_img_url, view_count } =
+    const { name, price, main_image_url, hover_image_url, view_count } =
       this.props.product;
     const PRICE_INTEGER = Math.floor(price);
     return (
       <li className="product-tea">
         <Link className="tea-img-container">
-          <img src={main_img_url} alt="Tea" className="tea-img-before" />
-          <img src={hover_img_url} alt="Tea" className="tea-img-after" />
+          <img src={main_image_url} alt="Tea" className="tea-img-before" />
+          <img src={hover_image_url} alt="Tea" className="tea-img-after" />
           <button className="cart">
             <i class="fas fa-shopping-cart" />
           </button>
