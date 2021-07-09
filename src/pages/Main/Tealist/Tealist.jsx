@@ -12,13 +12,13 @@ class TeaList extends React.Component {
   componentDidMount() {
     fetch('http://10.58.7.49:8000/products/product')
       .then(response => response.json())
-      .then(data => this.setState({ products: data.results }));
+      .then(data => this.setState({ products: data.products_info }));
   }
 
   render() {
-    const TOTAL = this.state.products.length;
+    const totalProductsCount = this.state.products.length;
     return (
-      <div className="wrapper">
+      <div className="tealist">
         {/*video slider*/}
         <div className="tea-carousel">
           <div className="swiper-container">
@@ -27,19 +27,19 @@ class TeaList extends React.Component {
             </ul>
             <div className="lightblackbox">
               <button className="left">
-                <i class="fas fa-chevron-left"></i>
+                <i className="fas fa-chevron-left" />
               </button>
             </div>
             <div className="blackbox">
               <button className="right">
-                <i class="fas fa-chevron-right"></i>
+                <i className="fas fa-chevron-right" />
               </button>
             </div>
           </div>
           <div className="swiper-teaname">
             <div className="teaname-overflow">
               {CATEGORY.map(menu => (
-                <Link className="teaname" key={menu.id}>
+                <Link to="#" className="teaname" key={menu.id}>
                   {menu.name}
                 </Link>
               ))}
@@ -73,7 +73,8 @@ class TeaList extends React.Component {
             </header>
             <section className="teashop-filter">
               <span className="total">
-                총 <strong id="sum">{TOTAL}</strong>개의 상품이 있습니다.
+                총 <strong className="bold">{totalProductsCount}</strong>개의
+                상품이 있습니다.
               </span>
               <div className="filter-button">
                 <button className="active">전체</button>
@@ -94,32 +95,42 @@ class TeaList extends React.Component {
               <div className="pagination-in">
                 <div className="lefts">
                   <button className="btn-home">
-                    <i class="fas fa-angle-double-left"></i>
+                    <i className="fas fa-angle-double-left" />
                   </button>
                   <button className="btn-left">
-                    <i class="fas fa-chevron-left"></i>
+                    <i className="fas fa-chevron-left" />
                   </button>
                 </div>
                 <div className="nums">
-                  <Link className="num active">1</Link>
-                  <Link className="num">2</Link>
-                  <Link className="num">3</Link>
-                  <Link className="num">4</Link>
-                  <Link className="num">5</Link>
+                  <Link to="#" className="num active">
+                    1
+                  </Link>
+                  <Link to="#" className="num">
+                    2
+                  </Link>
+                  <Link to="#" className="num">
+                    3
+                  </Link>
+                  <Link to="#" className="num">
+                    4
+                  </Link>
+                  <Link to="#" className="num">
+                    5
+                  </Link>
                 </div>
                 <div className="rights">
                   <button className="btn-right">
-                    <i class="fas fa-chevron-right"></i>
+                    <i className="fas fa-chevron-right" />
                   </button>
                   <button className="btn-end">
-                    <i class="fas fa-angle-double-right"></i>
+                    <i className="fas fa-angle-double-right" />
                   </button>
                 </div>
               </div>
             </section>
           </section>
-          <Link className="top">
-            <i class="fas fa-arrow-up"></i>
+          <Link to="#" className="top">
+            <i className="fas fa-arrow-up" />
           </Link>
         </main>
       </div>

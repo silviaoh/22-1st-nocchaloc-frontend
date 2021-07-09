@@ -12,9 +12,9 @@ class Tea extends Component {
         <Link className="tea-img-container">
           <img src={main_img_url} alt="Tea" className="tea-img-before" />
           <img src={hover_img_url} alt="Tea" className="tea-img-after" />
-          <Link className="cart">
-            <i class="fas fa-shopping-cart"></i>
-          </Link>
+          <button className="cart">
+            <i class="fas fa-shopping-cart" />
+          </button>
         </Link>
         <p className="name">
           <Link to="" className="name-link">
@@ -26,7 +26,7 @@ class Tea extends Component {
         </div>
         <div className="count-container">
           <span className="view-icon">
-            <i class="far fa-eye"></i>
+            <i class="far fa-eye" />
           </span>
           <span className="count">{view_count}</span>
         </div>
