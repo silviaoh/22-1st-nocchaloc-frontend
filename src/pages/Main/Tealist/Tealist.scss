@@ -1,0 +1,304 @@
+@import '../../../styles/variable.scss';
+@import '../../../styles/variableTeaList.scss';
+@import '../../../styles/mixinSet.scss';
+
+.tealist {
+  .tea-carousel {
+    @include flex-common(40%);
+    position: relative;
+    flex-direction: column;
+
+    .swiper-container {
+      flex: 0 0 75%;
+      position: relative;
+      width: 100%;
+
+      .swiper {
+        display: flex;
+        overflow-x: scroll;
+        padding: 0 25%;
+      }
+
+      .swiper::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .lightblackbox {
+      @include carousel-side-box(auto, #1c1c1c);
+      border-right: 1px solid black;
+      opacity: 0.5;
+
+      .left {
+        @include position-set(absolute, 45%, 10%);
+        @include leftright-design;
+      }
+    }
+
+    .blackbox {
+      @include carousel-side-box(0, black);
+
+      .right {
+        @include position-set(absolute, 45%, auto, auto, 10%);
+        @include leftright-design;
+      }
+    }
+
+    .swiper-teaname {
+      @include flex-common(25%, center, center);
+      width: 100%;
+      min-width: 745px;
+      padding: 0 280px;
+      background-color: $bgColor-videoMenu;
+
+      .teaname-overflow {
+        display: flex;
+        width: 100%;
+        min-width: 745px;
+        overflow-x: scroll;
+
+        .teaname {
+          @include flex-common(40%, center);
+          padding: 40px 0;
+          text-decoration: none;
+          color: $font-color-videoMenu;
+          font-size: $font-xlarge;
+
+          &:active {
+            color: $font-color-videoMenu;
+          }
+
+          &:visited {
+            color: $font-color-videoMenu;
+          }
+        }
+      }
+    }
+  }
+
+  .main-container {
+    @include flex-common(60%, center);
+    position: relative;
+    margin-top: calc(#{$margin-value} + 10px);
+
+    .aside-menu {
+      flex: 0 0 8%;
+      min-width: 200px;
+      margin-right: calc(#{$margin-value} + 8px);
+
+      .title {
+        margin-bottom: calc(#{$margin-value} * 2.5);
+        color: $color-black;
+        font-size: $font-large;
+      }
+
+      .list-in-title {
+        margin: calc(#{$margin-value} * 2) 0;
+        font-size: $font-large;
+        text-align: left;
+      }
+
+      .aside-menu-container {
+        .menu-name {
+          margin: 0 0 30px 40px;
+          color: $color-black;
+
+          .name-item {
+            margin-bottom: margin-value;
+            color: $color-black;
+            font-size: calc(#{$font-small} + 2px);
+            text-decoration: none;
+
+            &:hover,
+            &.active {
+              border-bottom: 3px solid $color-green;
+            }
+
+            &:active,
+            &:visited {
+              color: $color-black;
+            }
+          }
+        }
+      }
+    }
+
+    .teashop {
+      flex: 0 0 60%;
+      display: flex;
+      flex-direction: column;
+
+      .teashop-header {
+        @include flex-common(auto, space-between, center);
+        margin-bottom: $margin-value;
+        border-bottom: 1px solid $color-border;
+        min-width: 700px;
+
+        .title {
+          padding-bottom: calc(#{$margin-value} - 4px);
+          font-size: $font-large;
+          text-transform: uppercase;
+        }
+
+        .header-sort {
+          button {
+            margin-right: calc(#{$margin-value} * 3);
+            padding-bottom: calc(#{$margin-value} - 4px);
+            border-bottom: 2.5px solid transparent;
+            font-size: $font-large;
+
+            &:hover,
+            &.active {
+              color: $color-green;
+              border-bottom: 2.5px solid $color-green;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .teashop-filter {
+        @include flex-common(auto, space-between, center);
+        padding-top: $margin-value;
+
+        .total {
+          color: $color-black;
+
+          .bold {
+            @include bold($color-green);
+          }
+        }
+
+        .filter-button {
+          display: flex;
+
+          button {
+            flex-wrap: nowrap;
+            box-sizing: content-box;
+            min-width: 50px;
+            height: 38px;
+            margin-left: calc(#{$margin-value} - 5px);
+            padding: 0 calc(#{$margin-value} - 4px);
+            line-height: 38px;
+            font-size: $font-large;
+            color: $font-color-filterBtn;
+            background-color: $color-filterBtn;
+            border-radius: 38px;
+
+            &.active {
+              color: white;
+              background-color: $color-green;
+            }
+
+            &:hover {
+              cursor: pointer;
+              color: white;
+              background-color: $color-green;
+            }
+          }
+        }
+      }
+    }
+
+    .teashop-list {
+      display: flex;
+
+      .list-tea {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: calc(#{$margin-value} * 3);
+        overflow: hidden;
+      }
+    }
+
+    .pagination {
+      .pagination-in {
+        @include flex-common(auto, center, center);
+        margin: calc(#{$margin-value} + 10px) 0;
+
+        button {
+          @include width-height(50px, 50px);
+          border: 1px solid $color-border;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $color-filterBtn;
+          }
+
+          i {
+            font-size: $font-large;
+            color: $color-border;
+          }
+        }
+
+        .btn-home {
+          border-right: 0;
+        }
+
+        .btn-right {
+          border-right: 0;
+        }
+
+        .nums {
+          @include flex-common(40%, space-evenly, center);
+          margin: 0 $margin-value;
+          color: $font-color-filterBtn;
+
+          .num {
+            @include flex-common(auto, center, center);
+            @include width-height(42px, 42px);
+            border-radius: 100%;
+            text-decoration: none;
+
+            &:active,
+            &:visited {
+              color: $font-color-filterBtn;
+            }
+
+            &:hover {
+              color: $color-black;
+            }
+
+            &.active {
+              background-color: $color-filterBtn;
+              color: $color-black;
+            }
+          }
+        }
+      }
+    }
+
+    .top {
+      @include position-set(fixed, auto, 20px, 50px, auto);
+      padding: calc(#{$margin-value} - 6px);
+      color: $color-border;
+      background-color: $font-color-filterBtn;
+      border-radius: 50%;
+    }
+  }
+
+  @media screen and (min-width: 1100px) and (max-width: 1280px) {
+    .main-container {
+      .aside-menu {
+        flex: 0 0 8%;
+      }
+
+      .teashop {
+        flex: 0 0 75%;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1430px) {
+    .main-container {
+      .aside-menu {
+        flex: 0 0 8%;
+      }
+
+      .teashop {
+        flex: 0 0 75%;
+        max-width: 1072px;
+      }
+    }
+  }
+}
