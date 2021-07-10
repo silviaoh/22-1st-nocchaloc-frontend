@@ -1,18 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../styles/common.scss';
-import './MainPageLayout.scss';
+import './MainPage.scss';
 import Product from './weeklybest/Product';
 
 class MainPageLayout extends React.Component {
   state = {
     Products: [],
+    index: 0,
+  };
+
+  prevButton = () => {
+    if (this.state.index === 0) return;
+    this.setState({
+      index: this.state.index - 1,
+    });
+  };
+
+  nextButton = () => {
+    if (this.state.index === 1) return;
+    this.setState({
+      index: this.state.index + 1,
+    });
   };
 
   componentDidMount() {
-    fetch('http://localhost:3000/data/weeklyBest.json', {
-      method: 'GET',
-    })
+    fetch('http://localhost:3000/data/weeklyBest.json')
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -38,24 +50,42 @@ class MainPageLayout extends React.Component {
                   <Link to="/">바로보기</Link>
                 </div>
                 <figure className="img-slidebox">
-                  <img src="/images/Main/tea.jpg" alt="tea"></img>
+                  <img alt="tea" src="/images/Main/tea.jpg" />
                 </figure>
               </div>
             </div>
           </div>
         </div>
         <section className="main-weeklybest">
+          <div className="btn-wrapper">
+            <i
+              className="fas fa-3x fa-chevron-left"
+              onClick={this.prevButton}
+            ></i>
+            <i
+              className="fas fa-3x fa-chevron-right"
+              onClick={this.nextButton}
+            ></i>
+          </div>
           <div className="main-inner">
             <h1 className="title-weekly">이번 주 인기 상품</h1>
-            <div className="slide-weeklybest">
-              {this.state.Products.map(products => (
+            <div
+              className="slide-weeklybest"
+              style={{
+                transform: `translateX(-${1400 * this.state.index}px)`,
+                transition: 'transform ease-out 0.5s',
+              }}
+            >
+              {this.state.Products.map((products, id) => (
                 <Product
+                  key={id}
                   title={products.title}
                   img={products.img}
                   price={products.price}
                 />
               ))}
             </div>
+
             <div className="btn-box">
               <div className="weeklybest-btn">
                 <Link to="/">바로가기</Link>

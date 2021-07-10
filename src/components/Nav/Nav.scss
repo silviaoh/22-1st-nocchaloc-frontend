@@ -13,7 +13,7 @@ a {
     @include flex-space-between;
     position: fixed;
     width: 100%;
-    max-width: 1560px;
+    // max-width: 1560px;
     margin: 0 auto;
     padding: 0 80px;
     border-bottom: 1px solid $color-border;
@@ -33,7 +33,6 @@ a {
 }
 
 .menu-list {
-  list-style: none;
   @include flex-space-between;
   position: relative;
 

@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none;
+}
+
+.Nav {
+  height: 80px;
+}
+
+.Nav .nav-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 80px;
+  border-bottom: 1px solid #dbdbdb;
+  z-index: 10;
+  background-color: #fff;
+}
+
+.Nav .nav-inner .logo {
+  cursor: pointer;
+}
+
+.Nav .navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 80px;
+  padding-left: 0 0 0 190px;
+}
+
+.menu-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.menu-list li {
+  display: inline-block;
+  padding: 0px 20px;
+  cursor: pointer;
+}
+
+.menu-list li a {
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  color: #555;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.menu-list li a:hover {
+  color: #74824c;
+}
+
+.nav-side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 20px;
+}
+
+.nav-side .menubox-icon {
+  padding: 0 20px;
+}
+
+.nav-side .menubox-icon .fa-search {
+  padding: 0 20px;
+}
+
+.menubox-member {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.menubox-member .nav-login {
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.menubox-member .nav-login a {
+  color: #555;
+}
+
+.menubox-member .nav-login a:hover {
+  color: #74824c;
+}
+
+.menubox-member .nav-signup {
+  cursor: pointer;
+}
+
+.menubox-member .nav-signup a {
+  color: #555;
+}
+
+.menubox-member .nav-signup a:hover {
+  color: #74824c;
+}
+/*# sourceMappingURL=Nav.css.map */

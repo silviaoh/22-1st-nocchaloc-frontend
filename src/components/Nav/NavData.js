@@ -1,4 +1,4 @@
-const NavList = [
+const NAV_LIST = [
   {
     id: 1,
     title: '티/티푸드 >',
@@ -89,4 +89,4 @@ const NavList = [
   },
 ];
 
-export default NavList;
+export default NAV_LIST;

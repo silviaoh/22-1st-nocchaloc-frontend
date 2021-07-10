@@ -1,7 +1,7 @@
+@import '../../styles/variable.scss';
+
 .item_inner {
-  left: 0;
   width: 100%;
-  // background-color: #f6f5ee;
   padding: 0 100px;
 
   .inner {
@@ -34,15 +34,10 @@
     }
 
     .promo_date {
-      position: relative;
       margin: 0 0 36px;
     }
 
     .promo_onepoint {
-      position: relative;
-      display: block;
-      display: -webkit-box;
-      width: 100%;
       height: 58px;
       line-height: 1.7;
       overflow: hidden;
@@ -82,15 +77,23 @@
 }
 
 .main-weeklybest {
-  width: 100%;
-  max-width: 1560px;
+  position: relative;
+  width: 1560px;
   margin: 0 auto;
   padding: 100px 0;
   line-height: 1.7;
 
+  .btn-wrapper {
+    position: absolute;
+    width: 1560px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 40%;
+  }
+
   .main-inner {
-    position: relative;
-    max-width: 1400px;
+    width: 1400px;
     margin: 0 auto;
     overflow: hidden;
 
@@ -102,9 +105,10 @@
       padding-bottom: 60px;
     }
   }
-}
-.slide-weeklybest {
-  display: flex;
+
+  .slide-weeklybest {
+    display: flex;
+  }
 }
 
 .btn-box {
@@ -129,11 +133,9 @@
 }
 
 .main-sns {
-  left: 0;
-  width: 100%;
-  background-color: #f6f5ee;
   overflow: hidden;
   padding: 0 100px;
+  background-color: #f6f5ee;
 
   .inner {
     position: relative;
@@ -146,37 +148,27 @@
 
   .descbox {
     width: 616px;
-    height: 100%;
 
     .promo_title {
-      position: relative;
       font-size: 32px;
       margin-bottom: 14px;
       margin: 0 0 36px;
 
       a {
-        width: 100%;
         height: 48px;
         font-weight: 700px;
         line-height: 1.5;
         letter-spacing: -0.8px;
-        overflow: hidden;
       }
     }
 
     .promo_date {
-      position: relative;
       margin: 0 0 36px;
     }
 
     .promo_onepoint {
-      position: relative;
-      display: block;
-      display: -webkit-box;
-      width: 100%;
       height: 58px;
       line-height: 1.7;
-      overflow: hidden;
     }
 
     .left-btn {
@@ -200,11 +192,10 @@
       right: 0;
       width: 864px;
       padding-left: 40px;
-      overflow: hidden;
 
       img {
         margin-top: 65px;
-        display: inline;
+        display: inline-block;
         width: 70%;
         height: 70%;
       }
