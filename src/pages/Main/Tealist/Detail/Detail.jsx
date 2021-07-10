@@ -10,21 +10,18 @@ class Detail extends React.Component {
   };
 
   componentDidMount() {
-    fetch('http://10.58.7.49:8000/products/product/1')
+    fetch(`http://10.58.7.49:8000/products/${this.props.match.params.id}`)
       .then(response => response.json())
-      .then(data => this.setState({ data: data }));
+      .then(data => this.setState({ data: data.product_info[0] }));
   }
 
   render() {
+    const { description, main_image_url, name, price } = this.state.data;
     return (
       <div className="detail-wrapper">
         <section className="item-thumbnail-wrapper">
           <div className="item-thumbnail">
-            <img
-              src="https://www.osulloc.com/upload/kr/ko/adminImage/PW/US/20180406140800938CQ.png?quality=80"
-              alt="Tea"
-              className="thumbnail"
-            />
+            <img src={main_image_url} alt="Tea" className="thumbnail" />
           </div>
           <div className="benefit">
             <span className="icon">
@@ -42,15 +39,12 @@ class Detail extends React.Component {
               </span>
               <Link className="category">세트</Link>
             </section>
-            <h1 className="product-title">프리미엄 말차</h1>
-            <p className="description">
-              즐겁고 행복한 티타임을 선사하는 달콤하고 향긋한 오설록만의 특별한
-              블렌디드 티 선물세트입니다.
-            </p>
+            <h1 className="product-title">{name}</h1>
+            <p className="description">{description}</p>
             <section className="share-price">
               <Sharebutton />
               <p className="price">
-                <strong className="bold">20,000</strong>원
+                <strong className="bold">{price}</strong>원
               </p>
             </section>
           </div>

@@ -7,12 +7,17 @@ import './Tealist.scss';
 class TeaList extends React.Component {
   state = {
     products: [],
+    filterData: [],
   };
 
   componentDidMount() {
-    fetch('http://10.58.7.49:8000/products/product')
+    fetch('http://10.58.7.49:8000/products')
       .then(response => response.json())
       .then(data => this.setState({ products: data.products_info }));
+
+    fetch(`http://10.58.7.49:8000/products${this.props.location}`)
+      .then(response => response.json())
+      .then(data => this.setState({ filterData: data }));
   }
 
   render() {
@@ -77,17 +82,25 @@ class TeaList extends React.Component {
                 상품이 있습니다.
               </span>
               <div className="filter-button">
-                <button className="active">전체</button>
-                <button>잎차</button>
-                <button>피라미드</button>
-                <button>티백</button>
-                <button>파우더</button>
+                <Link className="link active">전체</Link>
+                <Link className="link" to="/tealist?product_id=1">
+                  잎차
+                </Link>
+                <Link className="link" to="/tealist?product_id=2">
+                  피라미드
+                </Link>
+                <Link className="link" to="/tealist?product_id=3">
+                  티백
+                </Link>
+                <Link className="link" to="/tealist?product_id=4">
+                  파우더
+                </Link>
               </div>
             </section>
             <section className="teashop-list">
               <ul className="list-tea">
                 {this.state.products.map((product, idx) => (
-                  <Tea key={idx} product={product} />
+                  <Tea key={idx} product={product} match={this.props.match} />
                 ))}
               </ul>
             </section>
