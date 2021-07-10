@@ -12,9 +12,9 @@ class TeaList extends React.Component {
       pressed: false,
       originalX: 0,
       translateX: 0,
+      lastTranslatX: 0,
     };
-    this.outerul = React.createRef();
-    this.innerli = React.createRef();
+    this.innerul = React.createRef();
   }
 
   componentDidMount() {
@@ -24,28 +24,37 @@ class TeaList extends React.Component {
   }
 
   handleMouseDown = e => {
-    console.log(e.nativeEvent.offsetX);
-    console.log(
-      'this.innerli x: ',
-      this.innerli.current.getBoundingClientRect().x
-    );
     this.setState({
       pressed: true,
-      originalX: e.nativeEvent.offsetX,
+      originalX: e.clientX,
     });
   };
 
   handleMouseMove = e => {
+    if (!this.state.pressed) return;
+    e.preventDefault();
     this.setState({
-      translateX:
-        this.state.originalX - this.innerli.current.getBoundingClientRect().x,
+      translateX: e.clientX - this.state.originalX + this.state.lastTranslatX,
     });
-    this.outerul.current.style.transform = `translate3d(${this.state.translateX},0,0)`;
+    this.checkBoundary();
   };
 
-  handleMouseUp = e => {};
+  handleMouseUp = e => {
+    this.setState({
+      pressed: false,
+      lastTranslatX: this.state.translateX,
+    });
+  };
 
-  checkBoundary = () => {};
+  checkBoundary = () => {
+    const { style } = this.innerul.current;
+
+    if (this.state.translateX > 0) {
+      style.transform = `translate3d(calc(25%),0px,0px)`;
+    } else {
+      style.transform = `translate3d(calc(25% + ${this.state.translateX}px),0px,0px)`;
+    }
+  };
 
   render() {
     const totalProductsCount = this.state.products.length;
@@ -61,13 +70,9 @@ class TeaList extends React.Component {
               onMouseMove={this.handleMouseMove}
               onMouseUp={this.handleMouseUp}
             >
-              <ul className="swiper-inner" ref={this.outerul}>
+              <ul className="swiper-inner" ref={this.innerul}>
                 {VIDEOSRC.map(video => (
-                  <Slide
-                    key={video.id}
-                    src={video.src}
-                    innerli={this.innerli}
-                  />
+                  <Slide key={video.id} src={video.src} />
                 ))}
               </ul>
               <div className="transparentbox left-0">
@@ -75,7 +80,7 @@ class TeaList extends React.Component {
                   <i className="fas fa-chevron-left" />
                 </button>
               </div>
-              <div className="transparentbox right-0">
+              <div className="transparentbox right-0" ref={this.rightBox}>
                 <button className="right">
                   <i className="fas fa-chevron-right" />
                 </button>

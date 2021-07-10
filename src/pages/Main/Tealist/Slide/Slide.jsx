@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import './Slide.scss';
 
 class Slide extends React.Component {
   render() {
-    const { src, innerli } = this.props;
+    const { src } = this.props;
     return (
-      <li className="slide" ref={innerli}>
+      <li className="slide">
         <div className="tea-video">
           <video className="video" autoPlay muted loop>
             <source src={src} />
