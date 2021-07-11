@@ -11,6 +11,34 @@ class Detail extends React.Component {
     bagPrice: 0,
   };
 
+  componentDidMount() {
+    window.Kakao.init('8b745f5f2ce644953d70506049de4e81');
+
+    window.Kakao.Link.createDefaultButton({
+      container: '#kakao-link-btn',
+      objectType: 'feed',
+      content: {
+        title: '프리미엄 말차',
+        description:
+          '즐겁고 행복한 티타임을 선사하는 달콤하고 향긋한 오설록만의 특별한 블렌디드 티 선물세트입니다.',
+        imageUrl:
+          'https://www.osulloc.com/upload/kr/ko/adminImage/PW/US/20180406140800938CQ.png?quality=80',
+        link: {
+          webUrl: 'http://localhost:3000/detail',
+        },
+      },
+      buttons: [
+        {
+          title: '녹차록에서 확인하기',
+          link: {
+            mobileWebUrl: 'http://localhost:3000/detail',
+            webUrl: 'http://localhost:3000/detail',
+          },
+        },
+      ],
+    });
+  }
+
   includeBagPrice = enclose => {
     enclose
       ? this.setState(() => ({ bagPrice: 100 }))
@@ -31,17 +59,17 @@ class Detail extends React.Component {
         <section className="item-thumbnail-wrapper">
           <div className="item-thumbnail">
             <img
-              src="https://www.osulloc.com/upload/kr/ko/adminImage/PW/US/20180406140800938CQ.png?quality=80"
+              src="images/List/tea/tea-2.png"
               alt="Tea"
               className="thumbnail"
             />
           </div>
-          {/* <div className="benefit">
+          <div className="benefit">
             <span className="icon">
               <i className="fas fa-shopping-bag" />
             </span>
-            <p className="content">쇼핑백동봉</p>
-          </div> */}
+            <p className="content">쇼핑백동봉선택가능</p>
+          </div>
         </section>
         <section className="item-info">
           <div className="item-info-top">

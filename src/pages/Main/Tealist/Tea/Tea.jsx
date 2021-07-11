@@ -4,9 +4,10 @@ import './Tea.scss';
 
 class Tea extends Component {
   render() {
-    const { name, price, main_image_url, hover_image_url, view_count } =
-      this.props.product;
-    const PRICE_INTEGER = Math.floor(price);
+    const { main_image_url, hover_image_url } = this.props.product;
+    // const { name, price, main_image_url, hover_image_url, view_count } =
+    //   this.props.product;
+    // const PRICE_INTEGER = Math.floor(price);
     return (
       <li className="product-tea">
         <Link className="tea-img-container">
@@ -18,17 +19,17 @@ class Tea extends Component {
         </Link>
         <p className="name">
           <Link to="" className="name-link">
-            {name}
+            이름
           </Link>
         </p>
         <div className="price">
-          <strong>{PRICE_INTEGER}</strong>원
+          <strong>20,000</strong>원
         </div>
         <div className="count-container">
           <span className="view-icon">
             <i class="far fa-eye" />
           </span>
-          <span className="count">{view_count}</span>
+          <span className="count">0</span>
         </div>
       </li>
     );

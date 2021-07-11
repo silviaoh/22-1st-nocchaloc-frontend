@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Slide from './Slide/Slide';
 import Tea from './Tea/Tea';
+import PRODUCTS_INFO from '../../../data/mockData';
 import './Tealist.scss';
 
 class TeaList extends React.Component {
@@ -10,12 +11,14 @@ class TeaList extends React.Component {
   };
 
   componentDidMount() {
-    fetch('http://10.58.7.49:8000/products/product')
-      .then(response => response.json())
-      .then(data => this.setState({ products: data.products_info }));
+    this.setState({ products: PRODUCTS_INFO });
+    // fetch('http://10.58.7.49:8000/products/product')
+    //   .then(response => response.json())
+    //   .then(data => this.setState({ products: data.products_info }));
   }
 
   render() {
+    console.log(PRODUCTS_INFO);
     const totalProductsCount = this.state.products.length;
     return (
       <div className="tealist">
@@ -86,8 +89,9 @@ class TeaList extends React.Component {
             </section>
             <section className="teashop-list">
               <ul className="list-tea">
-                {this.state.products.map((product, idx) => (
-                  <Tea key={idx} product={product} />
+                {/* <Tea /> */}
+                {this.state.products.map(product => (
+                  <Tea key={product.id} product={product} />
                 ))}
               </ul>
             </section>
