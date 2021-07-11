@@ -13,7 +13,6 @@ a {
     @include flex-space-between;
     position: fixed;
     width: 100%;
-    // max-width: 1560px;
     margin: 0 auto;
     padding: 0 80px;
     border-bottom: 1px solid $color-border;
@@ -29,16 +28,22 @@ a {
     align-items: center;
     height: 80px;
     padding-left: 0 0 0 190px;
+
+    a {
+      transition: all 0.3s ease 0s;
+      color: #555;
+      font-size: 18px;
+      font-weight: 500;
+    }
   }
 }
 
 .menu-list {
   @include flex-space-between;
-  position: relative;
+  height: 80px;
 
   li {
-    display: inline-block;
-    padding: 0px 20px;
+    padding: 0px 40px;
     cursor: pointer;
 
     a {
@@ -52,6 +57,93 @@ a {
       }
     }
   }
+}
+
+.depth-content {
+  position: absolute;
+  // visibility: hidden;
+  display: none;
+  margin-left: 100px;
+  margin-top: -30px;
+  width: 1200px;
+  height: 460px;
+  z-index: 1;
+  padding: 22px 0 0 30px;
+  background-color: #fafafa;
+}
+.depth-row {
+  display: flex;
+}
+
+.depth-column {
+  display: flex;
+  flex-direction: column;
+  width: 210px;
+  padding: 10px;
+
+  li {
+    font-size: 14px;
+    color: #999;
+    padding: 0 0 2px 10px;
+
+    &:hover {
+      color: $color-green;
+    }
+  }
+}
+.depth-row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.column:hover .depth-content {
+  // visibility: visible;
+  display: block;
+}
+
+.dropdown-content {
+  position: absolute;
+  // visibility: hidden;
+  display: none;
+  width: 100%;
+  left: 0;
+  z-index: 1;
+  padding: 20px 400px 150px 400px;
+  border: 1px solid #dbdbdb;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+  .column {
+    display: flex;
+    flex-direction: column;
+    width: 210px;
+    padding: 10px;
+
+    a {
+      font-size: 14px;
+      color: #999;
+      padding: 16px;
+
+      &:hover {
+        color: $color-green;
+      }
+    }
+  }
+
+  .row:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.dropdown:hover .dropdown-content {
+  // visibility: visible;
+  display: block;
 }
 
 .nav-side {

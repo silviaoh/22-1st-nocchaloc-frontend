@@ -8,35 +8,41 @@ class MainPage extends React.Component {
   state = {
     slide: [],
     Products: [],
-    index: 0,
+    bestIndex: 0,
     slideIndex: 0,
   };
 
-  prevSlide = e => {
-    if (this.state.slideIndex === 0) return;
-    this.setState({
-      slideIndex: this.state.slideIndex - 1,
-    });
+  prevSlide = () => {
+    if (this.state.slideIndex > 0) {
+      this.setState({
+        slideIndex: this.state.slideIndex - 1,
+      });
+    } else {
+      this.setState({ slideIndex: 4 });
+    }
   };
 
   nextSlide = () => {
-    if (this.state.slideIndex === 4) return;
-    this.setState({
-      slideIndex: this.state.slideIndex + 1,
-    });
+    if (this.state.slideIndex < 4) {
+      this.setState({
+        slideIndex: this.state.slideIndex + 1,
+      });
+    } else {
+      this.setState({ slideIndex: 0 });
+    }
   };
 
   prevButton = () => {
-    if (this.state.index === 0) return;
+    if (this.state.bestIndex === 0) return;
     this.setState({
-      index: this.state.index - 1,
+      bestIndex: this.state.bestIndex - 1,
     });
   };
 
   nextButton = () => {
-    if (this.state.index === 1) return;
+    if (this.state.bestIndex === 1) return;
     this.setState({
-      index: this.state.index + 1,
+      bestIndex: this.state.bestIndex + 1,
     });
   };
 
@@ -78,8 +84,14 @@ class MainPage extends React.Component {
             <div className="left-btn">
               <Link to="/">바로보기</Link>
             </div>
-            <button onClick={this.prevSlide}>버튼1</button>
-            <button onClick={this.nextSlide}>버튼2</button>
+            <div className="slide-btn-wrapper">
+              <i class="fas fa-2x fa-chevron-left" onClick={this.prevSlide}></i>
+
+              <i
+                class="fas fa-2x fa-chevron-right"
+                onClick={this.nextSlide}
+              ></i>
+            </div>
           </div>
         </div>
 
@@ -99,7 +111,7 @@ class MainPage extends React.Component {
             <div
               className="slide-weeklybest"
               style={{
-                transform: `translateX(-${1400 * this.state.index}px)`,
+                transform: `translateX(-${1400 * this.state.bestIndex}px)`,
                 transition: 'transform ease-out 0.5s',
               }}
             >

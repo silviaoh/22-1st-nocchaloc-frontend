@@ -3,20 +3,26 @@ import { Link } from 'react-router-dom';
 import './Nav.scss';
 
 class Nav extends React.Component {
+  componentDidMount() {
+    fetch('http://localhost:3000/data/tealist.json')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          lists: data.lists,
+        });
+      });
+  }
   render() {
-    // const NAV_LIST = [
-    //   {name:"티샵", path="/tea-life"},
-    //   {name:"이벤트", path="/event"},
-    // ]
     return (
       <>
         {/* Navigation menu */}
         <div className="Nav">
           <div className="nav-inner">
-            <img alt="logo" src="/images/Main/logo.svg" className="logo" />
-            <Link to="/"></Link>
+            <Link to="/">
+              <img alt="logo" src="/images/Main/logo.svg" className="logo" />
+            </Link>
             <nav className="navbar">
-              <div className="nav-menu">
+              <div className="dropdown">
                 <ul className="menu-list">
                   <li>
                     <Link to="/">티샵</Link>
@@ -34,6 +40,71 @@ class Nav extends React.Component {
                     <Link to="/">제주 티뮤지엄</Link>
                   </li>
                 </ul>
+
+                <div className="dropdown-content">
+                  <div className="row">
+                    <div className="column">
+                      <Link to="/">티/티푸드</Link>
+                      <ul className="depth-content">
+                        <div className="depth-row">
+                          <div className="depth-column">
+                            <Link to="#">
+                              <li>명차</li>
+                            </Link>
+                            <Link to="#">
+                              <li>녹차/발효차/홍차</li>
+                            </Link>
+                            <Link to="#">
+                              <li>허브티(무카페인)</li>
+                            </Link>
+                            <Link to="#">
+                              <li>블렌디드티</li>
+                            </Link>
+                            <Link to="#">
+                              <li>웰니스티</li>
+                            </Link>
+                            <Link to="#">
+                              <li>파우더</li>
+                            </Link>
+                            <Link to="#">
+                              <li>세트</li>
+                            </Link>
+                          </div>
+                        </div>
+                      </ul>
+
+                      <Link to="/">티웨어</Link>
+                      <Link to="/">선물추천</Link>
+                      <Link to="/">베스트</Link>
+                      <Link to="/">녹차록 라운지</Link>
+                    </div>
+                    <div className="column">
+                      <Link to="/">상품후기</Link>
+                      <Link to="/">선물하기</Link>
+                      <Link to="/">다다일상</Link>
+                      <Link to="/">매장 방문기</Link>
+                      <Link to="/">차 알아가기</Link>
+                    </div>
+                    <div className="column">
+                      <Link to="/">이벤트</Link>
+                      <Link to="/">온라인 쇼핑혜택</Link>
+                      <Link to="/">인스타그램</Link>
+                    </div>
+                    <div className="column">
+                      <Link to="/">일구다,가꾸다</Link>
+                      <Link to="/">Since 1979</Link>
+                      <Link to="/">녹차록 차밭 이야기</Link>
+                      <Link to="/">숫자로 보는 녹차록</Link>
+                      <Link to="/">티하우스 메뉴</Link>
+                      <Link to="/">매거진</Link>
+                    </div>
+                    <div className="column">
+                      <Link to="/">둘러보기</Link>
+                      <Link to="/">티스톤 예약</Link>
+                      <Link to="/">제주 녹차록 맵</Link>
+                    </div>
+                  </div>
+                </div>
               </div>
             </nav>
             <div className="nav-side">
@@ -56,5 +127,25 @@ class Nav extends React.Component {
     );
   }
 }
+// const NAV_TEA = [
+//   { id: 1, name: '명차' },
+//   { id: 2, name: '녹차/발효차/홍차' },
+//   { id: 3, name: '허브티(무카페인)' },
+//   { id: 4, name: '블렌디드티' },
+//   { id: 5, name: '웰니스티' },
+//   { id: 6, name: '파우더' },
+//   { id: 7, name: '세트' },
+// ];
+
+// <ul>
+// {NAV_TEA.map(list => (
+//   <Link
+//     to="#"
+//     className="tealist"
+//     key={list.id}
+//     name={list.name}
+//   ></Link>
+// ))}
+// </ul>
 
 export default Nav;
