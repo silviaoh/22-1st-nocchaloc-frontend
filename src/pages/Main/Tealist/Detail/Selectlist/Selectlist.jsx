@@ -3,14 +3,24 @@ import { Link } from 'react-router-dom';
 import './Selectlist.scss';
 
 class Selectlist extends React.Component {
+  state = {
+    isClicked: false,
+  };
+
+  toggleOptions = () => {
+    this.setState({
+      isClicked: !this.state.isClicked,
+    });
+  };
+
   render() {
     return (
       <div className="option-bar">
-        <Link className="value-box">
+        <Link className="value-box" onClick={this.toggleOptions}>
           <span className="value">쇼핑백(+100원)</span>
           {/*after */}
         </Link>
-        <ul className="options">
+        <ul className={this.state.isClicked ? 'options display' : 'options'}>
           <li className="options-list">
             <Link className="option-product">쇼핑백 동봉 안함</Link>
           </li>

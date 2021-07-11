@@ -7,7 +7,7 @@ class Sharebutton extends React.Component {
     return (
       <div className="sns">
         <Link className="share-btn">
-          <i class="far fa-copy"></i>
+          <i className="far fa-copy" />
           {/*<i class="fab fa-facebook-f"></i> */}
         </Link>
       </div>

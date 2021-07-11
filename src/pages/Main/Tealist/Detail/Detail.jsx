@@ -9,12 +9,6 @@ class Detail extends React.Component {
     data: [],
   };
 
-  componentDidMount() {
-    fetch('http://10.58.7.49:8000/products/product/1')
-      .then(response => response.json())
-      .then(data => this.setState({ data: data }));
-  }
-
   render() {
     return (
       <div className="detail-wrapper">
@@ -28,7 +22,7 @@ class Detail extends React.Component {
           </div>
           <div className="benefit">
             <span className="icon">
-              <i class="fas fa-shopping-bag"></i>
+              <i className="fas fa-shopping-bag" />
             </span>
             <p className="content">쇼핑백동봉</p>
           </div>
@@ -38,7 +32,7 @@ class Detail extends React.Component {
             <section className="location">
               <span className="root">Tea Shop</span>
               <span className="icon">
-                <i class="fas fa-chevron-right"></i>
+                <i className="fas fa-chevron-right" />
               </span>
               <Link className="category">세트</Link>
             </section>
@@ -60,15 +54,14 @@ class Detail extends React.Component {
                 <span className="item-name">구매수량</span>
                 <span className="modify-amount">
                   <button className="decrease">
-                    <i class="fas fa-minus"></i>
+                    <i className="fas fa-minus" />
                   </button>
                   <span className="count">1</span>
                   <button className="increase">
-                    <i class="fas fa-plus"></i>
+                    <i className="fas fa-plus" />
                   </button>
                 </span>
               </div>
-
               <Selectlist />
             </section>
           </section>
