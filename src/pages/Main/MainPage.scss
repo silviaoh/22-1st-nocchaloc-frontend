@@ -1,80 +1,56 @@
 @import '../../styles/variable.scss';
 
-.item_inner {
-  width: 100%;
+.item-inner {
   padding: 0 100px;
+}
 
-  .inner {
-    position: relative;
-    max-width: 1560px;
-    margin: 0 auto;
-    height: 520px;
-    padding: 90px 80px 80px 80px;
-    background-color: #f6f5ee;
-  }
+.inner {
+  position: relative;
+  max-width: 1560px;
+  margin: 0 auto;
+  height: 560px;
+  padding: 90px 80px 80px 80px;
+  background-color: #f6f5ee;
+  overflow: hidden;
+}
 
-  .descbox {
-    width: 616px;
-    height: 100%;
+.box-wrap {
+  display: flex;
+}
+.descbox {
+  display: flex;
+}
 
-    .promo_title {
-      position: relative;
-      font-size: 32px;
-      margin-bottom: 14px;
-      margin: 0 0 36px;
+.left-btn {
+  position: absolute;
+  width: 248px;
+  height: 60px;
+  top: 70%;
+  padding: 18px 0;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.15);
+  text-align: center;
+  line-height: 1.3;
 
-      a {
-        width: 100%;
-        height: 48px;
-        font-weight: 700px;
-        line-height: 1.5;
-        letter-spacing: -0.8px;
-        overflow: hidden;
-      }
-    }
-
-    .promo_date {
-      margin: 0 0 36px;
-    }
-
-    .promo_onepoint {
-      height: 58px;
-      line-height: 1.7;
-      overflow: hidden;
-    }
-
-    .left-btn {
-      display: inline-block;
-      width: 248px;
-      height: 60px;
-      padding: 18px 0;
-      border: 1px solid;
-      border-color: rgba(0, 0, 0, 0.15);
-      text-align: center;
-      line-height: 1.3;
-
-      a {
-        color: #555;
-      }
-    }
-
-    .img-slidebox {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 864px;
-      padding-left: 40px;
-      overflow: hidden;
-
-      img {
-        margin-top: 65px;
-        display: inline;
-        width: 70%;
-        height: 70%;
-      }
-    }
+  a {
+    color: #555;
   }
 }
+
+// .img-slidebox {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   width: 864px;
+//   padding-left: 40px;
+//   overflow: hidden;
+
+//   img {
+//     margin-top: 65px;
+//     display: inline;
+//     width: 70%;
+//     height: 70%;
+//   }
 
 .main-weeklybest {
   position: relative;
@@ -137,7 +113,7 @@
   padding: 0 100px;
   background-color: #f6f5ee;
 
-  .inner {
+  .sns-inner {
     position: relative;
     max-width: 1560px;
     margin: 0 auto;
@@ -146,10 +122,10 @@
     background-color: #f6f5ee;
   }
 
-  .descbox {
+  .sns-descbox {
     width: 616px;
 
-    .promo_title {
+    .sns-promo-title {
       font-size: 32px;
       margin-bottom: 14px;
       margin: 0 0 36px;
@@ -162,16 +138,16 @@
       }
     }
 
-    .promo_date {
+    .sns-promo-date {
       margin: 0 0 36px;
     }
 
-    .promo_onepoint {
+    .sns-promo-onepoint {
       height: 58px;
       line-height: 1.7;
     }
 
-    .left-btn {
+    .sns-left-btn {
       display: inline-block;
       width: 248px;
       height: 60px;
@@ -186,7 +162,7 @@
       }
     }
 
-    .img-slidebox {
+    .sns-img-slidebox {
       position: absolute;
       top: 0;
       right: 0;

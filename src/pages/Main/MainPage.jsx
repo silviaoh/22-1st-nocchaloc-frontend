@@ -1,12 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './MainPage.scss';
+import MainSlide from './MainSlide';
 import Product from './weeklybest/Product';
+import './MainPage.scss';
 
-class MainPageLayout extends React.Component {
+class MainPage extends React.Component {
   state = {
+    slide: [],
     Products: [],
     index: 0,
+    slideIndex: 0,
+  };
+
+  prevSlide = e => {
+    if (this.state.slideIndex === 0) return;
+    this.setState({
+      slideIndex: this.state.slideIndex - 1,
+    });
+  };
+
+  nextSlide = () => {
+    if (this.state.slideIndex === 4) return;
+    this.setState({
+      slideIndex: this.state.slideIndex + 1,
+    });
   };
 
   prevButton = () => {
@@ -24,11 +41,12 @@ class MainPageLayout extends React.Component {
   };
 
   componentDidMount() {
-    fetch('http://localhost:3000/data/weeklyBest.json')
+    fetch('http://localhost:3000/data/mainSlide.json')
       .then(res => res.json())
       .then(data => {
         this.setState({
-          Products: data,
+          slide: data.slide,
+          Products: data.products,
         });
       });
   }
@@ -36,26 +54,35 @@ class MainPageLayout extends React.Component {
   render() {
     return (
       <>
-        <div className="item_inner">
+        <div className="item-inner">
           <div className="inner">
-            <div className="box_wrap">
-              <div className="descbox">
-                <h3 className="promo_title">
-                  텍스트가 이렇게 <br />
-                  들어갑니다다다다다다다
-                </h3>
-                <p className="promo_date">07.01 - 07.31</p>
-                <p className="promo_onepoint">텍스트가 들어갑니다다다다다</p>
-                <div className="left-btn">
-                  <Link to="/">바로보기</Link>
-                </div>
-                <figure className="img-slidebox">
-                  <img alt="tea" src="/images/Main/tea.jpg" />
-                </figure>
+            <div className="box-wrap">
+              <div
+                className="descbox"
+                style={{
+                  transform: `translateX(-${1560 * this.state.slideIndex}px)`,
+                  transition: 'transform ease-out 0.5s',
+                }}
+              >
+                {this.state.slide.map((slide, id) => (
+                  <MainSlide
+                    key={id}
+                    title={slide.title}
+                    img={slide.img}
+                    date={slide.date}
+                    onepoint={slide.onepoint}
+                  />
+                ))}
               </div>
             </div>
+            <div className="left-btn">
+              <Link to="/">바로보기</Link>
+            </div>
+            <button onClick={this.prevSlide}>버튼1</button>
+            <button onClick={this.nextSlide}>버튼2</button>
           </div>
         </div>
+
         <section className="main-weeklybest">
           <div className="btn-wrapper">
             <i
@@ -94,20 +121,20 @@ class MainPageLayout extends React.Component {
           </div>
         </section>
         <section className="main-sns">
-          <div className="inner">
+          <div className="sns-inner">
             <div className="box_wrap">
-              <div className="descbox">
-                <h3 className="promo_title">
+              <div className="sns-descbox">
+                <h3 className="sns-promo-title">
                   #녹차록 #NOCCHALOC
                   <br />
                 </h3>
-                <p className="promo_onepoint">
+                <p className="sns-promo-onepoint">
                   녹차록 공식 인스타그램을 통해 다양한 소식을 전해드립니다.
                 </p>
-                <div className="left-btn">
+                <div className="sns-left-btn">
                   <Link to="/">녹차록 인스타그램</Link>
                 </div>
-                <figure className="img-slidebox">
+                <figure className="sns-img-slidebox">
                   <img src="/images/Main/tea.jpg" alt="tea"></img>
                 </figure>
               </div>
@@ -119,4 +146,4 @@ class MainPageLayout extends React.Component {
   }
 }
 
-export default MainPageLayout;
+export default MainPage;

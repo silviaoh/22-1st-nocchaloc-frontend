@@ -1,0 +1,33 @@
+@import '../../styles/variable.scss';
+
+.main-slide-wrapper {
+  display: flex;
+  width: 1560px;
+}
+.main-slide {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-text {
+  display: flex;
+  flex-direction: column;
+}
+.promo-title {
+  font-size: 32px;
+  margin: 0 400px 14px 0;
+}
+
+.promo-date {
+  margin: 0 0 36px;
+}
+
+.promo-onepoint {
+  height: 5px;
+  line-height: 1.7;
+}
+
+.img-slidebox-wrapper {
+  display: flex;
+  margin-right: 200px;
+}
