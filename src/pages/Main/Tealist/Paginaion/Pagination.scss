@@ -1,0 +1,65 @@
+@import '../../../../styles/variable.scss';
+@import '../../../../styles/variableTeaList.scss';
+@import '../../../../styles/mixinSet.scss';
+
+.pagination {
+  .pagination-in {
+    @include flex-common(auto, center, center);
+    margin: calc(#{$margin-value} + 10px) 0;
+
+    button {
+      @include width-height(50px, 50px);
+      border: 1px solid $color-border;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color-filterBtn;
+      }
+
+      i {
+        font-size: $font-large;
+        color: $color-border;
+      }
+    }
+
+    .btn-home {
+      border-right: 0;
+    }
+
+    .btn-right {
+      border-right: 0;
+
+      i {
+        z-index: -2;
+      }
+    }
+
+    .nums {
+      @include flex-common(40%, space-evenly, center);
+      margin: 0 $margin-value;
+      color: $font-color-filterBtn;
+
+      .num {
+        @include flex-common(auto, center, center);
+        @include width-height(42px, 42px);
+        border-radius: 100%;
+        border: 0;
+        text-decoration: none;
+
+        &:active,
+        &:visited {
+          color: $font-color-filterBtn;
+        }
+
+        &:hover {
+          color: $color-black;
+        }
+
+        &.active {
+          background-color: $color-filterBtn;
+          color: $color-black;
+        }
+      }
+    }
+  }
+}

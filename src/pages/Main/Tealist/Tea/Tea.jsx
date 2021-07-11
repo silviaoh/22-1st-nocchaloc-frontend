@@ -14,7 +14,7 @@ class Tea extends Component {
           <img src="" alt="Tea" className="tea-img-before" />
           <img src="" alt="Tea" className="tea-img-after" />
           <button className="cart">
-            <i class="fas fa-shopping-cart" />
+            <i className="fas fa-shopping-cart" />
           </button>
         </Link>
         <p className="name">
@@ -27,7 +27,7 @@ class Tea extends Component {
         </div>
         <div className="count-container">
           <span className="view-icon">
-            <i class="far fa-eye" />
+            <i className="far fa-eye" />
           </span>
           <span className="count">0</span>
         </div>

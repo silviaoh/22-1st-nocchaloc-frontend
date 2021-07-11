@@ -1,6 +1,7 @@
 import React from 'react';
 import Pagination from '../Paginaion/Pagination';
 import Tea from '../Tea/Tea';
+import './ListLayout.scss';
 
 class ListLayout extends React.Component {
   state = {
@@ -12,9 +13,8 @@ class ListLayout extends React.Component {
     activeId: 0,
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.slicePostData();
-    setTimeout(this.slicePostData, 500);
   }
 
   componentWillUnmount() {
@@ -54,6 +54,7 @@ class ListLayout extends React.Component {
   };
 
   render() {
+    setTimeout(this.slicePostData, 500);
     return (
       <section className="teashop">
         <header className="teashop-header">
@@ -85,7 +86,7 @@ class ListLayout extends React.Component {
           products={this.props.products}
           handleNumberClick={this.handleNumberClick}
           pageCount={this.state.pageCount}
-          activeId={this.state.activeId}
+          slicePostData={this.slicePostData}
         />
       </section>
     );

@@ -1,0 +1,91 @@
+@import '../../../../styles/variable.scss';
+@import '../../../../styles/variableTeaList.scss';
+@import '../../../../styles/mixinSet.scss';
+
+.teashop {
+  flex: 0 0 60%;
+  display: flex;
+  flex-direction: column;
+
+  .teashop-header {
+    @include flex-common(auto, space-between, center);
+    margin-bottom: $margin-value;
+    border-bottom: 1px solid $color-border;
+    min-width: 700px;
+
+    .title {
+      padding-bottom: calc(#{$margin-value} - 4px);
+      font-size: $font-large;
+      text-transform: uppercase;
+    }
+
+    .header-sort {
+      button {
+        margin-right: calc(#{$margin-value} * 3);
+        padding-bottom: calc(#{$margin-value} - 4px);
+        border-bottom: 2.5px solid transparent;
+        font-size: $font-large;
+
+        &:hover,
+        &.active {
+          color: $color-green;
+          border-bottom: 2.5px solid $color-green;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .teashop-filter {
+    @include flex-common(auto, space-between, center);
+    padding-top: $margin-value;
+
+    .total {
+      color: $color-black;
+
+      .bold {
+        @include bold($color-green);
+      }
+    }
+
+    .filter-button {
+      display: flex;
+
+      button {
+        flex-wrap: nowrap;
+        box-sizing: content-box;
+        min-width: 50px;
+        height: 38px;
+        margin-left: calc(#{$margin-value} - 5px);
+        padding: 0 calc(#{$margin-value} - 4px);
+        line-height: 38px;
+        font-size: $font-large;
+        color: $font-color-filterBtn;
+        background-color: $color-filterBtn;
+        border-radius: 38px;
+
+        &.active {
+          color: white;
+          background-color: $color-green;
+        }
+
+        &:hover {
+          cursor: pointer;
+          color: white;
+          background-color: $color-green;
+        }
+      }
+    }
+  }
+
+  .teashop-list {
+    display: flex;
+
+    .list-tea {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: calc(#{$margin-value} * 3);
+      overflow: hidden;
+    }
+  }
+}
