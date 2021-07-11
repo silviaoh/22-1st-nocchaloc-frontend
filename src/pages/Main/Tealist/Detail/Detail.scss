@@ -8,8 +8,9 @@
 
   .item-thumbnail-wrapper {
     position: relative;
+    @include flex-common(auto, center, center);
     @include width-height(49.5%, 70vh);
-    min-width: 480px;
+    max-width: 580px;
     margin: calc(#{$margin-value} + 11px);
     padding: 30px 40px 110px;
     background-color: #f8f9fb;
@@ -17,6 +18,7 @@
     .item-thumbnail {
       .thumbnail {
         @include width-height(100%, 100%);
+        max-width: 480px;
       }
     }
 
