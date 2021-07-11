@@ -45,11 +45,12 @@
     background-color: white;
 
     .options-list {
-      height: 48.9%;
+      height: 50%;
       line-height: 50px;
 
       .option-product {
         display: block;
+        @include width-height(100%, 100%);
         padding-left: $margin-value;
         font-size: $font-large;
         text-decoration: none;

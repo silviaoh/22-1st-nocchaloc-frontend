@@ -24,4 +24,25 @@
       top: 0;
     }
   }
+
+  .Kakao {
+    #kakao-link-btn {
+      @include flex-common(auto, center, center);
+      @include width-height(50px, 50px);
+      border-radius: 50%;
+      padding: 10px;
+      background-color: #f2f8f6;
+      color: $font-color-filterBtn;
+      font-size: $font-xlarge;
+
+      &:hover {
+        color: #f2f8f6;
+        background-color: $color-green;
+      }
+
+      img {
+        @include width-height(100%, 100%);
+      }
+    }
+  }
 }

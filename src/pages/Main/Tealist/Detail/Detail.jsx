@@ -7,6 +7,22 @@ import './Detail.scss';
 class Detail extends React.Component {
   state = {
     data: [],
+    count: 0,
+    bagPrice: 0,
+  };
+
+  includeBagPrice = enclose => {
+    enclose
+      ? this.setState(() => ({ bagPrice: 100 }))
+      : this.setState(prev => ({ bagPrice: 0 }));
+  };
+
+  handleIncrease = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  handleDecrease = () => {
+    this.state.count > 0 && this.setState({ count: this.state.count - 1 });
   };
 
   render() {
@@ -20,12 +36,12 @@ class Detail extends React.Component {
               className="thumbnail"
             />
           </div>
-          <div className="benefit">
+          {/* <div className="benefit">
             <span className="icon">
               <i className="fas fa-shopping-bag" />
             </span>
             <p className="content">쇼핑백동봉</p>
-          </div>
+          </div> */}
         </section>
         <section className="item-info">
           <div className="item-info-top">
@@ -53,23 +69,29 @@ class Detail extends React.Component {
               <div className="product-amount">
                 <span className="item-name">구매수량</span>
                 <span className="modify-amount">
-                  <button className="decrease">
+                  <button className="decrease" onClick={this.handleDecrease}>
                     <i className="fas fa-minus" />
                   </button>
-                  <span className="count">1</span>
-                  <button className="increase">
+                  <span className="count">{this.state.count}</span>
+                  <button className="increase" onClick={this.handleIncrease}>
                     <i className="fas fa-plus" />
                   </button>
                 </span>
               </div>
-              <Selectlist />
+              <Selectlist includeBagPrice={this.includeBagPrice} />
             </section>
           </section>
           <section className="item-info-bottom">
             <div className="value-amount">
               <span className="product-total">상품금액 합계</span>
               <p className="value">
-                <strong className="bold">20,000</strong>원
+                <strong className="bold">
+                  {(
+                    20000 * this.state.count +
+                    this.state.bagPrice
+                  ).toLocaleString()}
+                </strong>
+                원
               </p>
             </div>
             <button className="cart-btn">장바구니</button>

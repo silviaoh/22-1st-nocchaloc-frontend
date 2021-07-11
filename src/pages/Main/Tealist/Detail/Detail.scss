@@ -112,10 +112,13 @@
             .decrease,
             .increase {
               font-size: $font-large;
+              cursor: pointer;
             }
 
             .count {
+              min-width: 24px;
               margin: 0 $margin-value;
+              text-align: center;
             }
           }
         }
