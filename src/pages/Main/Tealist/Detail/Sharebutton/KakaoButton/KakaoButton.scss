@@ -1,14 +1,13 @@
-@import '../../../../../styles/variable.scss';
-@import '../../../../../styles/variableListDetail.scss';
-@import '../../../../../styles/mixinSet.scss';
+@import '../../../../../../styles/variable.scss';
+@import '../../../../../../styles/variableListDetail.scss';
+@import '../../../../../../styles/mixinSet.scss';
 
-.sns {
-  @include flex-common(110px, space-between);
-
-  .share-btn {
+.Kakao {
+  #kakao-link-btn {
     @include flex-common(auto, center, center);
     @include width-height(50px, 50px);
     border-radius: 50%;
+    padding: 10px;
     background-color: #f2f8f6;
     color: $font-color-filterBtn;
     font-size: $font-xlarge;
@@ -18,10 +17,8 @@
       background-color: $color-green;
     }
 
-    input {
-      display: none;
-      position: absolute;
-      top: 0;
+    img {
+      @include width-height(100%, 100%);
     }
   }
 }

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import KakaoButton from './KakaoButton/KakaoButton';
 import './Sharebutton.scss';
 
 class Sharebutton extends React.Component {
@@ -10,6 +11,7 @@ class Sharebutton extends React.Component {
     };
     this.urlInput = React.createRef();
   }
+
   copyToClipboard = () => {
     const element = this.urlInput.current;
     element.select();
@@ -21,7 +23,6 @@ class Sharebutton extends React.Component {
       <div className="sns">
         <button className="share-btn" onClick={this.copyToClipboard}>
           <i className="far fa-copy" />
-          {/*<i class="fab fa-facebook-f"></i> */}
           <input
             type="text"
             value={`localhost:3000${this.props.location.pathname}`}
@@ -29,6 +30,7 @@ class Sharebutton extends React.Component {
             readOnly
           />
         </button>
+        <KakaoButton />
       </div>
     );
   }
