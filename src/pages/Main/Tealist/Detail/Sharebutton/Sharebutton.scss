@@ -17,5 +17,11 @@
       color: #f2f8f6;
       background-color: $color-green;
     }
+
+    input {
+      display: none;
+      position: absolute;
+      top: 0;
+    }
   }
 }

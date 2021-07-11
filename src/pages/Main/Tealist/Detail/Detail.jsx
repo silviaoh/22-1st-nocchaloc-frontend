@@ -42,7 +42,7 @@ class Detail extends React.Component {
               블렌디드 티 선물세트입니다.
             </p>
             <section className="share-price">
-              <Sharebutton />
+              <Sharebutton location={this.props.location} />
               <p className="price">
                 <strong className="bold">20,000</strong>원
               </p>
