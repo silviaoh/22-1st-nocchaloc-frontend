@@ -11,6 +11,7 @@ class Sharebutton extends React.Component {
     const element = this.urlInput.current;
     element.select();
     document.execCommand('copy');
+    alert('Ctrl+V로 붙여넣기하세요.');
   };
 
   render() {
