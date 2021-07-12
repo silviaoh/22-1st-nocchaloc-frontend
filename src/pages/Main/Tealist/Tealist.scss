@@ -135,17 +135,20 @@
         min-width: 700px;
 
         .title {
-          padding-bottom: calc(#{$margin-value} - 4px);
+          padding-bottom: $margin-value;
           font-size: $font-large;
           text-transform: uppercase;
         }
 
         .header-sort {
-          button {
+          padding-bottom: $margin-value;
+
+          .sort {
             margin-right: calc(#{$margin-value} * 3);
             padding-bottom: calc(#{$margin-value} - 4px);
             border-bottom: 2.5px solid transparent;
             font-size: $font-large;
+            color: $color-black;
 
             &:hover,
             &.active {
