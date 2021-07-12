@@ -46,7 +46,7 @@ class Login extends React.Component {
   };
 
   render() {
-    const BtnIsEnabled = this.handleButton();
+    // const BtnIsEnabled = this.handleButton();
 
     return (
       <>
@@ -75,8 +75,8 @@ class Login extends React.Component {
               className="login-btn"
               id="btnLogin"
               onClick={this.signInSuccess}
-              disabled={!BtnIsEnabled}
-              style={{ opacity: BtnIsEnabled ? 1 : 0.5 }}
+              // disabled={!BtnIsEnabled}
+              // style={{ opacity: BtnIsEnabled ? 1 : 0.5 }}
             >
               로그인
             </button>

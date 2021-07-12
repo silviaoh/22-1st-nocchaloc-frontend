@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/common.scss';
-import './MainPageLayout.scss';
+import './MainPage.scss';
 import Product from './weeklybest/Product';
 
 class MainPageLayout extends React.Component {
