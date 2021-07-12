@@ -18,7 +18,6 @@ class TeaList extends React.Component {
   }
 
   render() {
-    console.log(PRODUCTS_INFO);
     const totalProductsCount = this.state.products.length;
     return (
       <div className="tealist">
