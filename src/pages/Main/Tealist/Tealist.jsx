@@ -8,7 +8,6 @@ class TeaList extends React.Component {
   state = {
     products: [],
     filterData: [],
-    buttonId: 0,
   };
 
   componentDidMount() {
@@ -22,9 +21,15 @@ class TeaList extends React.Component {
   }
 
   handleClick = ({ target }) => {
-    this.setState(() => ({
-      buttonId: target.id,
-    }));
+    const id = target.name;
+    this.setState(
+      state => ({
+        [id]: !state[id],
+      }),
+      () => {
+        console.log(this.state);
+      }
+    );
   };
 
   render() {
@@ -91,13 +96,13 @@ class TeaList extends React.Component {
                 상품이 있습니다.
               </span>
               <div className="filter-button">
-                {Filter.map(condition => (
+                {Filter.map((condition, idx) => (
                   <Link
                     className={`link ${
-                      condition.id == this.state.buttonId ? 'active' : ''
+                      this.state[`filterBtn${condition.id}`] ? 'active' : ''
                     }`}
                     key={condition.id}
-                    id={condition.id}
+                    name={`filterBtn${condition.id}`}
                     onClick={this.handleClick}
                   >
                     {condition.name}
