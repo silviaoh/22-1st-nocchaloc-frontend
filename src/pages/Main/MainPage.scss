@@ -6,7 +6,6 @@
 
 .inner {
   position: relative;
-  // max-width: 1560px;
   margin: 0 auto;
   height: 560px;
   padding: 90px 80px 80px 80px;
@@ -162,14 +161,5 @@
         height: 70%;
       }
     }
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }

@@ -2,28 +2,27 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  // width: 248px;
-  // height: 248px;
 
   img {
-    // width: 100%;
+    width: 248px;
+    height: 248px;
     margin: 0 40px 20px 0;
   }
 
   h2 {
     margin: 0 0 10px 0;
   }
-  // .img-hover {
-  //   position: absolute;
-  //   opacity: 0;
-  //   transition: 0.3s;
-  // }
+  .img-hover {
+    position: absolute;
+    opacity: 0;
+    transition: 0.3s;
+  }
 
-  // &:hover > .img-hover {
-  //   opacity: 1;
-  // }
+  &:hover > .img-hover {
+    opacity: 1;
+  }
 
-  // &:hover > .img-origin {
-  //   opacity: 1;
-  // }
+  &:hover > .img-origin {
+    opacity: 1;
+  }
 }
