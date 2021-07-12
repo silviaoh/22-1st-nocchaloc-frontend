@@ -6,7 +6,7 @@ import './Detail.scss';
 
 class Detail extends React.Component {
   state = {
-    data: [],
+    product: [],
     count: 0,
     bagPrice: 0,
   };
@@ -40,9 +40,7 @@ class Detail extends React.Component {
   }
 
   includeBagPrice = enclose => {
-    enclose
-      ? this.setState(() => ({ bagPrice: 100 }))
-      : this.setState(prev => ({ bagPrice: 0 }));
+    enclose ? this.setState({ bagPrice: 100 }) : this.setState({ bagPrice: 0 });
   };
 
   handleIncrease = () => {
