@@ -181,6 +181,8 @@
             padding: 0 calc(#{$margin-value} - 4px);
             line-height: 38px;
             font-size: $font-large;
+            text-align: center;
+            text-decoration: none;
             color: $font-color-filterBtn;
             background-color: $color-filterBtn;
             border-radius: 38px;

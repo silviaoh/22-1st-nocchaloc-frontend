@@ -8,6 +8,7 @@ class TeaList extends React.Component {
   state = {
     products: [],
     filterData: [],
+    buttonId: 0,
   };
 
   componentDidMount() {
@@ -19,6 +20,12 @@ class TeaList extends React.Component {
       .then(response => response.json())
       .then(data => this.setState({ filterData: data }));
   }
+
+  handleClick = ({ target }) => {
+    this.setState(() => ({
+      buttonId: target.id,
+    }));
+  };
 
   render() {
     const totalProductsCount = this.state.products.length;
@@ -71,7 +78,9 @@ class TeaList extends React.Component {
             <header className="teashop-header">
               <h1 className="title">Tea shop</h1>
               <div className="header-sort">
-                <button className="new active">신상품순</button>
+                <button className="new active" onClick={this.handleClick}>
+                  신상품순
+                </button>
                 <button className="descending">높은 가격순</button>
                 <button className="ascending">낮은 가격순</button>
               </div>
@@ -82,19 +91,18 @@ class TeaList extends React.Component {
                 상품이 있습니다.
               </span>
               <div className="filter-button">
-                <Link className="link active">전체</Link>
-                <Link className="link" to="/tealist?product_id=1">
-                  잎차
-                </Link>
-                <Link className="link" to="/tealist?product_id=2">
-                  피라미드
-                </Link>
-                <Link className="link" to="/tealist?product_id=3">
-                  티백
-                </Link>
-                <Link className="link" to="/tealist?product_id=4">
-                  파우더
-                </Link>
+                {Filter.map(condition => (
+                  <Link
+                    className={`link ${
+                      condition.id == this.state.buttonId ? 'active' : ''
+                    }`}
+                    key={condition.id}
+                    id={condition.id}
+                    onClick={this.handleClick}
+                  >
+                    {condition.name}
+                  </Link>
+                ))}
               </div>
             </section>
             <section className="teashop-list">
@@ -159,6 +167,14 @@ const CATEGORY = [
   { id: 5, name: '웰니스티' },
   { id: 6, name: '파우더' },
   { id: 7, name: '세트' },
+];
+
+const Filter = [
+  { id: 0, name: '전체' },
+  { id: 1, name: '잎차' },
+  { id: 2, name: '피라미드' },
+  { id: 3, name: '티백' },
+  { id: 4, name: '파우더' },
 ];
 
 export default TeaList;
