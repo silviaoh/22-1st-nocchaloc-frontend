@@ -57,7 +57,7 @@ class Detail extends React.Component {
         <section className="item-thumbnail-wrapper">
           <div className="item-thumbnail">
             <img
-              src="images/List/tea/tea-2.png"
+              src="https://github.com/JeonSoohyun27/nocchaloc_product_image_data/blob/main/tea/tea-43.png?raw=true"
               alt="Tea"
               className="thumbnail"
             />

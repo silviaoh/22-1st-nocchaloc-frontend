@@ -7,11 +7,13 @@ class Selectlist extends React.Component {
     isClicked: false,
   };
 
-  selectShoppingBag = ({ target }) => {
+  selectShoppingBag = e => {
+    console.log(e);
     this.toggleOptions();
-    const enclose = target.className.includes('enclose') ? true : false;
 
-    this.props.includeBagPrice(enclose);
+    const enclose = this.state.isClicked;
+
+    this.props.includeBagPrice(this.state.enclose);
   };
 
   toggleOptions = () => {
@@ -27,21 +29,26 @@ class Selectlist extends React.Component {
           <span className="value">쇼핑백(+100원)</span>
           {/*after */}
         </Link>
-        <ul className={this.state.isClicked ? 'options display' : 'options'}>
-          <li className="options-list">
-            <button className="option-product" onClick={this.selectShoppingBag}>
-              쇼핑백 동봉 안함
-            </button>
-          </li>
-          <li className="options-list">
-            <button
-              className="option-product enclose "
-              onClick={this.selectShoppingBag}
-            >
-              쇼핑백 동봉 함
-            </button>
-          </li>
-        </ul>
+        {this.state.isClicked && (
+          <ul className="options">
+            <li className="options-list">
+              <button
+                className="option-product"
+                onClick={this.selectShoppingBag}
+              >
+                쇼핑백 동봉 안함
+              </button>
+            </li>
+            <li className="options-list">
+              <button
+                className="option-product enclose "
+                onClick={this.selectShoppingBag}
+              >
+                쇼핑백 동봉 함
+              </button>
+            </li>
+          </ul>
+        )}
       </div>
     );
   }

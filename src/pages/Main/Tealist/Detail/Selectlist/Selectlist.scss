@@ -38,7 +38,6 @@
   }
 
   .options {
-    display: none;
     position: absolute;
     @include width-height(100%, 100px);
     border: 2px solid $color-border;
@@ -63,9 +62,5 @@
         }
       }
     }
-  }
-
-  .display {
-    display: block;
   }
 }
