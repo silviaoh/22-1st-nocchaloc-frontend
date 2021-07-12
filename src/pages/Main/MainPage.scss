@@ -6,7 +6,7 @@
 
 .inner {
   position: relative;
-  max-width: 1560px;
+  // max-width: 1560px;
   margin: 0 auto;
   height: 560px;
   padding: 90px 80px 80px 80px;
@@ -39,18 +39,19 @@
 
 .main-weeklybest {
   position: relative;
-  width: 1560px;
+  width: 100%;
   margin: 0 auto;
   padding: 100px 0;
   line-height: 1.7;
 
   .btn-wrapper {
     position: absolute;
-    width: 1560px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     top: 40%;
+    padding: 10px;
   }
 
   .main-inner {

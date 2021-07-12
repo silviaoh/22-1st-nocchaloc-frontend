@@ -10,6 +10,7 @@ class MainPage extends React.Component {
     Products: [],
     bestIndex: 0,
     slideIndex: 0,
+    // img: 'https://source.unsplash.com/248x248/?tea',
   };
 
   prevSlide = () => {
@@ -63,6 +64,21 @@ class MainPage extends React.Component {
         <div className="item-inner">
           <div className="inner">
             <div className="box-wrap">
+              {/* <img
+                src={this.state.img}
+                alt="img"
+                onMouseEnter={() => {
+                  this.setState({
+                    img: 'https://source.unsplash.com/248x248/?tea leaf',
+                  });
+                }}
+                onMouseOut={() => {
+                  this.setState({
+                    img: 'https://source.unsplash.com/248x248/?tea',
+                  });
+                }}
+              /> */}
+
               <div
                 className="descbox"
                 style={{
@@ -75,6 +91,16 @@ class MainPage extends React.Component {
                     key={id}
                     title={slide.title}
                     img={slide.img}
+                    // onMouseEnter={() => {
+                    //   this.setState({
+                    //     img: 'https://source.unsplash.com/248x248/?tealeaf',
+                    //   });
+                    // }}
+                    // onMouseOut={() => {
+                    //   this.setState({
+                    //     img: 'https://source.unsplash.com/248x248/?tea',
+                    //   });
+                    // }}
                     date={slide.date}
                     onepoint={slide.onepoint}
                   />

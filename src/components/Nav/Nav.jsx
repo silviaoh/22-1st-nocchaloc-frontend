@@ -44,7 +44,7 @@ class Nav extends React.Component {
                 <div className="dropdown-content">
                   <div className="row">
                     <div className="column">
-                      <Link to="/">티/티푸드</Link>
+                      <Link to="/tealist">티/티푸드</Link>
                       <ul className="depth-content">
                         <div className="depth-row">
                           <div className="depth-column">
