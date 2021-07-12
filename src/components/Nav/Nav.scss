@@ -1,4 +1,3 @@
-@import '../../styles/common.scss';
 @import '../../styles/variable.scss';
 @import '../../styles/variableNav.scss';
 
@@ -36,155 +35,156 @@ a {
       font-weight: 500;
     }
   }
-}
+  .menu-list {
+    @include flex-space-between;
+    height: 80px;
 
-.menu-list {
-  @include flex-space-between;
-  height: 80px;
+    li {
+      padding: 0px 40px;
+      cursor: pointer;
 
-  li {
-    padding: 0px 40px;
-    cursor: pointer;
+      a {
+        transition: all 0.3s ease 0s;
+        color: #555;
+        font-size: 18px;
+        font-weight: 500;
 
-    a {
-      transition: all 0.3s ease 0s;
-      color: #555;
-      font-size: 18px;
-      font-weight: 500;
-
-      &:hover {
-        color: $color-green;
+        &:hover {
+          color: $color-green;
+        }
       }
     }
   }
-}
+  .dropdown-content {
+    position: absolute;
+    // visibility: hidden;
+    display: none;
+    width: 100%;
+    left: 0;
+    z-index: 1;
+    padding: 20px 400px 150px 400px;
+    border: 1px solid $color-border;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
 
-.dropdown-content {
-  position: absolute;
-  // visibility: hidden;
-  display: none;
-  width: 100%;
-  left: 0;
-  z-index: 1;
-  padding: 20px 400px 150px 400px;
-  border: 1px solid $color-border;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
+    .row {
+      display: flex;
+      justify-content: center;
+    }
+    .column {
+      display: flex;
+      flex-direction: column;
+      width: 210px;
+      padding: 10px;
 
-  .row {
-    display: flex;
-    justify-content: center;
+      a {
+        font-size: 14px;
+        color: $color-menu;
+        padding: 16px;
+
+        &:hover {
+          color: $color-green;
+        }
+      }
+    }
+
+    .row:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
   }
-  .column {
-    display: flex;
-    flex-direction: column;
-    width: 210px;
-    padding: 10px;
 
-    a {
-      font-size: 14px;
-      color: $color-menu;
-      padding: 16px;
+  .dropdown:hover .dropdown-content {
+    // visibility: visible;
+    display: block;
+  }
 
-      &:hover {
-        color: $color-green;
+  .depth-content {
+    position: absolute;
+    // visibility: hidden;
+    display: none;
+    margin-left: 100px;
+    margin-top: -30px;
+    width: 1200px;
+    height: 490px;
+    z-index: 1;
+    padding: 22px 0 0 30px;
+    background-color: #fafafa;
+
+    .depth-row {
+      display: flex;
+    }
+
+    .depth-column {
+      display: flex;
+      flex-direction: column;
+      width: 210px;
+      padding: 10px;
+
+      li {
+        font-size: 14px;
+        color: $color-menu;
+        padding: 0 0 2px 10px;
+
+        &:hover {
+          color: $color-green;
+        }
       }
     }
   }
 
-  .row:after {
+  .depth-row:after {
     content: '';
     display: table;
     clear: both;
   }
-}
 
-.dropdown:hover .dropdown-content {
-  // visibility: visible;
-  display: block;
-}
-
-.depth-content {
-  position: absolute;
-  // visibility: hidden;
-  display: none;
-  margin-left: 100px;
-  margin-top: -30px;
-  width: 1200px;
-  height: 490px;
-  z-index: 1;
-  padding: 22px 0 0 30px;
-  background-color: #fafafa;
-}
-.depth-row {
-  display: flex;
-}
-
-.depth-column {
-  display: flex;
-  flex-direction: column;
-  width: 210px;
-  padding: 10px;
-
-  li {
-    font-size: 14px;
-    color: $color-menu;
-    padding: 0 0 2px 10px;
-
-    &:hover {
-      color: $color-green;
-    }
+  .column:hover .depth-content {
+    // visibility: visible;
+    display: block;
   }
-}
-.depth-row:after {
-  content: '';
-  display: table;
-  clear: both;
-}
-.column:hover .depth-content {
-  // visibility: visible;
-  display: block;
-}
 
-.nav-side {
-  display: flex;
-  padding: 0 20px;
-
-  .menubox-icon {
+  .nav-side {
+    display: flex;
     padding: 0 20px;
 
-    .fa-search {
+    .menubox-icon {
       padding: 0 20px;
-    }
-  }
-}
 
-.menubox-member {
-  display: flex;
-  padding: 0 20px;
-  cursor: pointer;
-
-  .nav-login {
-    padding: 0 20px;
-    cursor: pointer;
-
-    a {
-      color: #555;
-
-      &:hover {
-        color: $color-green;
+      .fa-search {
+        padding: 0 20px;
       }
     }
   }
 
-  .nav-signup {
+  .menubox-member {
+    display: flex;
+    padding: 0 20px;
     cursor: pointer;
 
-    a {
-      color: #555;
+    .nav-login {
+      padding: 0 20px;
+      cursor: pointer;
 
-      &:hover {
-        color: $color-green;
+      a {
+        color: #555;
+
+        &:hover {
+          color: $color-green;
+        }
+      }
+    }
+
+    .nav-signup {
+      cursor: pointer;
+
+      a {
+        color: #555;
+
+        &:hover {
+          color: $color-green;
+        }
       }
     }
   }

@@ -7,7 +7,6 @@ class Main extends React.Component {
     return (
       <div>
         <MainPage />
-        {/* <h1>Main 페이지입니다.</h1> */}
       </div>
     );
   }

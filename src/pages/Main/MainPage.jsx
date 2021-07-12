@@ -48,11 +48,13 @@ class MainPage extends React.Component {
 
   componentDidMount() {
     fetch('http://localhost:3000/data/mainSlide.json')
+      // fetch('http://10.58.6.95:8000/products')
       .then(res => res.json())
       .then(data => {
         this.setState({
           slide: data.slide,
           Products: data.products,
+          // Products: data.products_info,
         });
       });
   }
@@ -120,6 +122,7 @@ class MainPage extends React.Component {
                   key={id}
                   title={products.title}
                   img={products.img}
+                  // img={products.main_image_url}
                   price={products.price}
                 />
               ))}
