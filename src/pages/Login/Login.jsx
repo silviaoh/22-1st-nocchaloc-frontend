@@ -8,9 +8,9 @@ class Login extends React.Component {
     this.state = {
       userId: '',
       userPw: '',
+      buttonChange: '#dbdbdb',
     };
   }
-
   handleInput = e => {
     const { name, value } = e.target;
 
@@ -20,22 +20,29 @@ class Login extends React.Component {
   };
 
   handleButton = () => {
-    const { userId, userPw } = this.state;
-    return userId.includes('Number') && userPw.length >= 8;
+    if (this.state.userId.includes('@') && this.state.userPw.length >= 8) {
+      this.setState({
+        buttonChange: '#74824c',
+      });
+    } else {
+      this.setState({
+        buttonChange: '#dbdbdb',
+      });
+    }
+    // const { userId, userPw } = this.state;
+    // return userId.includes('@') && userPw.length >= 8;
   };
 
   signInSuccess = () => {
-    this.props.history.push('/');
     fetch('http://10.58.2.59:8000/users/signin', {
       method: 'POST',
       body: JSON.stringify({
-        account: this.state.userId,
-        password: this.state.userPw,
+        userId: this.state.userId,
+        userPw: this.state.userPw,
       }),
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         if (data.message === 'SUCCESS') {
           this.props.history.push('/');
           localStorage.setItem('TOKEN', data.TOKEN);
@@ -46,8 +53,7 @@ class Login extends React.Component {
   };
 
   render() {
-    // const BtnIsEnabled = this.handleButton();
-
+    // const btnIsEnabled = this.handleButton();
     return (
       <>
         <section className="login-container">
@@ -57,7 +63,6 @@ class Login extends React.Component {
               <input
                 type="text"
                 className="input-login"
-                id="userId"
                 name="userId"
                 placeholder="아이디"
                 onChange={this.handleInput}
@@ -65,7 +70,6 @@ class Login extends React.Component {
               <input
                 type="password"
                 className="input-password"
-                id="userPw"
                 name="userPw"
                 placeholder="비밀번호"
                 onChange={this.handleInput}
@@ -73,13 +77,13 @@ class Login extends React.Component {
             </div>
             <button
               className="login-btn"
-              id="btnLogin"
               onClick={this.signInSuccess}
-              // disabled={!BtnIsEnabled}
-              // style={{ opacity: BtnIsEnabled ? 1 : 0.5 }}
+              // disabled={!btnIsEnabled}
+              style={{ backgroundColor: this.state.buttonChange }}
             >
               로그인
             </button>
+
             <div className="login-link-box">
               <Link to="/">회원가입</Link>
               <i className="bar">|</i>
