@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import MainSlide from './MainSlide';
 import Product from './weeklybest/Product';
+import MAIN_SLIDE from './mainSlideData';
 import './MainPage.scss';
 
 class MainPage extends React.Component {
@@ -45,9 +46,8 @@ class MainPage extends React.Component {
       bestIndex: this.state.bestIndex + 1,
     });
   };
-
   componentDidMount() {
-    fetch('http://localhost:3000/data/mainSlide.json')
+    fetch('http://localhost:3000/data/weeklyBest.json')
       // fetch('http://10.58.6.95:8000/products')
       .then(res => res.json())
       .then(data => {
@@ -72,9 +72,9 @@ class MainPage extends React.Component {
                   transition: 'transform ease-out 0.5s',
                 }}
               >
-                {this.state.slide.map((slide, id) => (
+                {MAIN_SLIDE.map((slide, idx) => (
                   <MainSlide
-                    key={id}
+                    key={idx}
                     title={slide.title}
                     img={slide.img}
                     date={slide.date}

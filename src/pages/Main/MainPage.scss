@@ -1,38 +1,40 @@
 @import '../../styles/variable.scss';
+@import '../../styles/variableMain.scss';
 
 .item-inner {
   padding: 0 100px;
-}
 
-.inner {
-  position: relative;
-  margin: 0 auto;
-  height: 560px;
-  padding: 90px 80px 80px 80px;
-  background-color: #f6f5ee;
-  overflow: hidden;
-}
+  .inner {
+    position: relative;
+    margin: 0 auto;
+    height: 560px;
+    padding: 90px 80px 80px 80px;
+    background-color: #f6f5ee;
+    overflow: hidden;
+  }
 
-.box-wrap {
-  display: flex;
-}
-.descbox {
-  display: flex;
-}
+  .box-wrap {
+    display: flex;
+  }
+  .descbox {
+    display: flex;
+    right: 0;
+  }
 
-.left-btn {
-  position: absolute;
-  width: 248px;
-  height: 60px;
-  top: 70%;
-  padding: 18px 0;
-  border: 1px solid;
-  border-color: rgba(0, 0, 0, 0.15);
-  text-align: center;
-  line-height: 1.3;
+  .left-btn {
+    position: absolute;
+    width: 248px;
+    height: 60px;
+    top: 70%;
+    padding: 18px 0;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 0.15);
+    text-align: center;
+    line-height: 1.3;
 
-  a {
-    color: #555;
+    a {
+      color: #555;
+    }
   }
 }
 
@@ -44,11 +46,9 @@
   line-height: 1.7;
 
   .btn-wrapper {
+    @include flex-space-between;
     position: absolute;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     top: 40%;
     padding: 10px;
   }
@@ -70,26 +70,25 @@
   .slide-weeklybest {
     display: flex;
   }
-}
+  .btn-box {
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+  }
+  .weeklybest-btn {
+    display: inline-block;
+    width: 248px;
+    height: 60px;
+    padding: 18px 0;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 0.15);
+    text-align: center;
+    line-height: 1.3;
+    margin: 0 auto;
 
-.btn-box {
-  display: flex;
-  justify-content: center;
-  padding-top: 80px;
-}
-.weeklybest-btn {
-  display: inline-block;
-  width: 248px;
-  height: 60px;
-  padding: 18px 0;
-  border: 1px solid;
-  border-color: rgba(0, 0, 0, 0.15);
-  text-align: center;
-  line-height: 1.3;
-  margin: 0 auto;
-
-  a {
-    color: #555;
+    a {
+      color: #555;
+    }
   }
 }
 
