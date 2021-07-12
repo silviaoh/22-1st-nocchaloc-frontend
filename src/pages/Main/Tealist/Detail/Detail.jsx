@@ -10,12 +10,15 @@ class Detail extends React.Component {
   };
 
   componentDidMount() {
-    fetch(`http://10.58.7.49:8000/products/${this.props.match.params.id}`)
+    fetch(
+      `http://10.58.6.95:8000/products/productslist/${this.props.match.params.id}`
+    )
       .then(response => response.json())
       .then(data => this.setState({ data: data.product_info[0] }));
   }
 
   render() {
+    console.log(this.props.match);
     const { description, main_image_url, name, price } = this.state.data;
     return (
       <div className="detail-wrapper">

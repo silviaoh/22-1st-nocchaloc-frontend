@@ -12,11 +12,11 @@ class TeaList extends React.Component {
   };
 
   componentDidMount() {
-    fetch('http://10.58.7.49:8000/products')
+    fetch('http://10.58.6.95:8000/products/productslist')
       .then(response => response.json())
       .then(data => this.setState({ products: data.products_info }));
 
-    fetch(`http://10.58.7.49:8000/products${this.props.location}`)
+    fetch(`http://10.58.6.95:8000/products/productslist${this.props.location}`)
       .then(response => response.json())
       .then(data => this.setState({ filterData: data }));
   }
