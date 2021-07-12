@@ -1,6 +1,4 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
-import KakaoButton from './KakaoButton/KakaoButton';
 import './Sharebutton.scss';
 
 class Sharebutton extends React.Component {
