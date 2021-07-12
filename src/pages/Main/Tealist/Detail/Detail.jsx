@@ -39,8 +39,10 @@ class Detail extends React.Component {
     });
   }
 
-  includeBagPrice = enclose => {
-    enclose ? this.setState({ bagPrice: 100 }) : this.setState({ bagPrice: 0 });
+  includeBagPrice = id => {
+    id === 1
+      ? this.setState({ bagPrice: 100 })
+      : this.setState({ bagPrice: 0 });
   };
 
   handleIncrease = () => {

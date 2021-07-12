@@ -5,15 +5,15 @@ import './Selectlist.scss';
 class Selectlist extends React.Component {
   state = {
     isClicked: false,
+    currentId: 1,
   };
 
-  selectShoppingBag = e => {
-    console.log(e);
+  selectShoppingBag = id => {
     this.toggleOptions();
 
-    const enclose = this.state.isClicked;
-
-    this.props.includeBagPrice(this.state.enclose);
+    this.setState({ currentId: id }, () => {
+      this.props.includeBagPrice(this.state.currentId);
+    });
   };
 
   toggleOptions = () => {
@@ -31,27 +31,30 @@ class Selectlist extends React.Component {
         </Link>
         {this.state.isClicked && (
           <ul className="options">
-            <li className="options-list">
-              <button
-                className="option-product"
-                onClick={this.selectShoppingBag}
-              >
-                쇼핑백 동봉 안함
-              </button>
-            </li>
-            <li className="options-list">
-              <button
-                className="option-product enclose "
-                onClick={this.selectShoppingBag}
-              >
-                쇼핑백 동봉 함
-              </button>
-            </li>
+            {SELECT_SHOPPINGBAG.map((enabled, idx) => {
+              return (
+                <li className="options-list" key={idx}>
+                  <button
+                    className="option-product"
+                    onClick={() => {
+                      this.selectShoppingBag(idx + 1);
+                    }}
+                  >
+                    {enabled.content}
+                  </button>
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>
     );
   }
 }
+
+const SELECT_SHOPPINGBAG = [
+  { content: '쇼핑백 동봉 함' },
+  { content: '쇼핑백 동봉 안함' },
+];
 
 export default Selectlist;
