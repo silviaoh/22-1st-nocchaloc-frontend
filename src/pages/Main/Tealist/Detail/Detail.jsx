@@ -12,7 +12,7 @@ class Detail extends React.Component {
   };
 
   componentDidMount() {
-    window.Kakao.init('8b745f5f2ce644953d70506049de4e81');
+    window.Kakao.init(process.env.REACT_APP_KAKAOSHARE_API);
 
     window.Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn',
