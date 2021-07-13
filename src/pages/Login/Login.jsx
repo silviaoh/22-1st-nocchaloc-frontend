@@ -8,29 +8,32 @@ class Login extends React.Component {
     this.state = {
       userId: '',
       userPw: '',
-      buttonChange: '#dbdbdb',
+      idCheck: false,
+      pwCheck: false,
+      btnChange: '#B9C0A5',
     };
   }
-  handleInput = e => {
-    const { name, value } = e.target;
 
-    this.setState({
-      [name]: value,
-    });
+  idCheck = e => {
+    this.setState({ userId: e.target.value });
+    if (e.target.value.includes('@')) {
+      this.setState({ idCheck: true }, () => this.handleButton());
+    }
+  };
+
+  pwCheck = e => {
+    this.setState({ userPw: e.target.value });
+    if (e.target.value.length >= 8) {
+      this.setState({ pwCheck: true }, () => this.handleButton());
+    }
   };
 
   handleButton = () => {
-    if (this.state.userId.includes('@') && this.state.userPw.length >= 8) {
-      this.setState({
-        buttonChange: '#74824c',
-      });
+    if (this.state.idCheck && this.state.pwCheck) {
+      this.setState({ btnChange: '#74824c' });
     } else {
-      this.setState({
-        buttonChange: '#dbdbdb',
-      });
+      this.setState({ btnChange: '#B9C0A5' });
     }
-    // const { userId, userPw } = this.state;
-    // return userId.includes('@') && userPw.length >= 8;
   };
 
   signInSuccess = () => {
@@ -53,7 +56,6 @@ class Login extends React.Component {
   };
 
   render() {
-    // const btnIsEnabled = this.handleButton();
     return (
       <>
         <section className="login-container">
@@ -65,21 +67,20 @@ class Login extends React.Component {
                 className="input-login"
                 name="userId"
                 placeholder="아이디"
-                onChange={this.handleInput}
+                onChange={this.idCheck}
               />
               <input
                 type="password"
                 className="input-password"
                 name="userPw"
                 placeholder="비밀번호"
-                onChange={this.handleInput}
+                onChange={this.pwCheck}
               />
             </div>
             <button
               className="login-btn"
               onClick={this.signInSuccess}
-              // disabled={!btnIsEnabled}
-              style={{ backgroundColor: this.state.buttonChange }}
+              style={{ backgroundColor: this.state.btnChange }}
             >
               로그인
             </button>
