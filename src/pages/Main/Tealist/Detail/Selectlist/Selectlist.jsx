@@ -5,7 +5,6 @@ import './Selectlist.scss';
 class Selectlist extends React.Component {
   state = {
     isClicked: false,
-    currentId: 1,
   };
 
   selectShoppingBag = id => {
