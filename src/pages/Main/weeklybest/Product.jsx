@@ -5,7 +5,7 @@ class Product extends Component {
   render() {
     return (
       <div className="product-info">
-        <img alt="product_img" clasName="img-origin" src={this.props.img} />
+        <img alt="product_img" className="img-origin" src={this.props.img} />
         <img
           alt="mainslide_img"
           className="img-hover"
