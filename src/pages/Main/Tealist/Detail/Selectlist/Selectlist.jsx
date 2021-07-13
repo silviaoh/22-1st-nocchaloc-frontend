@@ -11,9 +11,8 @@ class Selectlist extends React.Component {
   selectShoppingBag = id => {
     this.toggleOptions();
 
-    this.setState({ currentId: id }, () => {
-      this.props.includeBagPrice(this.state.currentId);
-    });
+    this.setState({ currentId: id });
+    this.props.includeBagPrice(id);
   };
 
   toggleOptions = () => {
