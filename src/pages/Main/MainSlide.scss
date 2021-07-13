@@ -2,20 +2,23 @@
 
 .main-slide-wrapper {
   display: flex;
-  width: 1560px;
+  position: relative;
+  justify-content: center;
 }
 .main-slide {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  width: 100vw;
 }
 
 .main-text {
   display: flex;
   flex-direction: column;
+  left: 0;
 }
 .promo-title {
   font-size: 32px;
-  margin: 0 400px 14px 0;
+  margin: 0 0 14px 0;
 }
 
 .promo-date {
@@ -29,5 +32,6 @@
 
 .img-slidebox-wrapper {
   display: flex;
-  margin-right: 30px;
+  padding: 0 400px 0 200px;
+  right: 0;
 }

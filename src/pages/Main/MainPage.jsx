@@ -68,7 +68,7 @@ class MainPage extends React.Component {
               <div
                 className="descbox"
                 style={{
-                  transform: `translateX(-${1560 * this.state.slideIndex}px)`,
+                  transform: `translateX(-${100 * this.state.slideIndex}vw)`,
                   transition: 'transform ease-out 0.5s',
                 }}
               >

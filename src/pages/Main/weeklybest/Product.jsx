@@ -9,7 +9,7 @@ class Product extends Component {
         <img
           alt="mainslide_img"
           className="img-hover"
-          src="images/Main/leaf.jpg"
+          src="/images/Main/leaf.jpg"
         />
         <h2>{this.props.title}</h2>
         <h2>{this.props.price}</h2>
