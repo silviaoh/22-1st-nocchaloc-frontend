@@ -22,7 +22,7 @@ class Tea extends Component {
           </Link>
         </p>
         <div className="price">
-          <strong>{PRICE_INTEGER}</strong>원
+          <strong>{PRICE_INTEGER.toLocaleString()}</strong>원
         </div>
         <div className="count-container">
           <span className="view-icon">

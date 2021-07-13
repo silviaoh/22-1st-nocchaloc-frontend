@@ -6,21 +6,19 @@ import './Detail.scss';
 
 class Detail extends React.Component {
   state = {
-    data: [],
+    product: [],
   };
 
   componentDidMount() {
-    fetch(
-      `http://10.58.6.95:8000/products/productslist/${this.props.match.params.id}`
-    )
+    fetch(`http://10.58.1.97:8000/products/${this.props.match.params.id}`)
       .then(response => response.json())
-      .then(data => this.setState({ data: data.product_info[0] }));
+      .then(data => this.setState({ product: data.product_info[0] }));
   }
 
   render() {
-    const { description, main_image_url, name, price } = this.state.data;
+    const { description, main_image_url, name, price } = this.state.product;
     return (
-      <div className="detail-wrapper">
+      <div className="detail-wrapper" onLoad={this.addViewCount}>
         <section className="item-thumbnail-wrapper">
           <div className="item-thumbnail">
             <img alt="Tea" src={main_image_url} className="thumbnail" />
@@ -46,7 +44,10 @@ class Detail extends React.Component {
             <section className="share-price">
               <Sharebutton />
               <p className="price">
-                <strong className="bold">{price}</strong>원
+                <strong className="bold">
+                  {Math.ceil(price).toLocaleString()}
+                </strong>
+                원
               </p>
             </section>
           </div>
