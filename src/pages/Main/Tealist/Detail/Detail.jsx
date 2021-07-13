@@ -23,7 +23,7 @@ class Detail extends React.Component {
       <div className="detail-wrapper">
         <section className="item-thumbnail-wrapper">
           <div className="item-thumbnail">
-            <img src={main_image_url} alt="Tea" className="thumbnail" />
+            <img alt="Tea" src={main_image_url} className="thumbnail" />
           </div>
           <div className="benefit">
             <span className="icon">
