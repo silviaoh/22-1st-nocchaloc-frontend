@@ -18,7 +18,6 @@ class Detail extends React.Component {
   }
 
   render() {
-    console.log(this.props.match);
     const { description, main_image_url, name, price } = this.state.data;
     return (
       <div className="detail-wrapper">

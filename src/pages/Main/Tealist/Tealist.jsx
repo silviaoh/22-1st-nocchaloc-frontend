@@ -7,22 +7,50 @@ import './Tealist.scss';
 class TeaList extends React.Component {
   state = {
     products: [],
-    filterData: [],
-    currentId: 0,
+    sortId: 0,
+    categoryId: 0,
   };
 
   componentDidMount() {
-    fetch('http://10.58.6.95:8000/products/productslist')
-      .then(response => response.json())
-      .then(data => this.setState({ products: data.products_info }));
-
-    fetch(`http://10.58.6.95:8000/products/productslist${this.props.location}`)
-      .then(response => response.json())
-      .then(data => this.setState({ filterData: data }));
+    this.fetchAllProducts();
   }
 
-  handleSingleClick = id => {
-    this.setState({ currentId: id });
+  fetchAllProducts = () => {
+    fetch('http://10.58.1.97:8000/products')
+      .then(response => response.json())
+      .then(data => this.setState({ products: data.products_info }));
+    this.props.history.push({
+      pathname: '/tealist',
+    });
+  };
+
+  addQuery = (key, value) => {
+    let pathname = this.props.location.pathname;
+    let searchParams = new URLSearchParams(this.props.location.search);
+    searchParams.set(key, value);
+
+    this.props.history.push({
+      pathname: pathname,
+      search: searchParams.toString(),
+    });
+  };
+
+  handleSortClick = id => {
+    this.setState({ sortId: id }, () => {
+      fetch(`http://10.58.1.97:8000/products${this.props.location.search}`)
+        .then(response => response.json())
+        .then(data => this.setState({ products: data.products_info }));
+    });
+    this.addQuery('sort', id);
+  };
+
+  handleCategoryClick = id => {
+    this.setState({ categoryId: id }, () => {
+      fetch(`http://10.58.1.97:8000/products${this.props.location.search}`)
+        .then(response => response.json())
+        .then(data => this.setState({ products: data.products_info }));
+    });
+    this.addQuery('category', id);
   };
 
   handleOverlapClick = ({ target }) => {
@@ -33,6 +61,7 @@ class TeaList extends React.Component {
   };
 
   render() {
+    const { search } = this.props.location;
     const totalProductsCount = this.state.products.length;
     return (
       <div className="tealist">
@@ -56,7 +85,7 @@ class TeaList extends React.Component {
           <div className="swiper-teaname">
             <div className="teaname-overflow">
               {CATEGORY.map(menu => (
-                <Link to="#" className="teaname" key={menu.id}>
+                <Link className="teaname" key={menu.id}>
                   {menu.name}
                 </Link>
               ))}
@@ -67,13 +96,20 @@ class TeaList extends React.Component {
           {/*aside menu*/}
           <aside className="aside-menu">
             <h1 className="title">TEA SHOP</h1>
-            <h2 className="list-in-title">TEA</h2>
+            <button className="list-in-title" onClick={this.fetchAllProducts}>
+              TEA
+            </button>
             <ul className="aside-menu-container">
               {CATEGORY.map(menu => (
                 <li className="menu-name" key={menu.id}>
-                  <Link to="#" className="name-item">
+                  <button
+                    className={`name-item ${
+                      search.includes(`category=${menu.id}`) ? 'active' : ''
+                    }`}
+                    onClick={() => this.handleCategoryClick(menu.id)}
+                  >
                     {menu.name}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -85,15 +121,15 @@ class TeaList extends React.Component {
               <div className="header-sort">
                 {SORT.map((option, idx) => {
                   return (
-                    <Link
+                    <button
                       key={option.id}
                       className={`sort ${
-                        option.id === this.state.currentId ? 'active' : ''
+                        search.includes(`sort=${option.id}`) ? 'active' : ''
                       }`}
-                      onClick={() => this.handleSingleClick(idx)}
+                      onClick={() => this.handleSortClick(idx + 1)}
                     >
                       {option.name}
-                    </Link>
+                    </button>
                   );
                 })}
               </div>
@@ -105,7 +141,7 @@ class TeaList extends React.Component {
               </span>
               <div className="filter-button">
                 {FILTER.map(condition => (
-                  <Link
+                  <button
                     className={`link ${
                       this.state[`filterBtn${condition.id}`] ? 'active' : ''
                     }`}
@@ -114,7 +150,7 @@ class TeaList extends React.Component {
                     onClick={this.handleOverlapClick}
                   >
                     {condition.name}
-                  </Link>
+                  </button>
                 ))}
               </div>
             </section>
@@ -191,9 +227,9 @@ const FILTER = [
 ];
 
 const SORT = [
-  { id: 0, name: '신상품순' },
-  { id: 1, name: '높은 가격순' },
-  { id: 2, name: '낮은 가격순' },
+  { id: 1, name: '신상품순' },
+  { id: 2, name: '높은 가격순' },
+  { id: 3, name: '낮은 가격순' },
 ];
 
 export default TeaList;

@@ -87,13 +87,13 @@
       margin-right: calc(#{$margin-value} + 8px);
 
       .title {
-        margin-bottom: calc(#{$margin-value} * 2.5);
+        margin-bottom: $margin-value;
         color: $color-black;
         font-size: $font-large;
       }
 
       .list-in-title {
-        margin: calc(#{$margin-value} * 2) 0;
+        margin: $margin-value 0;
         font-size: $font-large;
         text-align: left;
       }
@@ -141,8 +141,6 @@
         }
 
         .header-sort {
-          padding-bottom: $margin-value;
-
           .sort {
             margin-right: calc(#{$margin-value} * 3);
             padding-bottom: calc(#{$margin-value} - 4px);
