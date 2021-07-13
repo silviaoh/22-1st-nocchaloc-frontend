@@ -3,6 +3,45 @@ import { Link } from 'react-router-dom';
 import './Signup.scss';
 
 class Signup extends Component {
+  constructor() {
+    super();
+    this.state = {
+      userName: '',
+      userBod: '',
+      PhoneNum: '',
+      userId: '',
+      userPw: '',
+      nameCheck: false,
+    };
+  }
+  nameCheck = e => {
+    this.setState({ userName: e.target.value });
+    if (e.target.value.length > 2 && RegExp(/[^가-힣]$/)) {
+      this.setState({ nameCheck: true }, () => this.handleButton());
+    }
+  };
+
+  userBod = e => {
+    this.setState({ userBod: e.target.value });
+    if (e.target.value.length === 8 && RegExp(/[^0-9]$/)) {
+      this.setState({ userBod: true }, () => this.handleButon());
+    }
+  };
+
+  phoneNumCheck = e => {
+    this.setState({ PhoneNum: e.target.value });
+    if (e.target.value.length === 11 && RegExp(/[^0-9]$/)) {
+      this.setState({ phoneNumCheck: true }, () => this.handleButton());
+    }
+  };
+
+  idCheck = e => {
+    this.setState({ userId: e.target.value });
+    if (e.target.value.length >= 4 && e.target.value.length <= 12) {
+      this.setState({ idCheck: true }, () => this.handleButon());
+    }
+  };
+
   render() {
     return (
       <>
@@ -20,7 +59,6 @@ class Signup extends Component {
                 name="userName"
                 placeholder="이름(실명으로 입력해주세요)"
                 // onChange={this.handleInput}
-                // onKeyUp={this.handleButton}
               />
               <div className="container">
                 <input
@@ -30,7 +68,6 @@ class Signup extends Component {
                   name="userDob"
                   placeholder="생년월일8자리(ex.19980905)"
                   // onChange={this.handleInput}
-                  // onKeyUp={this.handleButton}
                 />
                 <ul className="gender">
                   <li>
@@ -76,6 +113,7 @@ class Signup extends Component {
                 name="userPw"
                 placeholder="비밀번호 확인"
               />
+              <button className="signup-btn">회원가입</button>
             </div>
           </div>
         </div>
