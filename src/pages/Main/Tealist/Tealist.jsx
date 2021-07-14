@@ -14,7 +14,7 @@ class TeaList extends React.Component {
   };
 
   fetchAllProducts = () => {
-    fetch(`${GET_PRODUCT_API}?offset=24&limit=48`)
+    fetch(`${GET_PRODUCT_API}`)
       .then(response => response.json())
       .then(data => this.setState({ products: data }));
     this.props.history.push({
@@ -25,7 +25,7 @@ class TeaList extends React.Component {
   fetchMutateProducts = () => {
     fetch(`${GET_PRODUCT_API + this.props.location.search}`)
       .then(response => response.json())
-      .then(data => this.setState({ products: data.products_info }));
+      .then(data => this.setState({ products: data }));
   };
 
   componentDidMount() {
@@ -68,7 +68,7 @@ class TeaList extends React.Component {
   };
 
   reduceQueryArray = removeResult => {
-    removeResult.reduce((acc, cur) => {
+    return removeResult.reduce((acc, cur) => {
       if (!acc && cur) {
         return `?${cur}`;
       }
@@ -128,6 +128,7 @@ class TeaList extends React.Component {
   render() {
     const { search } = this.props.location;
     const { data } = this.state.products;
+
     let totalProductsCount;
     if (data && data.length !== 0) {
       totalProductsCount = data[0].total_products;
