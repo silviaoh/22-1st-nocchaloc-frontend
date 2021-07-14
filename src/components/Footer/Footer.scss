@@ -1,0 +1,107 @@
+@import '../../styles/variable.scss';
+@import '../../styles/mixinSet.scss';
+
+$margin-value: 30px;
+$margin-small-value: 16px;
+$color--footer-header: #727272;
+$color--login-btn-border: #2a2a2a;
+$color--login-btn: #3f3e3c;
+
+.footer {
+  font-size: $font-small;
+  color: #a0a0a0;
+
+  .footer-header {
+    @include flex-common(auto, space-between, center);
+    padding: $margin-small-value $margin-value;
+    background-color: $color--footer-header;
+
+    .description {
+      color: #e8e8e8;
+
+      .site {
+        font-weight: bold;
+
+        &::after {
+          display: inline-block;
+          margin: 0 calc(#{$margin-small-value} / 2);
+          height: 8px;
+          content: '';
+          border-right: 1px solid white;
+        }
+      }
+
+      .content {
+        color: white;
+      }
+    }
+
+    .login-link {
+      @include flex-common(auto, center, center);
+      @include width-height(100px, 40px);
+      padding: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      color: white;
+      border: 2px solid $color--login-btn-border;
+      background-color: $color--login-btn;
+    }
+  }
+
+  .footer-bottom {
+    @include flex-common(auto, flex-start, center);
+    background-color: #fafafa;
+    padding: calc(#{$margin-value} + 10px);
+
+    .logo-container {
+      flex: 0 0 10%;
+      width: 120px;
+
+      .logo {
+        @include width-height(100%, 100%);
+      }
+    }
+
+    .etc-info {
+      flex: 0 0 50%;
+      padding: 0 $margin-value;
+
+      .address {
+        margin-bottom: 10px;
+      }
+
+      .copyright {
+        margin-top: $margin-value;
+      }
+    }
+
+    .service-box {
+      flex: 0 0 40%;
+
+      .box {
+        border: 1px solid $color-border;
+        padding: $margin-small-value;
+        background-color: white;
+
+        .service-title {
+          margin-bottom: $margin-small-value;
+          color: $color--footer-header;
+          font-weight: bold;
+        }
+
+        .service-bottom {
+          @include flex-common(auto, space-between, flex-start);
+
+          .service-img {
+            @include flex-common(20%, center, center);
+            @include width-height(50px, auto);
+          }
+
+          .addition {
+            flex: 0 0 70%;
+          }
+        }
+      }
+    }
+  }
+}
