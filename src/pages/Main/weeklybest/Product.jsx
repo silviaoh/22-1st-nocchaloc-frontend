@@ -9,11 +9,11 @@ class Product extends Component {
         <img
           alt="mainslide_img"
           className="img-hover"
-          src="/images/Main/leaf.jpg"
-          // src={this.props.img}
+          // src="/images/Main/leaf.jpg"
+          src={this.props.hover}
         />
         <h2>{this.props.title}</h2>
-        <h2>{this.props.price}</h2>
+        <h2>{this.props.price}원</h2>
       </div>
     );
   }
