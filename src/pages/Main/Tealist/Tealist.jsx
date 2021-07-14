@@ -124,7 +124,6 @@ class TeaList extends React.Component {
         : this.appendQuery('product_type', id);
     }
   };
-
   render() {
     const { search } = this.props.location;
     const { data } = this.state.products;
