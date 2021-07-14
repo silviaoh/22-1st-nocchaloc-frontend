@@ -23,7 +23,6 @@ class Sharebutton extends React.Component {
             type="text"
             value={`localhost:3000${this.props.location.pathname}`}
             ref={this.urlInput}
-            readOnly
           />
         </button>
         <div className="Kakao">

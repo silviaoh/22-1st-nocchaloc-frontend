@@ -3,96 +3,11 @@
 @import '../../../styles/mixinSet.scss';
 
 .tealist {
-  .tea-carousel {
-    @include flex-common(40%);
-    position: relative;
-    flex-direction: column;
-
-    .swiper-container {
-      width: 100%;
-
-      .swiper {
-        display: flex;
-        align-items: stretch;
-        overflow: scroll;
-        background-color: black;
-
-        .swiper-inner {
-          position: relative;
-          display: flex;
-          width: 100%;
-          height: 100%;
-          transform: translate3d(25%, 0, 0);
-          z-index: 1;
-        }
-      }
-
-      .transparentbox {
-        @include carousel-side-box;
-        z-index: 4;
-
-        &.left-0 {
-          left: 0;
-        }
-
-        &.right-0 {
-          right: 0;
-          opacity: 0.5;
-        }
-
-        .left {
-          @include position-set(absolute, 45%, 10%);
-          @include leftright-design;
-        }
-
-        .right {
-          @include position-set(absolute, 45%, auto, auto, 10%);
-          @include leftright-design;
-        }
-      }
-    }
-
-    .swiper::-webkit-scrollbar {
-      display: none;
-    }
-
-    .swiper-teaname {
-      @include flex-common(25%, center, center);
-      width: 100%;
-      min-width: 745px;
-      padding: 0 280px;
-      background-color: $bgColor-videoMenu;
-      z-index: 4;
-
-      .teaname-overflow {
-        display: flex;
-        width: 100%;
-        min-width: 745px;
-        overflow-x: scroll;
-
-        .teaname {
-          @include flex-common(40%, center);
-          padding: 40px 0;
-          text-decoration: none;
-          color: $font-color-videoMenu;
-          font-size: $font-xlarge;
-
-          &:active {
-            color: $font-color-videoMenu;
-          }
-
-          &:visited {
-            color: $font-color-videoMenu;
-          }
-        }
-      }
-    }
-  }
-
   .main-container {
     @include flex-common(60%, center);
     position: relative;
     margin: calc(#{$margin-value} + 25px) 0;
+    min-height: 50vh;
 
     .aside-menu {
       flex: 0 0 8%;
@@ -107,33 +22,12 @@
 
       .list-in-title {
         margin: $margin-value 0;
+        width: 100%;
+        padding: 9px;
         font-size: $font-large;
+        color: white;
         text-align: left;
-      }
-
-      .aside-menu-container {
-        .menu-name {
-          margin: 0 0 30px 40px;
-          color: $color-black;
-
-          .name-item {
-            margin-bottom: margin-value;
-            color: $color-black;
-            font-size: calc(#{$font-small} + 2px);
-            border: 3px solid transparent;
-            text-decoration: none;
-
-            &:hover,
-            &.active {
-              border-bottom: 3px solid $color-green;
-            }
-
-            &:active,
-            &:visited {
-              color: $color-black;
-            }
-          }
-        }
+        background-color: $color-green;
       }
     }
 
@@ -153,23 +47,6 @@
           font-size: $font-large;
           text-transform: uppercase;
         }
-
-        .header-sort {
-          .sort {
-            margin-right: calc(#{$margin-value} * 3);
-            padding-bottom: calc(#{$margin-value} - 4px);
-            border-bottom: 2.5px solid transparent;
-            font-size: $font-large;
-            color: $color-black;
-
-            &:hover,
-            &.active {
-              color: $color-green;
-              border-bottom: 2.5px solid $color-green;
-              cursor: pointer;
-            }
-          }
-        }
       }
 
       .teashop-filter {
@@ -183,37 +60,6 @@
             @include bold($color-green);
           }
         }
-
-        .filter-button {
-          display: flex;
-
-          .link {
-            flex-wrap: nowrap;
-            box-sizing: content-box;
-            min-width: 50px;
-            height: 38px;
-            margin-left: calc(#{$margin-value} - 5px);
-            padding: 0 calc(#{$margin-value} - 4px);
-            line-height: 38px;
-            font-size: $font-large;
-            text-align: center;
-            text-decoration: none;
-            color: $font-color-filterBtn;
-            background-color: $color-filterBtn;
-            border-radius: 38px;
-
-            &.active {
-              color: white;
-              background-color: $color-green;
-            }
-
-            &:hover {
-              cursor: pointer;
-              color: white;
-              background-color: $color-green;
-            }
-          }
-        }
       }
     }
 
@@ -225,63 +71,6 @@
         flex-wrap: wrap;
         margin-top: calc(#{$margin-value} * 3);
         overflow: hidden;
-      }
-    }
-
-    .pagination {
-      .pagination-in {
-        @include flex-common(auto, center, center);
-        margin: calc(#{$margin-value} + 10px) 0;
-
-        button {
-          @include width-height(50px, 50px);
-          border: 1px solid $color-border;
-          cursor: pointer;
-
-          &:hover {
-            background-color: $color-filterBtn;
-          }
-
-          i {
-            font-size: $font-large;
-            color: $color-border;
-          }
-        }
-
-        .btn-home {
-          border-right: 0;
-        }
-
-        .btn-right {
-          border-right: 0;
-        }
-
-        .nums {
-          @include flex-common(40%, space-evenly, center);
-          margin: 0 $margin-value;
-          color: $font-color-filterBtn;
-
-          .num {
-            @include flex-common(auto, center, center);
-            @include width-height(42px, 42px);
-            border-radius: 100%;
-            text-decoration: none;
-
-            &:active,
-            &:visited {
-              color: $font-color-filterBtn;
-            }
-
-            &:hover {
-              color: $color-black;
-            }
-
-            &.active {
-              background-color: $color-filterBtn;
-              color: $color-black;
-            }
-          }
-        }
       }
     }
 
