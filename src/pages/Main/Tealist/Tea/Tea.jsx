@@ -18,7 +18,7 @@ class Tea extends Component {
         </Link>
         <p className="name">
           <Link to="" className="name-link">
-            이름
+            {name}
           </Link>
         </p>
         <div className="price">
@@ -28,7 +28,7 @@ class Tea extends Component {
           <span className="view-icon">
             <i class="far fa-eye" />
           </span>
-          <span className="count">0</span>
+          <span className="count">{view_count}</span>
         </div>
       </li>
     );
