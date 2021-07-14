@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Sharebutton from './Sharebutton/Sharebutton';
 import Selectlist from './Selectlist/Selectlist';
+import { GET_PRODUCT_API } from '../../../../config.js';
 import './Detail.scss';
 
 class Detail extends React.Component {
@@ -10,7 +11,7 @@ class Detail extends React.Component {
   };
 
   componentDidMount() {
-    fetch(`http://10.58.1.97:8000/products/${this.props.match.params.id}`)
+    fetch(`${GET_PRODUCT_API}/${this.props.match.params.id}`)
       .then(response => response.json())
       .then(data => this.setState({ product: data.product_info[0] }));
   }
