@@ -12,93 +12,103 @@ $color--login-btn: #3f3e3c;
   color: #a0a0a0;
 
   .footer-header {
-    @include flex-common(auto, space-between, center);
     padding: $margin-small-value $margin-value;
     background-color: $color--footer-header;
 
-    .description {
-      color: #e8e8e8;
+    .header-container {
+      @include flex-common(auto, space-between, center);
+      width: 70%;
+      margin: 0 auto;
 
-      .site {
-        font-weight: bold;
+      .description {
+        color: #e8e8e8;
 
-        &::after {
-          display: inline-block;
-          margin: 0 calc(#{$margin-small-value} / 2);
-          height: 8px;
-          content: '';
-          border-right: 1px solid white;
+        .site {
+          font-weight: bold;
+
+          &::after {
+            display: inline-block;
+            margin: 0 calc(#{$margin-small-value} / 2);
+            height: 8px;
+            content: '';
+            border-right: 1px solid white;
+          }
+        }
+
+        .content {
+          color: white;
         }
       }
 
-      .content {
+      .login-link {
+        @include flex-common(auto, center, center);
+        @include width-height(100px, 40px);
+        padding: 6px;
+        font-size: 15px;
+        font-weight: bold;
         color: white;
+        border: 2px solid $color--login-btn-border;
+        background-color: $color--login-btn;
       }
-    }
-
-    .login-link {
-      @include flex-common(auto, center, center);
-      @include width-height(100px, 40px);
-      padding: 6px;
-      font-size: 15px;
-      font-weight: bold;
-      color: white;
-      border: 2px solid $color--login-btn-border;
-      background-color: $color--login-btn;
     }
   }
 
   .footer-bottom {
-    @include flex-common(auto, flex-start, center);
     background-color: #fafafa;
     padding: calc(#{$margin-value} + 10px);
 
-    .logo-container {
-      flex: 0 0 10%;
-      width: 120px;
+    .bottom-container {
+      @include flex-common(auto, flex-start, center);
+      width: 75%;
+      margin: 0 auto;
 
-      .logo {
-        @include width-height(100%, 100%);
-      }
-    }
+      .logo-container {
+        flex: 0 0 10%;
+        width: 120px;
 
-    .etc-info {
-      flex: 0 0 50%;
-      padding: 0 $margin-value;
-
-      .address {
-        margin-bottom: 10px;
+        .logo {
+          @include width-height(100%, 100%);
+        }
       }
 
-      .copyright {
-        margin-top: $margin-value;
-      }
-    }
+      .etc-info {
+        flex: 0 0 50%;
+        padding: 0 $margin-value;
 
-    .service-box {
-      flex: 0 0 40%;
-
-      .box {
-        border: 1px solid $color-border;
-        padding: $margin-small-value;
-        background-color: white;
-
-        .service-title {
-          margin-bottom: $margin-small-value;
-          color: $color--footer-header;
-          font-weight: bold;
+        .address {
+          margin-bottom: 10px;
         }
 
-        .service-bottom {
-          @include flex-common(auto, space-between, flex-start);
+        .copyright {
+          margin-top: $margin-value;
+        }
+      }
 
-          .service-img {
-            @include flex-common(20%, center, center);
-            @include width-height(50px, auto);
+      .service-box {
+        flex: 0 0 40%;
+
+        .box {
+          border: 1px solid $color-border;
+          padding: $margin-small-value;
+          background-color: white;
+
+          .service-title {
+            margin-bottom: $margin-small-value;
+            color: $color--footer-header;
+            font-weight: bold;
           }
 
-          .addition {
-            flex: 0 0 70%;
+          .service-bottom {
+            @include flex-common(auto, space-between, flex-start);
+
+            .service-img {
+              @include flex-common(20%, center, center);
+              @include width-height(50px, auto);
+            }
+
+            .addition {
+              flex: 0 0 70%;
+            }
           }
         }
       }
