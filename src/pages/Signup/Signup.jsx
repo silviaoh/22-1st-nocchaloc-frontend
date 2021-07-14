@@ -24,27 +24,21 @@ class Signup extends Component {
   };
 
   signUpSuccess = () => {
-    // this.props.history.push('/');
-    fetch(`${GET_SIGNUP_API}/user/signin`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        userId: this.state.userId,
-        userPw: this.state.userPw,
-        userName: this.state.userName,
-        userBirth: this.state.userBod,
-        phoneNum: this.state.phoneNum,
-      }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.message === 'SUCCESS') {
-          this.props.history.push('/');
-          // localStorage.setItem('TOKEN', data.TOKEN);
-        }
-      });
+    const { userName, userBirth, userNum, userId, userPw } = this.state;
+    if (this.doValidation() === true) {
+      fetch(`${GET_SIGNUP_API}/user/signin`, {
+        method: 'POST',
+        body: JSON.stringify({ userName, userBirth, userNum, userId, userPw }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.message === 'SUCCESS') {
+            this.props.history.push('/login');
+          } else {
+            alert('입력하신 정보를 확인하세요.');
+          }
+        });
+    }
   };
 
   doValidation = () => {
@@ -56,9 +50,8 @@ class Signup extends Component {
   };
 
   render() {
-    const { userName, userBirth, phoneNum, userId, userPw } = this.state;
-    // const allValid = this.doValidation();
-
+    const { userName, userBirth, userNum, userId, userPw } = this.state;
+    const allValid = this.doValidation();
     return (
       <>
         <div className="header">
@@ -80,12 +73,12 @@ class Signup extends Component {
                 value={userBirth}
                 type="text"
                 class="input-birth"
-                name="userBod"
+                name="userBirth"
                 placeholder="생년월일8자리(ex.19980905)"
                 onChange={this.handleInput}
               />
               <input
-                value={phoneNum}
+                value={userNum}
                 type="text"
                 class="input-Num"
                 name="userNum"
@@ -111,16 +104,12 @@ class Signup extends Component {
                 placeholder="비밀번호는 영문 대문자, 소문자, 숫자, 특수문자 중 최소 1가지 이상의 문자조합 8자 이상으로 입력해주세요"
                 onChange={this.handleInput}
               />
-              <button className={`signup-btn`} onClick={this.signUpSuccess}>
-                회원가입
-              </button>
-              {/* <button
-                className={`signup-btn ${allValid ? 'acitve' : ''}`}
+              <button
+                className={`signup-btn ${allValid}`}
                 onClick={this.signUpSuccess}
-                disabled={!allValid}
               >
                 회원가입
-              </button> */}
+              </button>
             </div>
           </div>
         </div>

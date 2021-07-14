@@ -1,12 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import './Nav.scss';
 
 class Nav extends React.Component {
   state = {
     lists: [],
+    isLogin: false,
   };
+
+  logOut = () => {
+    this.setState({
+      isLogin: false,
+    });
+  };
+
+  componentDidUpdate() {
+    if (localStorage.getItem('TOKEN') && !this.state.isLogin) {
+      this.setState({ isLogin: true });
+    } else if (localStorage.removeItem('TOKEN') && this.state.isLogin) {
+      this.setState({ isLogin: false });
+    }
+  }
 
   componentDidMount() {
     fetch('http://localhost:3000/data/tealist.json')
@@ -17,6 +32,7 @@ class Nav extends React.Component {
         });
       });
   }
+
   render() {
     return (
       <div className="Nav">
@@ -95,10 +111,12 @@ class Nav extends React.Component {
             </div>
             <div className="menubox-member">
               <div className="nav-login">
-                <Link to="/">로그인</Link>
+                <Link to="/login">
+                  {this.state.isLogin ? '로그아웃' : '로그인'}
+                </Link>
               </div>
               <div className="nav-signup">
-                <Link to="/">회원가입</Link>
+                <Link to="/signup">회원가입</Link>
               </div>
             </div>
           </div>
@@ -115,4 +133,4 @@ const NAV_LIST = [
   { id: 5, name: '제주 티뮤지엄' },
 ];
 
-export default Nav;
+export default withRouter(Nav);

@@ -20,11 +20,7 @@ class MainSlide extends Component {
             </div>
             <div className="img-slidebox-wrapper">
               <figure className="img-slidebox">
-                <img
-                  alt="mainslide_img"
-                  className="img-origin"
-                  src={this.props.img}
-                />
+                <img alt="mainslide_img" src={this.props.img} />
               </figure>
             </div>
           </div>

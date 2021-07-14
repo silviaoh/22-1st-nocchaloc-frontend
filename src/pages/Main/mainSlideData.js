@@ -26,7 +26,7 @@ const MAIN_SLIDE = [
   {
     id: 4,
     title: '주말에 만나는 특별한 티타임',
-    img: 'https://source.unsplash.com/600x400/?assam tea',
+    img: 'https://source.unsplash.com/600x400/?greentea',
     date: '03.03 - 12.31',
     onepoint: '3일만 출석해도 5천원 할인, 최대 30%할인 혜택까지 받아가세요!',
   },

@@ -21,32 +21,22 @@ class Login extends React.Component {
   };
 
   signInSuccess = () => {
-    const {
-      match: {
-        params: { id },
-      },
-    } = this.props;
-
-    const authToken = localStorage.getItem('TOKEN');
-
+    const { userId, userPw } = this.state;
     fetch(`${GET_SIGNIN_API}/user/signin`, {
       method: 'POST',
-      headers: {
-        Authorization: authToken,
-      },
       body: JSON.stringify({
-        userId: id,
+        userId,
+        userPw,
       }),
     })
       .then(res => res.json())
       .then(data => {
         if (data.message === 'SUCCESS') {
           this.props.history.push('/');
-          // localStorage.setItem('TOKEN', data.TOKEN);
+          localStorage.getItem('TOKEN', data.TOKEN);
         }
       });
   };
-
   doValidation = () => {
     const inputValues = Object.entries(this.state);
     const validArray = inputValues.map(([key, value]) => {
@@ -57,7 +47,8 @@ class Login extends React.Component {
 
   render() {
     const { userId, userPw } = this.state;
-    // const allValid = this.doValidation();
+    const allValid = this.doValidation();
+
     return (
       <>
         <section className="login-container">
@@ -81,7 +72,10 @@ class Login extends React.Component {
                 onChange={this.handleInput}
               />
             </div>
-            <button className={`login-btn`} onClick={this.signInSuccess}>
+            <button
+              className={`login-btn ${allValid}`}
+              onClick={this.signInSuccess}
+            >
               로그인
             </button>
 

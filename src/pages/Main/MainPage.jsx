@@ -24,7 +24,7 @@ class MainPage extends React.Component {
   };
 
   nextSlide = () => {
-    if (this.state.slideIndex < 4) {
+    if (this.state.slideIndex < 3) {
       this.setState({
         slideIndex: this.state.slideIndex + 1,
       });
@@ -49,6 +49,7 @@ class MainPage extends React.Component {
   componentDidMount() {
     fetch('http://localhost:3000/data/weeklyBest.json')
       // fetch('http://10.58.6.95:8000/products')
+      // fetch(`${GET_BESTLIST_API}/products`)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -87,9 +88,12 @@ class MainPage extends React.Component {
               <Link to="/">바로보기</Link>
             </div>
             <div className="slide-btn-wrapper">
-              <i class="fas fa-2x fa-chevron-left" onClick={this.prevSlide}></i>
               <i
-                class="fas fa-2x fa-chevron-right"
+                className="fas fa-2x fa-chevron-left"
+                onClick={this.prevSlide}
+              ></i>
+              <i
+                className="fas fa-2x fa-chevron-right"
                 onClick={this.nextSlide}
               ></i>
             </div>
@@ -107,7 +111,7 @@ class MainPage extends React.Component {
               onClick={this.nextButton}
             ></i>
           </div>
-          <div className="main-inner">
+          <div className="weekly-inner">
             <h1 className="title-weekly">이번 주 인기 상품</h1>
             <div
               className="slide-weeklybest"
@@ -122,6 +126,7 @@ class MainPage extends React.Component {
                   title={products.title}
                   img={products.img}
                   // img={products.main_image_url}
+                  //img={prodcuts.main_}
                   price={Math.floor(products.price)}
                 />
               ))}
@@ -136,7 +141,7 @@ class MainPage extends React.Component {
         </section>
         <section className="main-sns">
           <div className="sns-inner">
-            <div className="box_wrap">
+            <div className="sns-box-wrap">
               <div className="sns-descbox">
                 <h3 className="sns-promo-title">
                   #녹차록 #NOCCHALOC
