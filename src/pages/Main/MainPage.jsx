@@ -19,7 +19,7 @@ class MainPage extends React.Component {
         slideIndex: this.state.slideIndex - 1,
       });
     } else {
-      this.setState({ slideIndex: 4 });
+      this.setState({ slideIndex: 3 });
     }
   };
 
@@ -88,7 +88,6 @@ class MainPage extends React.Component {
             </div>
             <div className="slide-btn-wrapper">
               <i class="fas fa-2x fa-chevron-left" onClick={this.prevSlide}></i>
-
               <i
                 class="fas fa-2x fa-chevron-right"
                 onClick={this.nextSlide}
@@ -123,7 +122,7 @@ class MainPage extends React.Component {
                   title={products.title}
                   img={products.img}
                   // img={products.main_image_url}
-                  price={products.price}
+                  price={Math.floor(products.price)}
                 />
               ))}
             </div>

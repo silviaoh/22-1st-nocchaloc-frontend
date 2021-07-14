@@ -2,19 +2,17 @@
 
 .main-slide-wrapper {
   display: flex;
-  position: relative;
   justify-content: center;
 }
 .main-slide {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   width: 100vw;
 }
 
 .main-text {
   display: flex;
   flex-direction: column;
-  left: 0;
 }
 .promo-title {
   font-size: 32px;
@@ -28,10 +26,16 @@
 .promo-onepoint {
   height: 5px;
   line-height: 1.7;
+  font-size: 18px;
+  color: #555;
 }
 
 .img-slidebox-wrapper {
   display: flex;
-  padding: 0 400px 0 200px;
+  padding: 0 400px 0 0px;
   right: 0;
+
+  .img-origin {
+    width: 30vw;
+  }
 }
