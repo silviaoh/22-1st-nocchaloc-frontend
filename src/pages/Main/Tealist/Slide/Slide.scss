@@ -7,7 +7,8 @@
 
   .tea-video {
     width: 50vw;
-    height: 30vh;
+    height: 50vh;
+    max-height: 490px;
 
     .video {
       width: 100%;
@@ -26,11 +27,6 @@
 
     .tea-name {
       font-size: calc(#{$font-xxlarge} + 4px);
-    }
-
-    .description {
-      margin-top: calc(#{$margin-value} + 10px);
-      font-size: $font-large;
     }
   }
 }

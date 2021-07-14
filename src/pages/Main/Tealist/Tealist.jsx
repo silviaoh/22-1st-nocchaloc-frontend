@@ -125,18 +125,22 @@ class TeaList extends React.Component {
         {/*video slider*/}
         <div className="tea-carousel">
           <div className="swiper-container">
-            <ul className="swiper">
-              <Slide />
-            </ul>
-            <div className="lightblackbox">
-              <button className="left">
-                <i className="fas fa-chevron-left" />
-              </button>
-            </div>
-            <div className="blackbox">
-              <button className="right">
-                <i className="fas fa-chevron-right" />
-              </button>
+            <div className="swiper">
+              <ul className="swiper-inner" ref={this.innerul}>
+                {VIDEOSRC.map(video => (
+                  <Slide key={video.id} src={video.src} />
+                ))}
+              </ul>
+              <div className="transparentbox left-0">
+                <button className="left">
+                  <i className="fas fa-chevron-left" />
+                </button>
+              </div>
+              <div className="transparentbox right-0" ref={this.rightBox}>
+                <button className="right">
+                  <i className="fas fa-chevron-right" />
+                </button>
+              </div>
             </div>
           </div>
           <div className="swiper-teaname">
@@ -288,6 +292,14 @@ const SORT = [
   { id: 1, name: '신상품순' },
   { id: 2, name: '높은 가격순' },
   { id: 3, name: '낮은 가격순' },
+];
+
+const VIDEOSRC = [
+  { id: 1, src: 'video/China.mp4' },
+  { id: 2, src: 'video/China.mp4' },
+  { id: 3, src: 'video/China.mp4' },
+  { id: 4, src: 'video/China.mp4' },
+  { id: 5, src: 'video/China.mp4' },
 ];
 
 export default TeaList;
