@@ -9,12 +9,6 @@ class TeaList extends React.Component {
     products: [],
   };
 
-  componentDidMount() {
-    fetch('http://10.58.7.49:8000/products/product')
-      .then(response => response.json())
-      .then(data => this.setState({ products: data.products_info }));
-  }
-
   render() {
     const totalProductsCount = this.state.products.length;
     return (
@@ -86,9 +80,10 @@ class TeaList extends React.Component {
             </section>
             <section className="teashop-list">
               <ul className="list-tea">
-                {this.state.products.map((product, idx) => (
-                  <Tea key={idx} product={product} />
-                ))}
+                {/* <Tea /> */}
+                {/* {this.state.products.map(product => (
+                  <Tea key={product.id} product={product} />
+                ))} */}
               </ul>
             </section>
             <section className="pagination">

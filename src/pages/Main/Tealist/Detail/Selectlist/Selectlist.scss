@@ -1,0 +1,66 @@
+@import '../../../../../styles/variable.scss';
+@import '../../../../../styles/variableListDetail.scss';
+@import '../../../../../styles/mixinSet.scss';
+
+.option-bar {
+  position: relative;
+  margin-top: calc(#{$margin-value} + 5px);
+
+  .value-box {
+    position: relative;
+    display: block;
+    padding: $margin-value;
+    color: $color-black;
+    border: 1px solid $color-border;
+    background-color: white;
+    text-decoration: none;
+
+    &:active,
+    &:visited {
+      color: $color-black;
+    }
+
+    .value {
+      text-decoration: none;
+
+      &::after {
+        @include position-set(absolute, 50%, 16px);
+        @include width-height(15px, 9px);
+        content: '  ';
+        background-image: url('../../../../../assets/arr_down_15x9.gif');
+        background-size: cover;
+      }
+
+      &.on::after {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .options {
+    position: absolute;
+    @include width-height(100%, 100px);
+    border: 2px solid $color-border;
+    background-color: white;
+
+    .options-list {
+      height: 50%;
+      line-height: 50px;
+
+      .option-product {
+        display: block;
+        @include width-height(100%, 100%);
+        padding-left: $margin-value;
+        font-size: $font-large;
+        text-decoration: none;
+        color: $color-black;
+        cursor: pointer;
+        text-align: left;
+
+        &:hover {
+          background-color: $color-list-border;
+        }
+      }
+    }
+  }
+}
