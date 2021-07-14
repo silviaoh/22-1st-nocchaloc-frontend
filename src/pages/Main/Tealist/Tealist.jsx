@@ -128,7 +128,7 @@ class TeaList extends React.Component {
     const { search } = this.props.location;
     const { data } = this.state.products;
 
-    let totalProductsCount;
+    let totalProductsCount = 0;
     if (data && data.length !== 0) {
       totalProductsCount = data[0].total_products;
     }
