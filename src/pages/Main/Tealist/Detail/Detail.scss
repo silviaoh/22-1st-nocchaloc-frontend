@@ -1,33 +1,33 @@
 @import '../../../../styles/variable.scss';
 @import '../../../../styles/variableListDetail.scss';
+@import '../../../../styles/mixinSet.scss';
 
 .detail-wrapper {
-  display: flex;
-  justify-content: center;
+  @include flex-common(auto, center);
   margin: calc(#{$margin-value} + 10px);
 
   .item-thumbnail-wrapper {
     position: relative;
-    width: 49.5%;
-    max-width: 480px;
+    @include flex-common(70%, center, center);
+    @include width-height(49.5%, 70vh);
+    max-width: 580px;
     margin: calc(#{$margin-value} + 11px);
     padding: 30px 40px 110px;
     background-color: #f8f9fb;
 
     .item-thumbnail {
+      padding: 40px;
+
       .thumbnail {
-        width: 100%;
-        height: 100%;
+        @include width-height(100%, 100%);
+        border-radius: 10px;
+        max-width: 480px;
       }
     }
 
     .benefit {
-      flex: 0 0 100%;
-      position: absolute;
-      display: flex;
-      align-items: center;
-      left: 20px;
-      bottom: 50px;
+      @include flex-common(100%, flex-start, center);
+      @include position-set(absolute, auto, auto, 50px, 20px);
       color: #505051;
 
       .icon {
@@ -42,6 +42,7 @@
   }
 
   .item-info {
+    flex: 0 0 30%;
     margin: calc(#{$margin-value} + 15px);
     max-width: 560px;
 
@@ -78,8 +79,7 @@
       }
 
       .share-price {
-        display: flex;
-        justify-content: space-between;
+        @include flex-common(auto, space-between, flex-start);
         padding: calc(#{$margin-value} * 2) 0;
         border-bottom: 1px solid $color-border;
 
@@ -102,9 +102,7 @@
         margin-top: $margin-value;
 
         .product-amount {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
+          @include flex-common(auto, space-between, center);
 
           .item-name {
             font-size: $font-large;
@@ -112,20 +110,19 @@
           }
 
           .modify-amount {
-            display: flex;
-            align-items: center;
+            @include flex-common(auto, flex-start, center);
             font-size: 24px;
 
-            .decrease {
+            .decrease,
+            .increase {
               font-size: $font-large;
+              cursor: pointer;
             }
 
             .count {
+              min-width: 24px;
               margin: 0 $margin-value;
-            }
-
-            .increase {
-              font-size: $font-large;
+              text-align: center;
             }
           }
         }
@@ -136,9 +133,7 @@
       text-align: right;
 
       .value-amount {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include flex-common(auto, space-between, center);
         margin-top: calc(#{$margin-value} * 8);
 
         .product-total {
@@ -158,8 +153,7 @@
       }
 
       .cart-btn {
-        width: 25%;
-        height: 55px;
+        @include width-height(25%, 55px);
         margin-top: calc(#{$margin-value} + 35px);
         line-height: 25px;
         letter-spacing: -0.6px;

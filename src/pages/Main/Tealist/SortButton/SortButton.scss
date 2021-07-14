@@ -1,0 +1,19 @@
+@import '../../../../styles/variable.scss';
+@import '../../../../styles/variableListDetail.scss';
+
+.header-sort {
+  .sort {
+    margin-right: calc(#{$margin-value} * 3);
+    padding-bottom: calc(#{$margin-value} - 4px);
+    border-bottom: 2.5px solid transparent;
+    font-size: $font-large;
+    color: $color-black;
+
+    &:hover,
+    &.active {
+      color: $color-green;
+      border-bottom: 2.5px solid $color-green;
+      cursor: pointer;
+    }
+  }
+}
