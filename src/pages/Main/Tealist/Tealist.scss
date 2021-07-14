@@ -62,6 +62,7 @@
       min-width: 745px;
       padding: 0 280px;
       background-color: $bgColor-videoMenu;
+      z-index: 4;
 
       .teaname-overflow {
         display: flex;
