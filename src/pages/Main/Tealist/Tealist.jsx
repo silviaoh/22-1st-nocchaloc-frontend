@@ -80,14 +80,18 @@ class TeaList extends React.Component {
 
     return (
       <div className="tealist">
-        <VideoSlide products={products} video={video} />
+        <VideoSlide products={products} video={video} CATEGORY={CATEGORY} />
         <main className="main-container">
           <aside className="aside-menu">
             <h1 className="title">TEA SHOP</h1>
             <button className="list-in-title" onClick={this.fetchAllProducts}>
               TEA
             </button>
-            <CategoryButton products={products} addQuery={this.addQuery} />
+            <CategoryButton
+              products={products}
+              CATEGORY={CATEGORY}
+              addQuery={this.addQuery}
+            />
           </aside>
           <section className="teashop">
             <header className="teashop-header">
@@ -137,6 +141,16 @@ const SORT = [
   { id: 1, name: '신상품순' },
   { id: 2, name: '높은 가격순' },
   { id: 3, name: '낮은 가격순' },
+];
+
+const CATEGORY = [
+  { id: 1, name: '명차' },
+  { id: 2, name: '녹차/발효차/홍차' },
+  { id: 3, name: '허브티' },
+  { id: 4, name: '블렌디드티' },
+  { id: 5, name: '웰니스티' },
+  { id: 6, name: '파우더' },
+  { id: 7, name: '세트' },
 ];
 
 export default TeaList;
