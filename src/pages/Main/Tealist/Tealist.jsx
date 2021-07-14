@@ -7,12 +7,16 @@ import './Tealist.scss';
 class TeaList extends React.Component {
   state = {
     products: [],
+    video: [],
     sortId: 0,
     filterId: 0,
   };
 
   componentDidMount() {
     this.fetchAllProducts();
+    fetch('/data/video.json')
+      .then(response => response.json())
+      .then(data => this.setState({ video: data }));
   }
 
   fetchAllProducts = () => {
@@ -127,7 +131,7 @@ class TeaList extends React.Component {
           <div className="swiper-container">
             <div className="swiper">
               <ul className="swiper-inner" ref={this.innerul}>
-                {VIDEOSRC.map(video => (
+                {this.state.video.map(video => (
                   <Slide key={video.id} video={video} />
                 ))}
               </ul>
@@ -292,51 +296,6 @@ const SORT = [
   { id: 1, name: '신상품순' },
   { id: 2, name: '높은 가격순' },
   { id: 3, name: '낮은 가격순' },
-];
-
-const VIDEOSRC = [
-  {
-    id: 1,
-    category: '명차',
-    name: '밝은 기분을 가질 수 있는 녹차록의 명차 라인입니다.',
-    src: 'video/China.mp4',
-  },
-  {
-    id: 2,
-    category: '녹차/발효차/홍차',
-    name: '유기농으로 재배하여 건강하게 드실 수 있는 녹차/발효차/홍차 라인입니다.',
-    src: 'video/China.mp4',
-  },
-  {
-    id: 3,
-    category: '허브티(무카페인)',
-    name: '향기로운 향이 나는 허브티 라인입니다.',
-    src: 'video/China.mp4',
-  },
-  {
-    id: 4,
-    category: '블렌디드티',
-    name: '적절히 배합된 차의 맛을 느낄 수 있는 블렌디드티 라인입니다.',
-    src: 'video/China.mp4',
-  },
-  {
-    id: 5,
-    category: '웰니스티',
-    name: '건강하게 마셔보세요!',
-    src: 'video/China.mp4',
-  },
-  {
-    id: 6,
-    category: '파우더',
-    name: '찬물에도 잘 우러납니다.',
-    src: 'video/China.mp4',
-  },
-  {
-    id: 7,
-    category: '세트',
-    name: '녹차록의 다양한 제품들을 모았습니다.',
-    src: 'video/China.mp4',
-  },
 ];
 
 export default TeaList;
