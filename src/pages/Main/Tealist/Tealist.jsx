@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Slide from './Slide/Slide';
 import Tea from './Tea/Tea';
+import { GET_PRODUCT_API } from '../../../config.js';
 import './Tealist.scss';
 
 class TeaList extends React.Component {
@@ -12,21 +13,27 @@ class TeaList extends React.Component {
     filterId: 0,
   };
 
+  fetchAllProducts = () => {
+    fetch(`${GET_PRODUCT_API}`)
+      .then(response => response.json())
+      .then(data => this.setState({ products: data }));
+    this.props.history.push({
+      pathname: '/tealist',
+    });
+  };
+
+  fetchMutateProducts = () => {
+    fetch(`${GET_PRODUCT_API + this.props.location.search}`)
+      .then(response => response.json())
+      .then(data => this.setState({ products: data }));
+  };
+
   componentDidMount() {
     this.fetchAllProducts();
     fetch('/data/video.json')
       .then(response => response.json())
       .then(data => this.setState({ video: data }));
   }
-
-  fetchAllProducts = () => {
-    fetch('http://10.58.1.97:8000/products')
-      .then(response => response.json())
-      .then(data => this.setState({ products: data.products_info }));
-    this.props.history.push({
-      pathname: '/tealist',
-    });
-  };
 
   addQuery = (key, value) => {
     let pathname = this.props.location.pathname;
@@ -60,12 +67,8 @@ class TeaList extends React.Component {
     });
   };
 
-  removeQuery = id => {
-    const query = this.props.location.search;
-    const splited = query.replace('?', '').split('&');
-    const removedQuery = this.removeQueryArray(splited, id);
-
-    const queryString = removedQuery.reduce((acc, cur) => {
+  reduceQueryArray = removeResult => {
+    return removeResult.reduce((acc, cur) => {
       if (!acc && cur) {
         return `?${cur}`;
       }
@@ -74,56 +77,62 @@ class TeaList extends React.Component {
       }
       return acc;
     }, '');
+  };
 
-    const pathname = this.props.location.pathname;
+  removeQuery = id => {
+    const { location } = this.props;
+    const nowQuery = location.search;
+
+    const splitedQuery = nowQuery.replace('?', '').split('&');
+    const removeResult = this.removeQueryArray(splitedQuery, id);
+    const queryString = this.reduceQueryArray(removeResult);
 
     let searchParams = new URLSearchParams(queryString);
     searchParams.delete('product_name', id);
 
     this.props.history.push({
-      pathname: pathname,
+      pathname: location.pathname,
       search: queryString,
     });
   };
 
   handleSortClick = id => {
     this.setState({ sortId: id }, () => {
-      fetch(`http://10.58.1.97:8000/products${this.props.location.search}`)
-        .then(response => response.json())
-        .then(data => this.setState({ products: data.products_info }));
+      this.fetchMutateProducts();
     });
     this.addQuery('sort', id);
   };
 
   handleCategoryClick = id => {
     this.setState({ categoryId: id }, () => {
-      fetch(`http://10.58.1.97:8000/products${this.props.location.search}`)
-        .then(response => response.json())
-        .then(data => this.setState({ products: data.products_info }));
+      this.fetchMutateProducts();
     });
     this.addQuery('category', id);
   };
 
   handleFilteringClick = id => {
+    const { location, history } = this.props;
     this.setState({ filterId: id }, () => {
-      fetch(`http://10.58.1.97:8000/products${this.props.location.search}`)
-        .then(response => response.json())
-        .then(data => this.setState({ products: data.products_info }));
+      this.fetchMutateProducts();
     });
 
-    id === 0 && this.props.history.push('/tealist');
-
-    id !== 0 &&
-      !this.props.location.search.includes(`product_type=${id}`) &&
-      this.appendQuery('product_type', id);
-
-    this.props.location.search.includes(`product_type=${id}`) &&
-      this.removeQuery(id);
+    if (id === 0) {
+      history.push('/tealist');
+    } else {
+      location.search.includes(`product_type=${id}`)
+        ? this.removeQuery(id)
+        : this.appendQuery('product_type', id);
+    }
   };
-
   render() {
     const { search } = this.props.location;
-    const totalProductsCount = this.state.products.length;
+    const { data } = this.state.products;
+
+    let totalProductsCount = 0;
+    if (data && data.length !== 0) {
+      totalProductsCount = data[0].total_products;
+    }
+
     return (
       <div className="tealist">
         {/*video slider*/}
@@ -222,9 +231,10 @@ class TeaList extends React.Component {
             </section>
             <section className="teashop-list">
               <ul className="list-tea">
-                {this.state.products.map((product, idx) => (
-                  <Tea key={idx} product={product} match={this.props.match} />
-                ))}
+                {this.state.products.products_info &&
+                  this.state.products.products_info.map((product, idx) => (
+                    <Tea key={idx} product={product} match={this.props.match} />
+                  ))}
               </ul>
             </section>
             <section className="pagination">
