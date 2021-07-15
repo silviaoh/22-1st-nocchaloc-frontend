@@ -1,0 +1,43 @@
+@import '../../styles/variable.scss';
+
+.main-slide-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+
+  .main-slide {
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+
+    .main-text {
+      display: flex;
+      flex-direction: column;
+
+      .promo-title {
+        font-size: 32px;
+        margin: 0 0 14px 0;
+      }
+
+      .promo-date {
+        margin: 0 0 36px;
+      }
+
+      .promo-onepoint {
+        height: 5px;
+        line-height: 1.7;
+        font-size: 18px;
+        color: #555;
+      }
+
+      .img-slidebox-wrapper {
+        position: absolute;
+        right: 0;
+
+        .img-slidebox img {
+          z-index: 999;
+        }
+      }
+    }
+  }
+}
