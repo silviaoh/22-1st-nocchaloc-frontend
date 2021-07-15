@@ -101,9 +101,11 @@ class VideoSlide extends React.Component {
 
   clickTeaName = id => {
     this.setState({ videoButtonId: id }, () => {
-      this.swiperInner.current.style.transform = `translate3d(${
-        25 - 50 * (this.state.videoButtonId - 1)
-      }vw, 0, 0)`;
+      this.setState({
+        innerStr: `translate3d(${
+          25 - 50 * (this.state.videoButtonId - 1)
+        }vw, 0, 0)`,
+      });
     });
   };
 
@@ -121,10 +123,9 @@ class VideoSlide extends React.Component {
         <div className="swiper-container">
           <div className="swiper">
             <ul className="swiper-inner" style={swiperInnerStyle}>
-              {products.video &&
-                products.video.map((video, idx) => (
-                  <Slide key={idx} video={video} />
-                ))}
+              {products.video?.map((video, idx) => (
+                <Slide key={idx} video={video} />
+              ))}
             </ul>
             <div className="transparentbox left-0">
               <button className="left" onClick={this.goToLeft}>

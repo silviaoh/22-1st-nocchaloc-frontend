@@ -100,10 +100,9 @@ class TeaList extends React.Component {
             </section>
             <section className="teashop-list">
               <ul className="list-tea">
-                {products.products_info &&
-                  products.products_info.map((product, idx) => (
-                    <Tea key={idx} product={product} match={this.props.match} />
-                  ))}
+                {products.products_info?.map((product, idx) => (
+                  <Tea key={idx} product={product} match={this.props.match} />
+                ))}
               </ul>
             </section>
             <Pagination

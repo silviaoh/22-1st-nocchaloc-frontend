@@ -42,21 +42,20 @@ class Pagination extends React.Component {
             </button>
           </div>
           <div className="nums">
-            {this.props.pages &&
-              this.props.pages.map((page, idx) => {
-                return (
-                  <button
-                    className={`num ${
-                      (page === this.state.buttonId && 'active') ||
-                      (idx === 0 && this.state.buttonId === 0 ? 'active' : '')
-                    }`}
-                    key={page}
-                    onClick={() => this.handlePagination(page)}
-                  >
-                    {page}
-                  </button>
-                );
-              })}
+            {this.props.pages?.map((page, idx) => {
+              return (
+                <button
+                  className={`num ${
+                    (page === this.state.buttonId && 'active') ||
+                    (idx === 0 && this.state.buttonId === 0 ? 'active' : '')
+                  }`}
+                  key={page}
+                  onClick={() => this.handlePagination(page)}
+                >
+                  {page}
+                </button>
+              );
+            })}
           </div>
           <div className="rights">
             <button className="btn-right">

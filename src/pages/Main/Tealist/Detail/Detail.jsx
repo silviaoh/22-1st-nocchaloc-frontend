@@ -69,7 +69,7 @@ class Detail extends React.Component {
   render() {
     const { description, main_image_url, name, price } = this.state.product;
     return (
-      this.state.product && (
+      this.state?.product && (
         <div className="detail-wrapper">
           <section className="item-thumbnail-wrapper">
             <div className="item-thumbnail">
