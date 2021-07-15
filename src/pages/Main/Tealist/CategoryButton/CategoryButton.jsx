@@ -25,23 +25,22 @@ class CategoryButton extends React.Component {
 
   render() {
     const { search } = this.props.location;
-    const { products } = this.props;
+    const { products, CATEGORY } = this.props;
 
     return (
       <ul className="aside-menu-container">
-        {products.category_info &&
-          products.category_info.map((menu, idx) => (
-            <li className="menu-name" key={menu}>
-              <button
-                className={`name-item ${
-                  search.includes(`category=${idx + 1}`) ? 'active' : ''
-                }`}
-                onClick={() => this.handleCategoryClick(idx + 1)}
-              >
-                {menu.name}
-              </button>
-            </li>
-          ))}
+        {CATEGORY.map((menu, idx) => (
+          <li className="menu-name" key={menu}>
+            <button
+              className={`name-item ${
+                search.includes(`category=${idx + 1}`) ? 'active' : ''
+              }`}
+              onClick={() => this.handleCategoryClick(idx + 1)}
+            >
+              {menu.name}
+            </button>
+          </li>
+        ))}
       </ul>
     );
   }

@@ -6,36 +6,32 @@ import Pagination from './Pagination/Pagination';
 import CategoryButton from './CategoryButton/CategoryButton';
 import SortButton from './SortButton/SortButton';
 import FilterButton from './FilterButton/FilterButton';
-import { GET_PRODUCT_API } from '../../../config.js';
+import { PRODUCT_API } from '../../../config.js';
 import './Tealist.scss';
 
 class TeaList extends React.Component {
   state = {
     products: [],
-    video: [],
+    videos: [],
+    sortId: 0,
     filterId: 0,
   };
 
   fetchAllProducts = () => {
-    fetch(`${GET_PRODUCT_API}`)
+    fetch(`${PRODUCT_API}`)
       .then(response => response.json())
       .then(data => this.setState({ products: data }));
-    this.props.history.push({
-      pathname: '/tealist',
-    });
+    this.props.history.push('/tealist');
   };
 
   fetchMutateProducts = () => {
-    fetch(`${GET_PRODUCT_API + this.props.location.search}`)
+    fetch(`${PRODUCT_API + this.props.location.search}`)
       .then(response => response.json())
       .then(data => this.setState({ products: data }));
   };
 
   componentDidMount() {
-    this.fetchAllProducts();
-    fetch('/data/video.json')
-      .then(response => response.json())
-      .then(data => this.setState({ video: data }));
+    this.fetchMutateProducts();
   }
 
   componentDidUpdate = prevProps => {
@@ -44,13 +40,16 @@ class TeaList extends React.Component {
     }
   };
 
+  topFunction = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   addQuery = (key, value) => {
     let pathname = this.props.location.pathname;
     let searchParams = new URLSearchParams(this.props.location.search);
     searchParams.set(key, value);
 
     this.props.history.push({
-      pathname: pathname,
       search: searchParams.toString(),
     });
   };
@@ -64,30 +63,34 @@ class TeaList extends React.Component {
   };
 
   render() {
-    const { search } = this.props.location;
-    const { products, video } = this.state;
+    const { products } = this.state;
     const { data } = products;
 
-    let totalProductsCount = 0;
     let totalPage = 0;
     let pages = 0;
 
     if (data && data.length !== 0) {
-      totalProductsCount = data[0].total_products;
       totalPage = data[0].total_page;
       pages = this.makeButtonArray(totalPage);
     }
 
+    const totalProductsCount =
+      data && data.length !== 0 && data[0].total_products;
+
     return (
       <div className="tealist">
-        <VideoSlide products={products} video={video} />
+        <VideoSlide products={products} CATEGORY={CATEGORY} />
         <main className="main-container">
           <aside className="aside-menu">
             <h1 className="title">TEA SHOP</h1>
             <button className="list-in-title" onClick={this.fetchAllProducts}>
               TEA
             </button>
-            <CategoryButton products={products} addQuery={this.addQuery} />
+            <CategoryButton
+              products={products}
+              CATEGORY={CATEGORY}
+              addQuery={this.addQuery}
+            />
           </aside>
           <section className="teashop">
             <header className="teashop-header">
@@ -103,10 +106,9 @@ class TeaList extends React.Component {
             </section>
             <section className="teashop-list">
               <ul className="list-tea">
-                {products.products_info &&
-                  products.products_info.map((product, idx) => (
-                    <Tea key={idx} product={product} match={this.props.match} />
-                  ))}
+                {products.products_info?.map((product, idx) => (
+                  <Tea key={idx} product={product} match={this.props.match} />
+                ))}
               </ul>
             </section>
             <Pagination
@@ -116,9 +118,9 @@ class TeaList extends React.Component {
               addQuery={this.addQuery}
             />
           </section>
-          <Link to="!!#" className="top">
+          <button className="top" onClick={this.topFunction}>
             <i className="fas fa-arrow-up" />
-          </Link>
+          </button>
         </main>
       </div>
     );
@@ -137,6 +139,16 @@ const SORT = [
   { id: 1, name: '신상품순' },
   { id: 2, name: '높은 가격순' },
   { id: 3, name: '낮은 가격순' },
+];
+
+const CATEGORY = [
+  { id: 1, name: '명차' },
+  { id: 2, name: '녹차/발효차/홍차' },
+  { id: 3, name: '허브티' },
+  { id: 4, name: '블렌디드티' },
+  { id: 5, name: '웰니스티' },
+  { id: 6, name: '파우더' },
+  { id: 7, name: '세트' },
 ];
 
 export default TeaList;

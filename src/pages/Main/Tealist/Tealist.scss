@@ -3,15 +3,20 @@
 @import '../../../styles/mixinSet.scss';
 
 .tealist {
+  transition: all 500ms ease-in;
+
   .main-container {
     @include flex-common(60%, center);
     position: relative;
-    margin: calc(#{$margin-value} + 10px) 0;
+    margin: calc(#{$margin-value} + 25px) 0;
+    min-height: 50vh;
 
     .aside-menu {
       flex: 0 0 8%;
       min-width: 200px;
       margin-right: calc(#{$margin-value} + 8px);
+      font-family: 'arita-buri', 'sans-serif';
+      font-weight: bold;
 
       .title {
         margin-bottom: $margin-value;
@@ -21,8 +26,14 @@
 
       .list-in-title {
         margin: $margin-value 0;
+        width: 100%;
+        padding: 9px;
         font-size: $font-large;
+        font-family: 'arita-buri', 'sans-serif';
+        font-weight: bold;
+        color: white;
         text-align: left;
+        background-color: $color-green;
       }
     }
 
@@ -66,6 +77,7 @@
         flex-wrap: wrap;
         margin-top: calc(#{$margin-value} * 3);
         overflow: hidden;
+        border-right: 1px solid white;
       }
     }
 

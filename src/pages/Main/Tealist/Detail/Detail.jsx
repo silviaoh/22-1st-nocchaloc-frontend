@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Sharebutton from './Sharebutton/Sharebutton';
 import Selectlist from './Selectlist/Selectlist';
-import { GET_PRODUCT_API } from '../../../../config.js';
+import { PRODUCT_API } from '../../../../config.js';
 import './Detail.scss';
 
 class Detail extends React.Component {
@@ -41,8 +41,7 @@ class Detail extends React.Component {
   };
 
   componentDidMount() {
-    this.kakaoSharePreference();
-    fetch(`${GET_PRODUCT_API}/${this.props.match.params.id}`)
+    fetch(`${PRODUCT_API}/${this.props.match.params.id}`)
       .then(response => response.json())
       .then(data =>
         this.setState(
@@ -50,6 +49,7 @@ class Detail extends React.Component {
           console.log(data.product_info[0])
         )
       );
+    this.kakaoSharePreference();
   }
 
   includeBagPrice = id => {
@@ -79,7 +79,7 @@ class Detail extends React.Component {
               <span className="icon">
                 <i className="fas fa-shopping-bag" />
               </span>
-              <p className="content">쇼핑백 동봉여부</p>
+              <p className="content">쇼핑백동봉선택가능</p>
             </div>
           </section>
           <section className="item-info">
@@ -126,7 +126,7 @@ class Detail extends React.Component {
                 <p className="value">
                   <strong className="bold">
                     {(
-                      price * this.state.count +
+                      20000 * this.state.count +
                       this.state.bagPrice
                     ).toLocaleString()}
                   </strong>
