@@ -7,11 +7,37 @@ class VideoSlide extends React.Component {
   state = {
     videoButtonId: 1,
     videoCount: 0,
+    pressed: false,
+    originalX: 0,
+    translateX: 0,
+    lastTranslatX: 0,
   };
 
   swiperInner = React.createRef();
   swiperTeaName = React.createRef();
   teaNameOne = React.createRef();
+
+  handleMouseDown = e => {
+    this.setState({
+      pressed: true,
+      originalX: e.clientX,
+    });
+  };
+
+  handleMouseMove = e => {
+    if (!this.state.pressed) return;
+    e.preventDefault();
+    this.setState({
+      translateX: e.clientX - this.state.originalX + this.state.lastTranslatX,
+    });
+  };
+
+  handleMouseUp = e => {
+    this.setState({
+      pressed: false,
+      lastTranslatX: this.state.translateX,
+    });
+  };
 
   goToLeft = () => {
     this.state.videoButtonId > 1 &&
@@ -82,7 +108,14 @@ class VideoSlide extends React.Component {
           </div>
         </div>
         <div className="swiper-teaname">
-          <div className="teaname-overflow" ref={this.swiperTeaName}>
+          <div
+            className="teaname-overflow"
+            pressed={this.state.pressed}
+            onMouseDown={this.handleMouseDown}
+            onMouseMove={this.handleMouseMove}
+            onMouseUp={this.handleMouseUp}
+            ref={this.swiperTeaName}
+          >
             {CATEGORY.map((category, idx) => (
               <button
                 className={`teaname ${
