@@ -2,19 +2,123 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Slide from './Slide/Slide';
 import Tea from './Tea/Tea';
+import { PRODUCT_API } from '../../../config.js';
 import './Tealist.scss';
 
 class TeaList extends React.Component {
   state = {
     products: [],
-    video: [],
+    videos: [],
     sortId: 0,
     filterId: 0,
   };
 
+  fetchAllProducts = () => {
+    fetch(`${PRODUCT_API}`)
+      .then(response => response.json())
+      .then(data => this.setState({ products: data }));
+  };
+
+  fetchMutateProducts = () => {
+    fetch(`${PRODUCT_API + this.props.location.search}`)
+      .then(response => response.json())
+      .then(data => this.setState({ products: data }));
+  };
+
+  componentDidMount() {
+    this.fetchAllProducts();
+    fetch('/data/video.json')
+      .then(response => response.json())
+      .then(data => this.setState({ video: data }));
+  }
+
+  addQuery = (key, value) => {
+    let searchParams = new URLSearchParams(this.props.location.search);
+    searchParams.set(key, value);
+
+    this.props.history.push({
+      search: searchParams.toString(),
+    });
+  };
+
+  appendQuery = (key, value) => {
+    let searchParams = new URLSearchParams(this.props.location.search);
+    searchParams.append(key, value);
+
+    this.props.history.push({
+      search: searchParams.toString(),
+    });
+  };
+
+  removeQueryArray = (splited, id) => {
+    return splited.map(element => {
+      const [query, value] = element.split('=');
+      if (Number(value) === id) {
+        return null;
+      }
+      return element;
+    });
+  };
+
+  reduceQueryArray = removeResult => {
+    return removeResult.reduce((acc, cur) => {
+      if (!acc && cur) {
+        return `?${cur}`;
+      }
+      if (cur) {
+        return acc + '&' + cur;
+      }
+      return acc;
+    }, '');
+  };
+
+  removeQuery = id => {
+    const { location } = this.props;
+    const nowQuery = location.search;
+
+    const splitedQuery = nowQuery.replace('?', '').split('&');
+    const removeResult = this.removeQueryArray(splitedQuery, id);
+    const queryString = this.reduceQueryArray(removeResult);
+
+    this.props.history.push({
+      search: queryString,
+    });
+  };
+
+  handleSortClick = id => {
+    this.setState({ sortId: id }, () => {
+      this.fetchMutateProducts();
+    });
+    this.addQuery('sort', id);
+  };
+
+  handleCategoryClick = id => {
+    this.setState({ categoryId: id });
+    this.fetchMutateProducts();
+    this.addQuery('category', id);
+  };
+
+  handleFilteringClick = id => {
+    const { location, history } = this.props;
+
+    this.setState({ filterId: id });
+    this.fetchMutateProducts();
+
+    if (id === 0) {
+      history.push('/tealist');
+    } else {
+      location.search.includes(`product_type=${id}`)
+        ? this.removeQuery(id)
+        : this.appendQuery('product_type', id);
+    }
+  };
   render() {
     const { search } = this.props.location;
-    const totalProductsCount = this.state.products.length;
+    const { data } = this.state.products;
+
+    const totalProductsCount =
+      data && data.length !== 0 && data[0].total_products;
+
     return (
       <div className="tealist">
         {/*video slider*/}
@@ -22,7 +126,7 @@ class TeaList extends React.Component {
           <div className="swiper-container">
             <div className="swiper">
               <ul className="swiper-inner" ref={this.innerul}>
-                {this.state.video.map(video => (
+                {this.state.videos.map(video => (
                   <Slide key={video.id} video={video} />
                 ))}
               </ul>
@@ -31,7 +135,7 @@ class TeaList extends React.Component {
                   <i className="fas fa-chevron-left" />
                 </button>
               </div>
-              <div className="transparentbox right-0" ref={this.rightBox}>
+              <div className="transparentbox right-0">
                 <button className="right">
                   <i className="fas fa-chevron-right" />
                 </button>
@@ -113,9 +217,16 @@ class TeaList extends React.Component {
             </section>
             <section className="teashop-list">
               <ul className="list-tea">
+<<<<<<< HEAD
                 {this.state.products.map((product, idx) => (
                   <Tea key={idx} product={product} match={this.props.match} />
                 ))}
+=======
+                {this.state.products.products_info &&
+                  this.state.products.products_info.map((product, idx) => (
+                    <Tea key={idx} product={product} match={this.props.match} />
+                  ))}
+>>>>>>> main
               </ul>
             </section>
             <section className="pagination">

@@ -1,0 +1,39 @@
+{
+  "slide": [
+    {
+      "id": 1,
+      "title": "다다일상 구독하면 친구에게도 선물이 가요 ",
+      "img": "https://source.unsplash.com/576x386/?tea",
+      "date": "07.01 - 07.25",
+      "onepoint": "정보 텍스트가 또 들어갑니다다다다다다다"
+    },
+    {
+      "id": 2,
+      "title": "2021년 상반기 결산 인기 상품을 만나볼까요?",
+      "img": "https://source.unsplash.com/576x386/?icetea",
+      "date": "07.07 - 07.21",
+      "onepoint": "정보 텍스트가 또 들어갑니다다다다다다다"
+    },
+    {
+      "id": 3,
+      "title": "7월 출석체크 정보가 들어갑니다",
+      "img": "https://source.unsplash.com/576x386/?greentea",
+      "date": "07.01 - 07.31",
+      "onepoint": "정보텍스트가 들어갑니다다다다다"
+    },
+    {
+      "id": 4,
+      "title": "주말에 만나는 특별한 티타임",
+      "img": "https://source.unsplash.com/576x386/?assam tea",
+      "date": "03.03 - 12.31",
+      "onepoint": "정보 텍스트가 들어갑니다다다다다"
+    },
+    {
+      "id": 5,
+      "title": "여름철 햇차로 즐기는 아이스티",
+      "img": "https://source.unsplash.com/576x386/?Nilgiri tea",
+      "date": "06.23 - 07.07",
+      "onepoint": "정보 텍스트가 들어갑니다다다다"
+    }
+  ]
+}
