@@ -1,12 +1,9 @@
 import React from 'react';
+import './Footer.scss';
 
 class Footer extends React.Component {
   render() {
-    return (
-      <div>
-        <h1>Footer 페이지입니다.</h1>
-      </div>
-    );
+    return <></>;
   }
 }
 
