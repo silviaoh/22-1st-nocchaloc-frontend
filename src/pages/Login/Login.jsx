@@ -22,18 +22,18 @@ class Login extends React.Component {
 
   signInSuccess = () => {
     const { userId, userPw } = this.state;
-    fetch(`${GET_SIGNIN_API}/user/signin`, {
+    fetch(`${GET_SIGNIN_API}/users/signin`, {
       method: 'POST',
       body: JSON.stringify({
-        userId,
-        userPw,
+        account: userId,
+        password: userPw,
       }),
     })
       .then(res => res.json())
       .then(data => {
         if (data.message === 'SUCCESS') {
           this.props.history.push('/');
-          localStorage.getItem('TOKEN', data.TOKEN);
+          localStorage.setItem('TOKEN', data.TOKEN);
         }
       });
   };

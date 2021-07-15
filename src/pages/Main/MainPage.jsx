@@ -47,15 +47,15 @@ class MainPage extends React.Component {
     });
   };
   componentDidMount() {
-    // fetch('http://localhost:3000/data/weeklyBest.json')
-    fetch('http://10.58.4.62:8000/products?page=m')
+    fetch('http://localhost:3000/data/weeklyBest.json')
+      // fetch('http://10.58.4.62:8000/products?page=m')
       // fetch(`${GET_BESTLIST_API}/products`)
       .then(res => res.json())
       .then(data => {
         this.setState({
           // slide: data.slide,
-          // Products: data.products,
-          Products: data.products_info,
+          Products: data.products,
+          // Products: data.products_info,
         });
       });
   }
@@ -84,9 +84,7 @@ class MainPage extends React.Component {
                 ))}
               </div>
             </div>
-            <div className="left-btn">
-              <Link to="/">바로보기</Link>
-            </div>
+
             <div className="slide-btn-wrapper">
               <i
                 className="fas fa-2x fa-chevron-left"
@@ -124,9 +122,9 @@ class MainPage extends React.Component {
                 <Product
                   key={id}
                   title={products.title}
-                  // img={products.img}
-                  img={products.main_image_url}
-                  hover={products.hover_image_url}
+                  img={products.img}
+                  // img={products.main_image_url}
+                  // hover={products.hover_image_url}
                   price={Math.floor(products.price)
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}

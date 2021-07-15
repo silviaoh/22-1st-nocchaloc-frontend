@@ -7,26 +7,29 @@ export const validationFunction = {
     }
   },
 
-  userId: birth => {
+  userBirth: birth => {
     if (birth.length === 8) {
       return true;
     } else {
       return false;
     }
   },
-  userBirth: number => {
+
+  userNum: number => {
     if (number.length === 11) {
       return true;
     } else {
       return false;
     }
   },
-  userNum: id => {
-    var reg_id = /^[a-zA-z0-9]{4,12}$/;
+
+  userId: id => {
+    var reg_id = /^[a-zA-Z]\w{4,12}$/;
     return reg_id.test(id) ? true : false;
   },
+
   userPw: pw => {
-    var reg_pwd = /^.*(?=.{8,16})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+    var reg_pwd = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,16}$/;
     return reg_pwd.test(pw) ? true : false;
   },
 };

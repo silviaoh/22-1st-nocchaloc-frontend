@@ -18,17 +18,35 @@ class Signup extends Component {
 
   handleInput = e => {
     const { name, value } = e.target;
+    console.log(this.state);
     this.setState({
       [name]: value,
     });
   };
 
+  doValidation = () => {
+    const inputValues = Object.entries(this.state);
+    console.log(inputValues);
+    const validArray = inputValues.map(([key, value]) => {
+      return validationFunction[key](value);
+    });
+    console.log(validArray);
+    return validArray.every(el => el);
+  };
+
   signUpSuccess = () => {
     const { userName, userBirth, userNum, userId, userPw } = this.state;
+    console.log({ userName, userBirth, userNum, userId, userPw });
     if (this.doValidation() === true) {
-      fetch(`${GET_SIGNUP_API}/user/signin`, {
+      fetch(`${GET_SIGNUP_API}/users/signup`, {
         method: 'POST',
-        body: JSON.stringify({ userName, userBirth, userNum, userId, userPw }),
+        body: JSON.stringify({
+          name: userName,
+          birthday: userBirth,
+          phone_number: userNum,
+          account: userId,
+          password: userPw,
+        }),
       })
         .then(res => res.json())
         .then(data => {
@@ -39,14 +57,7 @@ class Signup extends Component {
           }
         });
     }
-  };
-
-  doValidation = () => {
-    const inputValues = Object.entries(this.state);
-    const validArray = inputValues.map(([key, value]) => {
-      return validationFunction[key](value);
-    });
-    return validArray.every(el => el);
+    console.log(this.doValidation());
   };
 
   render() {
