@@ -24,6 +24,8 @@
     text-align: right;
     padding-right: calc(#{$margin-value} + 40px);
     color: white;
+    font-family: 'arita-buri', 'sans-serif';
+    font-weight: bold;
 
     .tea-name {
       font-size: calc(#{$font-xxlarge} + 4px);
