@@ -10,9 +10,9 @@ class Pagination extends React.Component {
   handlePagination = num => {
     this.setState({ isFirst: num === 0 });
 
-    let origin = 24;
-    let offset = origin * (num - 1);
-    let limit = origin * num;
+    const origin = 24;
+    const offset = origin * (num - 1);
+    const limit = origin * num;
 
     this.setState({ buttonId: num });
 
