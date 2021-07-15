@@ -33,23 +33,19 @@ class TeaList extends React.Component {
   }
 
   addQuery = (key, value) => {
-    let pathname = this.props.location.pathname;
     let searchParams = new URLSearchParams(this.props.location.search);
     searchParams.set(key, value);
 
     this.props.history.push({
-      pathname: pathname,
       search: searchParams.toString(),
     });
   };
 
   appendQuery = (key, value) => {
-    let pathname = this.props.location.pathname;
     let searchParams = new URLSearchParams(this.props.location.search);
     searchParams.append(key, value);
 
     this.props.history.push({
-      pathname: pathname,
       search: searchParams.toString(),
     });
   };
@@ -88,7 +84,6 @@ class TeaList extends React.Component {
     searchParams.delete('product_name', id);
 
     this.props.history.push({
-      pathname: location.pathname,
       search: queryString,
     });
   };
@@ -109,6 +104,7 @@ class TeaList extends React.Component {
 
   handleFilteringClick = id => {
     const { location, history } = this.props;
+
     this.setState({ filterId: id }, () => {
       this.fetchMutateProducts();
     });
