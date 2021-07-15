@@ -8,7 +8,7 @@ import './Tealist.scss';
 class TeaList extends React.Component {
   state = {
     products: [],
-    video: [],
+    videos: [],
     sortId: 0,
     filterId: 0,
   };
@@ -116,10 +116,8 @@ class TeaList extends React.Component {
     const { search } = this.props.location;
     const { data } = this.state.products;
 
-    let totalProductsCount = 0;
-    if (data && data.length !== 0) {
-      totalProductsCount = data[0].total_products;
-    }
+    const totalProductsCount =
+      data && data.length !== 0 && data[0].total_products;
 
     return (
       <div className="tealist">
@@ -128,7 +126,7 @@ class TeaList extends React.Component {
           <div className="swiper-container">
             <div className="swiper">
               <ul className="swiper-inner" ref={this.innerul}>
-                {this.state.video.map(video => (
+                {this.state.videos.map(video => (
                   <Slide key={video.id} video={video} />
                 ))}
               </ul>
