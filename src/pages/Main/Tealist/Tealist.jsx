@@ -20,9 +20,6 @@ class TeaList extends React.Component {
     fetch(`${GET_PRODUCT_API}`)
       .then(response => response.json())
       .then(data => this.setState({ products: data }));
-    this.props.history.push({
-      pathname: '/tealist',
-    });
   };
 
   fetchMutateProducts = () => {

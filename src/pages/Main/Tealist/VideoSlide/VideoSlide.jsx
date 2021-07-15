@@ -5,9 +5,6 @@ import { GET_VIDEO_JSON } from '../../../../config.js';
 import './VideoSlide.scss';
 
 class VideoSlide extends React.Component {
-  swiperInner = React.createRef();
-  swiperTeaName = React.createRef();
-
   state = {
     videos: [],
     videoButtonId: 1,
@@ -16,6 +13,8 @@ class VideoSlide extends React.Component {
     originalX: 0,
     translateX: 0,
     lastTranslatX: 0,
+    teaNameStr: '',
+    innerStr: '',
   };
 
   componentDidMount() {
@@ -39,13 +38,13 @@ class VideoSlide extends React.Component {
     });
 
     if (this.state.translateX > 0) {
-      this.swiperTeaName.current.style.transform = `translate3d(calc(25%),0px,0px)`;
+      this.setState({ teaNameStr: `translate3d(25vw,0px,0px)` });
     } else if (this.state.translateX < -2000) {
-      this.swiperTeaName.current.style.transform = `translate3d(${
-        -14.9 * 8
-      }vw, 0, 0)`;
+      this.setState({ teaNameStr: `translate3d(${-14.9 * 8}vw, 0, 0)` });
     } else {
-      this.swiperTeaName.current.style.transform = `translate3d(calc(25% + ${this.state.translateX}px),0px,0px)`;
+      this.setState({
+        teaNameStr: `translate3d(${this.state.translateX}px,0px,0px)`,
+      });
     }
   };
 
@@ -57,37 +56,47 @@ class VideoSlide extends React.Component {
   };
 
   goToLeft = () => {
-    this.state.videoButtonId > 1 &&
+    if (this.state.videoButtonId > 1) {
       this.setState(
         prev => ({ videoButtonId: prev.videoButtonId - 1 }),
         () => {
-          this.swiperInner.current.style.transform = `translate3d(${
-            25 - 50 * (this.state.videoButtonId - 1)
-          }vw, 0, 0)`;
+          this.setState({
+            innerStr: `translate3d(${
+              25 - 50 * (this.state.videoButtonId - 1)
+            }vw, 0, 0)`,
+          });
           if (this.state.videoButtonId < 4) {
-            this.swiperTeaName.current.style.transform = `translate3d(${
-              -10 * (this.state.videoButtonId - 1)
-            }vw, 0, 0)`;
+            this.setState({
+              teaNameStr: `translate3d(${
+                -10 * (this.state.videoButtonId - 1)
+              }vw, 0, 0)`,
+            });
           }
         }
       );
+    }
   };
 
   goToRight = () => {
-    this.state.videoButtonId < 7 &&
+    if (this.state.videoButtonId < this.state.videos.length) {
       this.setState(
         prev => ({ videoButtonId: prev.videoButtonId + 1 }),
         () => {
-          this.swiperInner.current.style.transform = `translate3d(${
-            25 - 50 * (this.state.videoButtonId - 1)
-          }vw, 0, 0)`;
+          this.setState({
+            innerStr: `translate3d(${
+              25 - 50 * (this.state.videoButtonId - 1)
+            }vw, 0, 0)`,
+          });
           if (this.state.videoButtonId > 3) {
-            this.swiperTeaName.current.style.transform = `translate3d(${
-              -14.9 * (this.state.videoButtonId - 1)
-            }vw, 0, 0)`;
+            this.setState({
+              teaNameStr: `translate3d(${
+                -14.9 * (this.state.videoButtonId - 1)
+              }vw, 0, 0)`,
+            });
           }
         }
       );
+    }
   };
 
   clickTeaName = id => {
@@ -100,13 +109,18 @@ class VideoSlide extends React.Component {
 
   render() {
     const { products, CATEGORY } = this.props;
-    console.log(products);
+    const swiperTeaNameStyle = {
+      transform: this.state.teaNameStr,
+    };
+    const swiperInnerStyle = {
+      transform: this.state.innerStr,
+    };
 
     return (
       <div className="tea-carousel">
         <div className="swiper-container">
           <div className="swiper">
-            <ul className="swiper-inner" ref={this.swiperInner}>
+            <ul className="swiper-inner" style={swiperInnerStyle}>
               {products.video &&
                 products.video.map((video, idx) => (
                   <Slide key={idx} video={video} />
@@ -131,14 +145,16 @@ class VideoSlide extends React.Component {
           onMouseMove={this.handleMouseMove}
           onMouseUp={this.handleMouseUp}
         >
-          <div className="teaname-overflow" ref={this.swiperTeaName}>
+          <div className="teaname-overflow" style={swiperTeaNameStyle}>
             {CATEGORY.map((category, idx) => (
               <button
                 className={`teaname ${
-                  (this.state.videoButtonId === category.id && 'active') ||
-                  (this.state.videoButtonId === 0 && idx === 0 && 'active')
+                  (this.state.videoButtonId === category.id ||
+                    (this.state.videoButtonId === 0 && idx === 0)) &&
+                  'active'
                 }`}
                 key={category.id}
+                style={{}}
                 onClick={() => this.clickTeaName(category.id)}
               >
                 {category.name}
