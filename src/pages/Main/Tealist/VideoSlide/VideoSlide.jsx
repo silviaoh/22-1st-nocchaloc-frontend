@@ -4,14 +4,14 @@ import Slide from './Slide/Slide';
 import './VideoSlide.scss';
 
 class VideoSlide extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      videoButtonId: 1,
-      videoCount: 0,
-    };
-    this.swiperInner = React.createRef();
-  }
+  state = {
+    videoButtonId: 1,
+    videoCount: 0,
+  };
+
+  swiperInner = React.createRef();
+  swiperTeaName = React.createRef();
+  teaNameOne = React.createRef();
 
   goToLeft = () => {
     this.state.videoButtonId > 1 &&
@@ -21,19 +21,32 @@ class VideoSlide extends React.Component {
           this.swiperInner.current.style.transform = `translate3d(${
             25 - 50 * (this.state.videoButtonId - 1)
           }vw, 0, 0)`;
+          if (this.state.videoButtonId < 4) {
+            this.swiperTeaName.current.style.transform = `translate3d(${
+              -10 * (this.state.videoButtonId - 1)
+            }vw, 0, 0)`;
+          }
         }
       );
   };
 
   goToRight = () => {
-    this.setState(
-      prev => ({ videoButtonId: prev.videoButtonId + 1 }),
-      () => {
-        this.swiperInner.current.style.transform = `translate3d(${
-          25 - 50 * (this.state.videoButtonId - 1)
-        }vw, 0, 0)`;
-      }
-    );
+    const offsetWidth = this.teaNameOne.current.clientWidth;
+    console.log(offsetWidth);
+    this.state.videoButtonId < 7 &&
+      this.setState(
+        prev => ({ videoButtonId: prev.videoButtonId + 1 }),
+        () => {
+          this.swiperInner.current.style.transform = `translate3d(${
+            25 - 50 * (this.state.videoButtonId - 1)
+          }vw, 0, 0)`;
+          if (this.state.videoButtonId > 3) {
+            this.swiperTeaName.current.style.transform = `translate3d(${
+              -14.9 * (this.state.videoButtonId - 1)
+            }vw, 0, 0)`;
+          }
+        }
+      );
   };
 
   clickTeaName = id => {
@@ -42,7 +55,6 @@ class VideoSlide extends React.Component {
         25 - 50 * (this.state.videoButtonId - 1)
       }vw, 0, 0)`;
     });
-    console.log(25 - 50 * (this.state.videoButtonId - 1));
   };
 
   render() {
@@ -70,7 +82,7 @@ class VideoSlide extends React.Component {
           </div>
         </div>
         <div className="swiper-teaname">
-          <div className="teaname-overflow">
+          <div className="teaname-overflow" ref={this.swiperTeaName}>
             {CATEGORY.map((category, idx) => (
               <button
                 className={`teaname ${
@@ -79,6 +91,7 @@ class VideoSlide extends React.Component {
                 }`}
                 key={category.id}
                 onClick={() => this.clickTeaName(category.id)}
+                ref={this.teaNameOne}
               >
                 {category.name}
               </button>

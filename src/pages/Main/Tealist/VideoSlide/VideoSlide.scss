@@ -42,12 +42,12 @@
       }
 
       .left {
-        @include position-set(absolute, 45%, 10%);
+        @include position-set(absolute, 40%, 10%);
         @include leftright-design;
       }
 
       .right {
-        @include position-set(absolute, 45%, auto, auto, 10%);
+        @include position-set(absolute, 40%, auto, auto, 10%);
         @include leftright-design;
       }
     }
@@ -64,12 +64,13 @@
     padding: 0 280px;
     background-color: $bgColor-videoMenu;
     z-index: 4;
+    overflow-x: hidden;
 
     .teaname-overflow {
       display: flex;
-      width: 100%;
+      width: 93%;
       min-width: 745px;
-      overflow-x: scroll;
+      transition: transform 500ms ease;
 
       .teaname {
         @include flex-common(40%, center);
