@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { MAIN_API } from '../../config';
 import MainSlide from './MainSlide';
 import Product from './weeklybest/Product';
 import MAIN_SLIDE from './mainSlideData';
@@ -8,7 +9,7 @@ import './MainPage.scss';
 class MainPage extends React.Component {
   state = {
     slide: [],
-    Products: [],
+    products: [],
     bestIndex: 0,
     slideIndex: 0,
   };
@@ -16,7 +17,7 @@ class MainPage extends React.Component {
   prevSlide = () => {
     if (this.state.slideIndex > 0) {
       this.setState({
-        slideIndex: this.state.slideIndex - 1,
+        slideIndex: 3,
       });
     } else {
       this.setState({ slideIndex: 3 });
@@ -47,22 +48,18 @@ class MainPage extends React.Component {
     });
   };
   componentDidMount() {
-    fetch('http://localhost:3000/data/weeklyBest.json')
-      // fetch('http://10.58.4.62:8000/products?page=m')
-      // fetch(`${GET_BESTLIST_API}/products`)
+    fetch(`${MAIN_API}/products`)
       .then(res => res.json())
       .then(data => {
         this.setState({
-          // slide: data.slide,
-          Products: data.products,
-          // Products: data.products_info,
+          products: data.products_info,
         });
       });
   }
 
   render() {
     return (
-      <>
+      <div className="main-page">
         <div className="item-inner">
           <div className="inner">
             <div className="box-wrap">
@@ -70,7 +67,6 @@ class MainPage extends React.Component {
                 className="descbox"
                 style={{
                   transform: `translateX(-${100 * this.state.slideIndex}vw)`,
-                  transition: 'transform ease-out 0.5s',
                 }}
               >
                 {MAIN_SLIDE.map((slide, idx) => (
@@ -118,13 +114,12 @@ class MainPage extends React.Component {
                 transition: 'transform ease-out 0.5s',
               }}
             >
-              {this.state.Products.map((products, id) => (
+              {this.state.products.map((products, id) => (
                 <Product
                   key={id}
                   title={products.title}
-                  img={products.img}
-                  // img={products.main_image_url}
-                  // hover={products.hover_image_url}
+                  img={products.main_image_url}
+                  hover={products.hover_image_url}
                   price={Math.floor(products.price)
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
@@ -154,13 +149,13 @@ class MainPage extends React.Component {
                   <Link to="/">녹차록 인스타그램</Link>
                 </div>
                 <figure className="sns-img-slidebox">
-                  <img src="/images/Main/tea.jpg" alt="tea"></img>
+                  <img src="/images/Main/tea.jpg" alt="tea" />
                 </figure>
               </div>
             </div>
           </div>
         </section>
-      </>
+      </div>
     );
   }
 }

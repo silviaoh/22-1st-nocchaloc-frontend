@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { validationFunction } from '../../utils/validation';
 import { Link } from 'react-router-dom';
-import { GET_SIGNUP_API } from '../../config';
+import { SIGNUP_API } from '../../config';
 import './Signup.scss';
 
 class Signup extends Component {
@@ -18,7 +18,6 @@ class Signup extends Component {
 
   handleInput = e => {
     const { name, value } = e.target;
-    console.log(this.state);
     this.setState({
       [name]: value,
     });
@@ -26,19 +25,16 @@ class Signup extends Component {
 
   doValidation = () => {
     const inputValues = Object.entries(this.state);
-    console.log(inputValues);
     const validArray = inputValues.map(([key, value]) => {
       return validationFunction[key](value);
     });
-    console.log(validArray);
     return validArray.every(el => el);
   };
 
   signUpSuccess = () => {
     const { userName, userBirth, userNum, userId, userPw } = this.state;
-    console.log({ userName, userBirth, userNum, userId, userPw });
-    if (this.doValidation() === true) {
-      fetch(`${GET_SIGNUP_API}/users/signup`, {
+    if (this.doValidation()) {
+      fetch(`${SIGNUP_API}/users/signup`, {
         method: 'POST',
         body: JSON.stringify({
           name: userName,
@@ -57,7 +53,6 @@ class Signup extends Component {
           }
         });
     }
-    console.log(this.doValidation());
   };
 
   render() {
@@ -116,7 +111,7 @@ class Signup extends Component {
                 onChange={this.handleInput}
               />
               <button
-                className={`signup-btn ${allValid}`}
+                className={`signup-btn ${allValid ? 'acitve' : ''}`}
                 onClick={this.signUpSuccess}
               >
                 회원가입

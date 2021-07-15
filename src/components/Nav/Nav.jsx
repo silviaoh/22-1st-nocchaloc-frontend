@@ -1,11 +1,13 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
+import { PRODUCTS_API } from '../../config';
 
 import './Nav.scss';
 
 class Nav extends React.Component {
   state = {
     lists: [],
+    category: [],
     isLogin: false,
   };
 
@@ -24,11 +26,11 @@ class Nav extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/data/tealist.json')
-      .then(res => res.json())
+    fetch(`${PRODUCTS_API}/cateogory`)
+      .then(res => res.json()) //
       .then(data => {
         this.setState({
-          lists: data.lists,
+          category: data.category_info,
         });
       });
   }
@@ -43,10 +45,10 @@ class Nav extends React.Component {
           <nav className="navbar">
             <div className="dropdown">
               <ul className="menu-list">
-                {NAV_LIST.map(list => {
+                {NAV_LIST.map(lists => {
                   return (
-                    <li key={list.id}>
-                      <Link to="#">{list.name}</Link>
+                    <li key={lists.id}>
+                      <Link to="#">{lists.name}</Link>
                     </li>
                   );
                 })}
@@ -59,10 +61,10 @@ class Nav extends React.Component {
                     <ul className="depth-content">
                       <div className="depth-row">
                         <div className="depth-column">
-                          {this.state.lists.map(lists => {
+                          {this.state.category.map(category => {
                             return (
-                              <li key={lists.id}>
-                                <Link to="#">{lists.name}</Link>
+                              <li key={category.id}>
+                                <Link to="#">{category.name}</Link>
                               </li>
                             );
                           })}

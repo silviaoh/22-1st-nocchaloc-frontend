@@ -1,5 +1,5 @@
 @import '../../styles/variable.scss';
-@import '../../styles/variableNav.scss';
+@import '../../styles/mixinSet.scss';
 
 .Nav {
   height: 80px;
@@ -23,14 +23,8 @@
     align-items: center;
     height: 80px;
     padding-left: 0 0 0 190px;
-
-    a {
-      transition: all 0.3s ease 0s;
-      color: #555;
-      font-size: 18px;
-      font-weight: 500;
-    }
   }
+
   .menu-list {
     @include flex-space-between;
     height: 80px;
@@ -40,7 +34,6 @@
       cursor: pointer;
 
       a {
-        transition: all 0.3s ease 0s;
         color: #555;
         font-size: 18px;
         font-weight: 500;
@@ -53,7 +46,6 @@
   }
   .dropdown-content {
     position: absolute;
-    // visibility: hidden;
     display: none;
     width: 100vw;
     left: 0;
@@ -95,13 +87,11 @@
   }
 
   .dropdown:hover .dropdown-content {
-    // visibility: visible;
     display: block;
   }
 
   .depth-content {
     position: absolute;
-    // visibility: hidden;
     display: none;
     margin-left: 100px;
     margin-top: -30px;
@@ -140,7 +130,6 @@
   }
 
   .column:hover .depth-content {
-    // visibility: visible;
     display: block;
   }
 

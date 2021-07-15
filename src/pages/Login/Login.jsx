@@ -1,7 +1,7 @@
 import React from 'react';
 import { validationFunction } from '../../utils/validation';
 import { Link } from 'react-router-dom';
-import { GET_SIGNIN_API } from '../../config';
+import { SIGNIN_API } from '../../config';
 import './Login.scss';
 
 class Login extends React.Component {
@@ -22,7 +22,7 @@ class Login extends React.Component {
 
   signInSuccess = () => {
     const { userId, userPw } = this.state;
-    fetch(`${GET_SIGNIN_API}/users/signin`, {
+    fetch(`${SIGNIN_API}/users/signin`, {
       method: 'POST',
       body: JSON.stringify({
         account: userId,
@@ -73,7 +73,7 @@ class Login extends React.Component {
               />
             </div>
             <button
-              className={`login-btn ${allValid}`}
+              className={`login-btn ${allValid ? 'acitve' : ''}`}
               onClick={this.signInSuccess}
             >
               로그인

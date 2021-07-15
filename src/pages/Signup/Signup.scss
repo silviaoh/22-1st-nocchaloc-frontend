@@ -30,46 +30,46 @@
   width: 460px;
   border: 1px;
 
-  .signup-text {
-    display: block;
-    color: #333;
-    text-align: center;
-    font-size: 34px;
-    margin: 0 0 27px 0;
-  }
-
   .wrap {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    .signup-text {
+      display: block;
+      color: #333;
+      text-align: center;
+      font-size: 34px;
+      margin: 0 0 27px 0;
+    }
+
+    .input-signup-box {
+      width: 440px;
+      height: 170px;
+
+      .input-username,
+      .input-Num,
+      .input-userId,
+      .input-userPw,
+      .input-birth {
+        width: 440px;
+        height: 54px;
+        padding: 10px 14px 10px 14px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+      }
+
+      .signup-btn {
+        width: 440px;
+        height: 55px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        margin: 50px 0 50px 0;
+        background-color: #74824c;
+      }
+    }
   }
-}
-
-.input-signup-box {
-  width: 440px;
-  height: 170px;
-
-  .input-username,
-  .input-Num,
-  .input-userId,
-  .input-userPw,
-  .input-birth {
-    width: 440px;
-    height: 54px;
-    padding: 10px 14px 10px 14px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-  }
-}
-
-.signup-btn {
-  width: 440px;
-  height: 55px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  margin: 50px 0 50px 0;
-  background-color: #74824c;
 }
