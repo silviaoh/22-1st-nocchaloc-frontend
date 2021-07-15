@@ -80,9 +80,6 @@ class TeaList extends React.Component {
     const removeResult = this.removeQueryArray(splitedQuery, id);
     const queryString = this.reduceQueryArray(removeResult);
 
-    let searchParams = new URLSearchParams(queryString);
-    searchParams.delete('product_name', id);
-
     this.props.history.push({
       search: queryString,
     });
