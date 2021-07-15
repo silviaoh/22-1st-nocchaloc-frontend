@@ -135,7 +135,7 @@ class TeaList extends React.Component {
                   <i className="fas fa-chevron-left" />
                 </button>
               </div>
-              <div className="transparentbox right-0" ref={this.rightBox}>
+              <div className="transparentbox right-0">
                 <button className="right">
                   <i className="fas fa-chevron-right" />
                 </button>
