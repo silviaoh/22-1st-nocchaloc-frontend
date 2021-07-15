@@ -92,7 +92,7 @@
   .main-container {
     @include flex-common(60%, center);
     position: relative;
-    margin: calc(#{$margin-value} + 10px) 0;
+    margin: calc(#{$margin-value} + 25px) 0;
 
     .aside-menu {
       flex: 0 0 8%;

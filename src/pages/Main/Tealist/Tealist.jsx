@@ -217,10 +217,16 @@ class TeaList extends React.Component {
             </section>
             <section className="teashop-list">
               <ul className="list-tea">
+<<<<<<< HEAD
+                {this.state.products.map((product, idx) => (
+                  <Tea key={idx} product={product} match={this.props.match} />
+                ))}
+=======
                 {this.state.products.products_info &&
                   this.state.products.products_info.map((product, idx) => (
                     <Tea key={idx} product={product} match={this.props.match} />
                   ))}
+>>>>>>> main
               </ul>
             </section>
             <section className="pagination">
