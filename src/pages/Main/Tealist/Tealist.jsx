@@ -33,9 +33,6 @@ class TeaList extends React.Component {
 
   componentDidMount() {
     this.fetchAllProducts();
-    fetch('/data/video.json')
-      .then(response => response.json())
-      .then(data => this.setState({ video: data }));
   }
 
   componentDidUpdate = prevProps => {
@@ -64,8 +61,7 @@ class TeaList extends React.Component {
   };
 
   render() {
-    const { search } = this.props.location;
-    const { products, video } = this.state;
+    const { products } = this.state;
     const { data } = products;
 
     let totalProductsCount = 0;
@@ -80,7 +76,7 @@ class TeaList extends React.Component {
 
     return (
       <div className="tealist">
-        <VideoSlide products={products} video={video} CATEGORY={CATEGORY} />
+        <VideoSlide products={products} CATEGORY={CATEGORY} />
         <main className="main-container">
           <aside className="aside-menu">
             <h1 className="title">TEA SHOP</h1>

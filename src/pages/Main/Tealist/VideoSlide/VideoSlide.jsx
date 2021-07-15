@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Slide from './Slide/Slide';
+import { GET_VIDEO_JSON } from '../../../../config.js';
 import './VideoSlide.scss';
 
 class VideoSlide extends React.Component {
+  swiperInner = React.createRef();
+  swiperTeaName = React.createRef();
+
   state = {
+    videos: [],
     videoButtonId: 1,
     videoCount: 0,
     pressed: false,
@@ -13,9 +18,11 @@ class VideoSlide extends React.Component {
     lastTranslatX: 0,
   };
 
-  swiperInner = React.createRef();
-  swiperTeaName = React.createRef();
-  teaNameOne = React.createRef();
+  componentDidMount() {
+    fetch(`${GET_VIDEO_JSON}`)
+      .then(res => res.json())
+      .then(data => this.setState({ videos: data }));
+  }
 
   handleMouseDown = e => {
     this.setState({
@@ -30,7 +37,7 @@ class VideoSlide extends React.Component {
     this.setState({
       translateX: e.clientX - this.state.originalX + this.state.lastTranslatX,
     });
-    console.log(this.state.translateX);
+
     if (this.state.translateX > 0) {
       this.swiperTeaName.current.style.transform = `translate3d(calc(25%),0px,0px)`;
     } else if (this.state.translateX < -2000) {
@@ -67,8 +74,6 @@ class VideoSlide extends React.Component {
   };
 
   goToRight = () => {
-    const offsetWidth = this.teaNameOne.current.clientWidth;
-    console.log(offsetWidth);
     this.state.videoButtonId < 7 &&
       this.setState(
         prev => ({ videoButtonId: prev.videoButtonId + 1 }),
@@ -94,16 +99,18 @@ class VideoSlide extends React.Component {
   };
 
   render() {
-    const { products, video, CATEGORY } = this.props;
+    const { products, CATEGORY } = this.props;
+    console.log(products);
 
     return (
       <div className="tea-carousel">
         <div className="swiper-container">
           <div className="swiper">
             <ul className="swiper-inner" ref={this.swiperInner}>
-              {video.map(video => (
-                <Slide key={video.id} video={video} />
-              ))}
+              {products.video &&
+                products.video.map((video, idx) => (
+                  <Slide key={idx} video={video} />
+                ))}
             </ul>
             <div className="transparentbox left-0">
               <button className="left" onClick={this.goToLeft}>
@@ -133,7 +140,6 @@ class VideoSlide extends React.Component {
                 }`}
                 key={category.id}
                 onClick={() => this.clickTeaName(category.id)}
-                ref={this.teaNameOne}
               >
                 {category.name}
               </button>
