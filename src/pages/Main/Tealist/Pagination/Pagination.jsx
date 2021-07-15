@@ -8,9 +8,7 @@ class Pagination extends React.Component {
   };
 
   handlePagination = num => {
-    num === 0
-      ? this.setState({ isFirst: true })
-      : this.setState({ isFirst: false });
+    this.setState({ isFirst: num === 0 });
 
     let origin = 24;
     let offset = origin * (num - 1);
@@ -18,12 +16,11 @@ class Pagination extends React.Component {
 
     this.setState({ buttonId: num });
 
-    let pathname = this.props.location.pathname;
     let searchParams = new URLSearchParams(this.props.location.search);
     searchParams.set('offset', offset);
     searchParams.set('limit', limit);
+
     this.props.history.push({
-      pathname: pathname,
       search: searchParams.toString(),
     });
   };
