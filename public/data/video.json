@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "category": "명차",
+    "description": "밝은 기분을 가질 수 있는 녹차록의 명차 라인입니다.",
+    "src": "video/China.mp4"
+  },
+  {
+    "id": 2,
+    "category": "녹차/발효차/홍차",
+    "description": "유기농으로 재배하여 건강하게 드실 수 있는 녹차/발효차/홍차 라인입니다.",
+    "src": "video/China.mp4"
+  },
+  {
+    "id": 3,
+    "category": "허브티(무카페인)",
+    "description": "향기로운 향이 나는 허브티 라인입니다.",
+    "src": "video/China.mp4"
+  },
+  {
+    "id": 4,
+    "category": "블렌디드티",
+    "description": "적절히 배합된 차의 맛을 느낄 수 있는 블렌디드티 라인입니다.",
+    "src": "video/China.mp4"
+  },
+  {
+    "id": 5,
+    "category": "웰니스티",
+    "description": "건강하게 마셔보세요!",
+    "src": "video/China.mp4"
+  },
+  {
+    "id": 6,
+    "category": "파우더",
+    "description": "찬물에도 잘 우러납니다.",
+    "src": "video/China.mp4"
+  },
+  {
+    "id": 7,
+    "category": "세트",
+    "description": "녹차록의 다양한 제품들을 모았습니다.",
+    "src": "video/China.mp4"
+  }
+]

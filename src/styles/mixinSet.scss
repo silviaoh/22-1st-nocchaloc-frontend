@@ -30,13 +30,14 @@
 }
 
 // tealist-video
-@mixin carousel-side-box($right: auto, $bg-color: transparent) {
+@mixin carousel-side-box {
   position: absolute;
   width: 25vw;
   height: 100%;
-  background-color: $bg-color;
   top: 0;
-  right: $right;
+  background-color: black;
+  border-right: 1px solid black;
+  opacity: 0.5;
 }
 
 @mixin leftright-design {

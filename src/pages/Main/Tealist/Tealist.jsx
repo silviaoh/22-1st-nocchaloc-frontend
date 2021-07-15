@@ -2,38 +2,150 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Slide from './Slide/Slide';
 import Tea from './Tea/Tea';
+import { PRODUCT_API } from '../../../config.js';
 import './Tealist.scss';
 
 class TeaList extends React.Component {
   state = {
     products: [],
+    videos: [],
+    sortId: 0,
+    filterId: 0,
   };
 
+  fetchAllProducts = () => {
+    fetch(`${PRODUCT_API}`)
+      .then(response => response.json())
+      .then(data => this.setState({ products: data }));
+  };
+
+  fetchMutateProducts = () => {
+    fetch(`${PRODUCT_API + this.props.location.search}`)
+      .then(response => response.json())
+      .then(data => this.setState({ products: data }));
+  };
+
+  componentDidMount() {
+    this.fetchAllProducts();
+    fetch('/data/video.json')
+      .then(response => response.json())
+      .then(data => this.setState({ video: data }));
+  }
+
+  addQuery = (key, value) => {
+    let searchParams = new URLSearchParams(this.props.location.search);
+    searchParams.set(key, value);
+
+    this.props.history.push({
+      search: searchParams.toString(),
+    });
+  };
+
+  appendQuery = (key, value) => {
+    let searchParams = new URLSearchParams(this.props.location.search);
+    searchParams.append(key, value);
+
+    this.props.history.push({
+      search: searchParams.toString(),
+    });
+  };
+
+  removeQueryArray = (splited, id) => {
+    return splited.map(element => {
+      const [query, value] = element.split('=');
+      if (Number(value) === id) {
+        return null;
+      }
+      return element;
+    });
+  };
+
+  reduceQueryArray = removeResult => {
+    return removeResult.reduce((acc, cur) => {
+      if (!acc && cur) {
+        return `?${cur}`;
+      }
+      if (cur) {
+        return acc + '&' + cur;
+      }
+      return acc;
+    }, '');
+  };
+
+  removeQuery = id => {
+    const { location } = this.props;
+    const nowQuery = location.search;
+
+    const splitedQuery = nowQuery.replace('?', '').split('&');
+    const removeResult = this.removeQueryArray(splitedQuery, id);
+    const queryString = this.reduceQueryArray(removeResult);
+
+    this.props.history.push({
+      search: queryString,
+    });
+  };
+
+  handleSortClick = id => {
+    this.setState({ sortId: id }, () => {
+      this.fetchMutateProducts();
+    });
+    this.addQuery('sort', id);
+  };
+
+  handleCategoryClick = id => {
+    this.setState({ categoryId: id });
+    this.fetchMutateProducts();
+    this.addQuery('category', id);
+  };
+
+  handleFilteringClick = id => {
+    const { location, history } = this.props;
+
+    this.setState({ filterId: id });
+    this.fetchMutateProducts();
+
+    if (id === 0) {
+      history.push('/tealist');
+    } else {
+      location.search.includes(`product_type=${id}`)
+        ? this.removeQuery(id)
+        : this.appendQuery('product_type', id);
+    }
+  };
   render() {
-    const totalProductsCount = this.state.products.length;
+    const { search } = this.props.location;
+    const { data } = this.state.products;
+
+    const totalProductsCount =
+      data && data.length !== 0 && data[0].total_products;
+
     return (
       <div className="tealist">
         {/*video slider*/}
         <div className="tea-carousel">
           <div className="swiper-container">
-            <ul className="swiper">
-              <Slide />
-            </ul>
-            <div className="lightblackbox">
-              <button className="left">
-                <i className="fas fa-chevron-left" />
-              </button>
-            </div>
-            <div className="blackbox">
-              <button className="right">
-                <i className="fas fa-chevron-right" />
-              </button>
+            <div className="swiper">
+              <ul className="swiper-inner" ref={this.innerul}>
+                {this.state.videos.map(video => (
+                  <Slide key={video.id} video={video} />
+                ))}
+              </ul>
+              <div className="transparentbox left-0">
+                <button className="left">
+                  <i className="fas fa-chevron-left" />
+                </button>
+              </div>
+              <div className="transparentbox right-0">
+                <button className="right">
+                  <i className="fas fa-chevron-right" />
+                </button>
+              </div>
             </div>
           </div>
           <div className="swiper-teaname">
             <div className="teaname-overflow">
               {CATEGORY.map(menu => (
-                <Link to="#" className="teaname" key={menu.id}>
+                <Link className="teaname" key={menu.id}>
                   {menu.name}
                 </Link>
               ))}
@@ -44,13 +156,20 @@ class TeaList extends React.Component {
           {/*aside menu*/}
           <aside className="aside-menu">
             <h1 className="title">TEA SHOP</h1>
-            <h2 className="list-in-title">TEA</h2>
+            <button className="list-in-title" onClick={this.fetchAllProducts}>
+              TEA
+            </button>
             <ul className="aside-menu-container">
               {CATEGORY.map(menu => (
                 <li className="menu-name" key={menu.id}>
-                  <Link to="#" className="name-item">
+                  <button
+                    className={`name-item ${
+                      search.includes(`category=${menu.id}`) ? 'active' : ''
+                    }`}
+                    onClick={() => this.handleCategoryClick(menu.id)}
+                  >
                     {menu.name}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -60,9 +179,19 @@ class TeaList extends React.Component {
             <header className="teashop-header">
               <h1 className="title">Tea shop</h1>
               <div className="header-sort">
-                <button className="new active">신상품순</button>
-                <button className="descending">높은 가격순</button>
-                <button className="ascending">낮은 가격순</button>
+                {SORT.map(option => {
+                  return (
+                    <button
+                      key={option.id}
+                      className={`sort ${
+                        search.includes(`sort=${option.id}`) ? 'active' : ''
+                      }`}
+                      onClick={() => this.handleSortClick(option.id)}
+                    >
+                      {option.name}
+                    </button>
+                  );
+                })}
               </div>
             </header>
             <section className="teashop-filter">
@@ -71,19 +200,27 @@ class TeaList extends React.Component {
                 상품이 있습니다.
               </span>
               <div className="filter-button">
-                <button className="active">전체</button>
-                <button>잎차</button>
-                <button>피라미드</button>
-                <button>티백</button>
-                <button>파우더</button>
+                {FILTER.map(condition => (
+                  <button
+                    className={`link ${
+                      search.includes(`product_type=${condition.id}`)
+                        ? 'active'
+                        : ''
+                    }`}
+                    key={condition.id}
+                    onClick={() => this.handleFilteringClick(condition.id)}
+                  >
+                    {condition.name}
+                  </button>
+                ))}
               </div>
             </section>
             <section className="teashop-list">
               <ul className="list-tea">
-                {/* <Tea /> */}
-                {/* {this.state.products.map(product => (
-                  <Tea key={product.id} product={product} />
-                ))} */}
+                {this.state.products.products_info &&
+                  this.state.products.products_info.map((product, idx) => (
+                    <Tea key={idx} product={product} match={this.props.match} />
+                  ))}
               </ul>
             </section>
             <section className="pagination">
@@ -141,6 +278,20 @@ const CATEGORY = [
   { id: 5, name: '웰니스티' },
   { id: 6, name: '파우더' },
   { id: 7, name: '세트' },
+];
+
+const FILTER = [
+  { id: 0, name: '전체' },
+  { id: 1, name: '잎차' },
+  { id: 2, name: '피라미드' },
+  { id: 3, name: '티백' },
+  { id: 4, name: '파우더' },
+];
+
+const SORT = [
+  { id: 1, name: '신상품순' },
+  { id: 2, name: '높은 가격순' },
+  { id: 3, name: '낮은 가격순' },
 ];
 
 export default TeaList;

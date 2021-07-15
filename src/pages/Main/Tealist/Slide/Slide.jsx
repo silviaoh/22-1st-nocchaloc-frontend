@@ -3,16 +3,17 @@ import './Slide.scss';
 
 class Slide extends React.Component {
   render() {
+    const { src, name, category } = this.props.video;
     return (
       <li className="slide">
         <div className="tea-video">
           <video className="video" autoPlay muted loop>
-            <source src="video/China.mp4" />
+            <source src={src} />
           </video>
         </div>
         <div className="tea-info">
-          <span className="tea-name">명차</span>
-          <div className="description">우려내기 좋아요</div>
+          <span className="tea-name">{category}</span>
+          <div className="description">{name}</div>
         </div>
       </li>
     );

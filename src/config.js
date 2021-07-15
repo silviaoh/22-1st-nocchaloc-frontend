@@ -1,3 +1,7 @@
+
+const BASE_URL_LIST_IN = 'http://10.58.7.34:8000';
+export const PRODUCT_API = `${BASE_URL_LIST_IN}/products`;
+
 const BASE_URL_SIGNIN = 'http://10.58.6.200:8000';
 export const SIGNIN_API = `${BASE_URL_SIGNIN}`;
 
@@ -9,3 +13,4 @@ export const MAIN_API = `${BASE_URL_LIST}`;
 
 const BASE_URL_PRODUCTS = 'http://10.58.7.34:8000/products';
 export const PRODUCTS_API = `${BASE_URL_PRODUCTS}`;
+
