@@ -6,7 +6,7 @@ class Tea extends Component {
   render() {
     const { pk, name, price, main_image_url, hover_image_url, view_count } =
       this.props.product;
-    const PRICE_INTEGER = Math.floor(price);
+    const floorPrice = Math.floor(price);
     return (
       <li className="product-tea">
         <Link to={`detail/${pk}`} className="tea-img-container">
@@ -22,7 +22,7 @@ class Tea extends Component {
           </Link>
         </p>
         <div className="price">
-          <strong>{PRICE_INTEGER.toLocaleString()}</strong>원
+          <strong>{floorPrice.toLocaleString()}</strong>원
         </div>
         <div className="count-container">
           <span className="view-icon">
