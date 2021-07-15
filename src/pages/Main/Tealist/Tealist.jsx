@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Slide from './Slide/Slide';
 import Tea from './Tea/Tea';
-import { GET_PRODUCT_API } from '../../../config.js';
+import { PRODUCT_API } from '../../../config.js';
 import './Tealist.scss';
 
 class TeaList extends React.Component {
@@ -14,7 +14,7 @@ class TeaList extends React.Component {
   };
 
   fetchAllProducts = () => {
-    fetch(`${GET_PRODUCT_API}`)
+    fetch(`${PRODUCT_API}`)
       .then(response => response.json())
       .then(data => this.setState({ products: data }));
     this.props.history.push({
@@ -23,7 +23,7 @@ class TeaList extends React.Component {
   };
 
   fetchMutateProducts = () => {
-    fetch(`${GET_PRODUCT_API + this.props.location.search}`)
+    fetch(`${PRODUCT_API + this.props.location.search}`)
       .then(response => response.json())
       .then(data => this.setState({ products: data }));
   };
