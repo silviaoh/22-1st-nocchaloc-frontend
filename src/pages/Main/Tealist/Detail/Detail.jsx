@@ -49,7 +49,7 @@ class Detail extends React.Component {
           console.log(data.product_info[0])
         )
       );
-    // this.kakaoSharePreference();
+    this.kakaoSharePreference();
   }
 
   includeBagPrice = id => {
@@ -69,28 +69,6 @@ class Detail extends React.Component {
   render() {
     const { description, main_image_url, name, price } = this.state.product;
     return (
-<<<<<<< HEAD
-      <div className="detail-wrapper" onLoad={this.addViewCount}>
-        <section className="item-thumbnail-wrapper">
-          <div className="item-thumbnail">
-            <img
-              src="https://github.com/JeonSoohyun27/nocchaloc_product_image_data/blob/main/tea/tea-43.png?raw=true"
-              alt="Tea"
-              className="thumbnail"
-            />
-          </div>
-          <div className="benefit">
-            <span className="icon">
-              <i className="fas fa-shopping-bag" />
-            </span>
-            <p className="content">쇼핑백동봉선택가능</p>
-          </div>
-        </section>
-        <section className="item-info">
-          <div className="item-info-top">
-            <section className="location">
-              <span className="root">Tea Shop</span>
-=======
       this.state.product && (
         <div className="detail-wrapper">
           <section className="item-thumbnail-wrapper">
@@ -98,7 +76,6 @@ class Detail extends React.Component {
               <img alt="Tea" src={main_image_url} className="thumbnail" />
             </div>
             <div className="benefit">
->>>>>>> main
               <span className="icon">
                 <i className="fas fa-shopping-bag" />
               </span>

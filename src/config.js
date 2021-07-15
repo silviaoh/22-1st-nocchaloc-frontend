@@ -1,3 +1,4 @@
+export const VIDEO_JSON = `/data/video.json`;
 
 const BASE_URL_LIST_IN = 'http://10.58.7.34:8000';
 export const PRODUCT_API = `${BASE_URL_LIST_IN}/products`;
@@ -13,4 +14,3 @@ export const MAIN_API = `${BASE_URL_LIST}`;
 
 const BASE_URL_PRODUCTS = 'http://10.58.7.34:8000/products';
 export const PRODUCTS_API = `${BASE_URL_PRODUCTS}`;
-
