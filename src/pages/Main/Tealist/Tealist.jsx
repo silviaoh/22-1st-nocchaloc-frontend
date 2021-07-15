@@ -66,9 +66,13 @@ class TeaList extends React.Component {
     const { products } = this.state;
     const { data } = products;
 
-    let totalProductsCount = 0;
     let totalPage = 0;
     let pages = 0;
+
+    if (data && data.length !== 0) {
+      totalPage = data[0].total_page;
+      pages = this.makeButtonArray(totalPage);
+    }
 
     const totalProductsCount =
       data && data.length !== 0 && data[0].total_products;
