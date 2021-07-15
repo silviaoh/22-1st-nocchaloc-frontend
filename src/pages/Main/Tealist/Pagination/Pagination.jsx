@@ -5,7 +5,6 @@ import './Pagination.scss';
 class Pagination extends React.Component {
   state = {
     buttonId: 0,
-    isFirst: false,
   };
 
   handlePagination = num => {
