@@ -7,14 +7,6 @@ import './Detail.scss';
 class Detail extends React.Component {
   state = {
     product: [],
-<<<<<<< HEAD
-  };
-
-  componentDidMount() {
-    fetch(`http://10.58.1.97:8000/products/${this.props.match.params.id}`)
-      .then(response => response.json())
-      .then(data => this.setState({ product: data.product_info[0] }));
-=======
     count: 0,
     bagPrice: 0,
   };
@@ -45,7 +37,6 @@ class Detail extends React.Component {
         },
       ],
     });
->>>>>>> main
   }
 
   includeBagPrice = id => {
