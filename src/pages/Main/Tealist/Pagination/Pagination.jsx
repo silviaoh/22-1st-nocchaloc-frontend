@@ -5,26 +5,22 @@ import './Pagination.scss';
 class Pagination extends React.Component {
   state = {
     buttonId: 0,
-    isFirst: false,
   };
 
   handlePagination = num => {
-    num === 0
-      ? this.setState({ isFirst: true })
-      : this.setState({ isFirst: false });
+    this.setState({ isFirst: num === 0 });
 
-    let origin = 24;
-    let offset = origin * (num - 1);
-    let limit = origin * num;
+    const origin = 24;
+    const offset = origin * (num - 1);
+    const limit = origin * num;
 
     this.setState({ buttonId: num });
 
-    let pathname = this.props.location.pathname;
     let searchParams = new URLSearchParams(this.props.location.search);
     searchParams.set('offset', offset);
     searchParams.set('limit', limit);
+
     this.props.history.push({
-      pathname: pathname,
       search: searchParams.toString(),
     });
   };

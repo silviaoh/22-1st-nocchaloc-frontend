@@ -5,17 +5,21 @@ import './CategoryButton.scss';
 
 class CategoryButton extends React.Component {
   handleCategoryClick = id => {
-    let pathname = this.props.location.pathname;
-    let searchParams = new URLSearchParams(this.props.location.search);
-    this.props.addQuery('category', id);
-    if (this.props.location.search.includes('limit')) {
+    const searchParams = new URLSearchParams(this.props.location.search);
+
+    if (
+      this.props.location.search.includes('limit') &&
+      this.props.location.search.includes('offset')
+    ) {
       searchParams.delete('offset');
       searchParams.delete('limit');
+      searchParams.set('category', id);
 
       this.props.history.push({
-        pathname: pathname,
         search: searchParams.toString(),
       });
+    } else {
+      this.props.addQuery('category', id);
     }
   };
 
