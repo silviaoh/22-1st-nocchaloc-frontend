@@ -1,0 +1,28 @@
+.product-info {
+  position: relative;
+
+  img {
+    width: 248px;
+    height: 248px;
+    margin: 0 40px 20px 0;
+  }
+
+  h2 {
+    margin: 0 0 10px 0;
+  }
+  .img-hover {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    transition: all 0.5s;
+    z-index: 1;
+  }
+
+  &:hover > .img-hover {
+    opacity: 1;
+  }
+
+  &:hover > .img-origin {
+    opacity: 0;
+  }
+}

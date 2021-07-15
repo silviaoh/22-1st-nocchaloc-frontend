@@ -13,7 +13,7 @@ class Detail extends React.Component {
   };
 
   kakaoSharePreference = () => {
-    window.Kakao.init('287744e4c9b7de1608134c695ffe1410');
+    window.Kakao.init(process.env.REACT_APP_KAKAOSHARE_API);
 
     window.Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn',
@@ -41,7 +41,6 @@ class Detail extends React.Component {
   };
 
   componentDidMount() {
-    this.kakaoSharePreference();
     fetch(`${PRODUCT_API}/${this.props.match.params.id}`)
       .then(response => response.json())
       .then(data =>
@@ -50,6 +49,7 @@ class Detail extends React.Component {
           console.log(data.product_info[0])
         )
       );
+    this.kakaoSharePreference();
   }
 
   includeBagPrice = id => {
@@ -79,7 +79,7 @@ class Detail extends React.Component {
               <span className="icon">
                 <i className="fas fa-shopping-bag" />
               </span>
-              <p className="content">쇼핑백 동봉여부</p>
+              <p className="content">쇼핑백동봉선택가능</p>
             </div>
           </section>
           <section className="item-info">
@@ -126,7 +126,7 @@ class Detail extends React.Component {
                 <p className="value">
                   <strong className="bold">
                     {(
-                      price * this.state.count +
+                      20000 * this.state.count +
                       this.state.bagPrice
                     ).toLocaleString()}
                   </strong>

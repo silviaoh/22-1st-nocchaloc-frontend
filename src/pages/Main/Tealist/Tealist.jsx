@@ -12,7 +12,8 @@ import './Tealist.scss';
 class TeaList extends React.Component {
   state = {
     products: [],
-    video: [],
+    videos: [],
+    sortId: 0,
     filterId: 0,
   };
 
@@ -49,7 +50,6 @@ class TeaList extends React.Component {
     searchParams.set(key, value);
 
     this.props.history.push({
-      pathname: pathname,
       search: searchParams.toString(),
     });
   };
@@ -70,11 +70,8 @@ class TeaList extends React.Component {
     let totalPage = 0;
     let pages = 0;
 
-    if (data && data.length !== 0) {
-      totalProductsCount = data[0].total_products;
-      totalPage = data[0].total_page;
-      pages = this.makeButtonArray(totalPage);
-    }
+    const totalProductsCount =
+      data && data.length !== 0 && data[0].total_products;
 
     return (
       <div className="tealist">
