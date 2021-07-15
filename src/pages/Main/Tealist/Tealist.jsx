@@ -12,115 +12,6 @@ class TeaList extends React.Component {
     filterId: 0,
   };
 
-  componentDidMount() {
-    this.fetchAllProducts();
-    fetch('/data/video.json')
-      .then(response => response.json())
-      .then(data => this.setState({ video: data }));
-  }
-
-  fetchAllProducts = () => {
-    fetch('http://10.58.1.97:8000/products')
-      .then(response => response.json())
-      .then(data => this.setState({ products: data.products_info }));
-    this.props.history.push({
-      pathname: '/tealist',
-    });
-  };
-
-  addQuery = (key, value) => {
-    let pathname = this.props.location.pathname;
-    let searchParams = new URLSearchParams(this.props.location.search);
-    searchParams.set(key, value);
-
-    this.props.history.push({
-      pathname: pathname,
-      search: searchParams.toString(),
-    });
-  };
-
-  appendQuery = (key, value) => {
-    let pathname = this.props.location.pathname;
-    let searchParams = new URLSearchParams(this.props.location.search);
-    searchParams.append(key, value);
-
-    this.props.history.push({
-      pathname: pathname,
-      search: searchParams.toString(),
-    });
-  };
-
-  removeQueryArray = (splited, id) => {
-    return splited.map(element => {
-      const [query, value] = element.split('=');
-      if (Number(value) === id) {
-        return null;
-      }
-      return element;
-    });
-  };
-
-  removeQuery = id => {
-    const query = this.props.location.search;
-    const splited = query.replace('?', '').split('&');
-    const removedQuery = this.removeQueryArray(splited, id);
-
-    const queryString = removedQuery.reduce((acc, cur) => {
-      if (!acc && cur) {
-        return `?${cur}`;
-      }
-      if (cur) {
-        return acc + '&' + cur;
-      }
-      return acc;
-    }, '');
-
-    const pathname = this.props.location.pathname;
-
-    let searchParams = new URLSearchParams(queryString);
-    searchParams.delete('product_name', id);
-
-    this.props.history.push({
-      pathname: pathname,
-      search: queryString,
-    });
-  };
-
-  handleSortClick = id => {
-    this.setState({ sortId: id }, () => {
-      fetch(`http://10.58.1.97:8000/products${this.props.location.search}`)
-        .then(response => response.json())
-        .then(data => this.setState({ products: data.products_info }));
-    });
-    this.addQuery('sort', id);
-  };
-
-  handleCategoryClick = id => {
-    this.setState({ categoryId: id }, () => {
-      fetch(`http://10.58.1.97:8000/products${this.props.location.search}`)
-        .then(response => response.json())
-        .then(data => this.setState({ products: data.products_info }));
-    });
-    this.addQuery('category', id);
-  };
-
-  handleFilteringClick = id => {
-    this.setState({ filterId: id }, () => {
-      fetch(`http://10.58.1.97:8000/products${this.props.location.search}`)
-        .then(response => response.json())
-        .then(data => this.setState({ products: data.products_info }));
-    });
-
-    id === 0 && this.props.history.push('/tealist');
-
-    id !== 0 &&
-      !this.props.location.search.includes(`product_type=${id}`) &&
-      this.appendQuery('product_type', id);
-
-    this.props.location.search.includes(`product_type=${id}`) &&
-      this.removeQuery(id);
-  };
-
   render() {
     const { search } = this.props.location;
     const totalProductsCount = this.state.products.length;
@@ -222,9 +113,16 @@ class TeaList extends React.Component {
             </section>
             <section className="teashop-list">
               <ul className="list-tea">
+<<<<<<< HEAD
                 {this.state.products.map((product, idx) => (
                   <Tea key={idx} product={product} match={this.props.match} />
                 ))}
+=======
+                {/* <Tea /> */}
+                {/* {this.state.products.map(product => (
+                  <Tea key={product.id} product={product} />
+                ))} */}
+>>>>>>> main
               </ul>
             </section>
             <section className="pagination">
