@@ -30,6 +30,16 @@ class VideoSlide extends React.Component {
     this.setState({
       translateX: e.clientX - this.state.originalX + this.state.lastTranslatX,
     });
+    console.log(this.state.translateX);
+    if (this.state.translateX > 0) {
+      this.swiperTeaName.current.style.transform = `translate3d(calc(25%),0px,0px)`;
+    } else if (this.state.translateX < -2000) {
+      this.swiperTeaName.current.style.transform = `translate3d(${
+        -14.9 * 8
+      }vw, 0, 0)`;
+    } else {
+      this.swiperTeaName.current.style.transform = `translate3d(calc(25% + ${this.state.translateX}px),0px,0px)`;
+    }
   };
 
   handleMouseUp = e => {
@@ -107,15 +117,14 @@ class VideoSlide extends React.Component {
             </div>
           </div>
         </div>
-        <div className="swiper-teaname">
-          <div
-            className="teaname-overflow"
-            pressed={this.state.pressed}
-            onMouseDown={this.handleMouseDown}
-            onMouseMove={this.handleMouseMove}
-            onMouseUp={this.handleMouseUp}
-            ref={this.swiperTeaName}
-          >
+        <div
+          className="swiper-teaname"
+          pressed={this.state.pressed}
+          onMouseDown={this.handleMouseDown}
+          onMouseMove={this.handleMouseMove}
+          onMouseUp={this.handleMouseUp}
+        >
+          <div className="teaname-overflow" ref={this.swiperTeaName}>
             {CATEGORY.map((category, idx) => (
               <button
                 className={`teaname ${
