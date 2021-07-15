@@ -93,18 +93,16 @@ class TeaList extends React.Component {
   };
 
   handleCategoryClick = id => {
-    this.setState({ categoryId: id }, () => {
-      this.fetchMutateProducts();
-    });
+    this.setState({ categoryId: id });
+    this.fetchMutateProducts();
     this.addQuery('category', id);
   };
 
   handleFilteringClick = id => {
     const { location, history } = this.props;
 
-    this.setState({ filterId: id }, () => {
-      this.fetchMutateProducts();
-    });
+    this.setState({ filterId: id });
+    this.fetchMutateProducts();
 
     if (id === 0) {
       history.push('/tealist');
