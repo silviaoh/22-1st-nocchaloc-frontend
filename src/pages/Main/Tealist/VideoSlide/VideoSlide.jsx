@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Slide from './Slide/Slide';
-import { GET_VIDEO_JSON } from '../../../../config.js';
+import { VIDEO_JSON } from '../../../../config.js';
 import './VideoSlide.scss';
 
 class VideoSlide extends React.Component {
@@ -18,7 +18,7 @@ class VideoSlide extends React.Component {
   };
 
   componentDidMount() {
-    fetch(`${GET_VIDEO_JSON}`)
+    fetch(`${VIDEO_JSON}`)
       .then(res => res.json())
       .then(data => this.setState({ videos: data }));
   }

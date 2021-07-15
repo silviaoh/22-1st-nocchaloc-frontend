@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Sharebutton from './Sharebutton/Sharebutton';
 import Selectlist from './Selectlist/Selectlist';
-import { GET_PRODUCT_API } from '../../../../config.js';
+import { PRODUCT_API } from '../../../../config.js';
 import './Detail.scss';
 
 class Detail extends React.Component {
@@ -13,7 +13,7 @@ class Detail extends React.Component {
   };
 
   kakaoSharePreference = () => {
-    window.Kakao.init(process.env.REACT_APP_KAKAOSHARE_API);
+    window.Kakao.init('287744e4c9b7de1608134c695ffe1410');
 
     window.Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn',
@@ -42,7 +42,7 @@ class Detail extends React.Component {
 
   componentDidMount() {
     this.kakaoSharePreference();
-    fetch(`${GET_PRODUCT_API}/${this.props.match.params.id}`)
+    fetch(`${PRODUCT_API}/${this.props.match.params.id}`)
       .then(response => response.json())
       .then(data =>
         this.setState(
@@ -69,7 +69,7 @@ class Detail extends React.Component {
   render() {
     const { description, main_image_url, name, price } = this.state.product;
     return (
-      this.state?.product && (
+      this.state.product && (
         <div className="detail-wrapper">
           <section className="item-thumbnail-wrapper">
             <div className="item-thumbnail">

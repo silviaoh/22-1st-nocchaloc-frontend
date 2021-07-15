@@ -6,7 +6,7 @@ import Pagination from './Pagination/Pagination';
 import CategoryButton from './CategoryButton/CategoryButton';
 import SortButton from './SortButton/SortButton';
 import FilterButton from './FilterButton/FilterButton';
-import { GET_PRODUCT_API } from '../../../config.js';
+import { PRODUCT_API } from '../../../config.js';
 import './Tealist.scss';
 
 class TeaList extends React.Component {
@@ -17,25 +17,30 @@ class TeaList extends React.Component {
   };
 
   fetchAllProducts = () => {
-    fetch(`${GET_PRODUCT_API}`)
+    fetch(`${PRODUCT_API}`)
       .then(response => response.json())
       .then(data => this.setState({ products: data }));
+    this.props.history.push('/tealist');
   };
 
   fetchMutateProducts = () => {
-    fetch(`${GET_PRODUCT_API + this.props.location.search}`)
+    fetch(`${PRODUCT_API + this.props.location.search}`)
       .then(response => response.json())
       .then(data => this.setState({ products: data }));
   };
 
   componentDidMount() {
-    this.fetchAllProducts();
+    this.fetchMutateProducts();
   }
 
   componentDidUpdate = prevProps => {
     if (prevProps.location.search !== this.props.location.search) {
       this.fetchMutateProducts();
     }
+  };
+
+  topFunction = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   addQuery = (key, value) => {
@@ -112,9 +117,9 @@ class TeaList extends React.Component {
               addQuery={this.addQuery}
             />
           </section>
-          <Link to="!!#" className="top">
+          <button className="top" onClick={this.topFunction}>
             <i className="fas fa-arrow-up" />
-          </Link>
+          </button>
         </main>
       </div>
     );

@@ -3,6 +3,8 @@
 @import '../../../styles/mixinSet.scss';
 
 .tealist {
+  transition: all 500ms ease-in;
+
   .main-container {
     @include flex-common(60%, center);
     position: relative;
@@ -71,6 +73,7 @@
         flex-wrap: wrap;
         margin-top: calc(#{$margin-value} * 3);
         overflow: hidden;
+        border-right: 1px solid white;
       }
     }
 
