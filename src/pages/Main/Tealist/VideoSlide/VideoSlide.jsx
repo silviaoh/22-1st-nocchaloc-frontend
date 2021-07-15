@@ -7,18 +7,42 @@ class VideoSlide extends React.Component {
   constructor() {
     super();
     this.state = {
-      videoButtonId: 0,
+      videoButtonId: 1,
       videoCount: 0,
     };
     this.swiperInner = React.createRef();
   }
 
+  goToLeft = () => {
+    this.state.videoButtonId > 1 &&
+      this.setState(
+        prev => ({ videoButtonId: prev.videoButtonId - 1 }),
+        () => {
+          this.swiperInner.current.style.transform = `translate3d(${
+            25 - 50 * (this.state.videoButtonId - 1)
+          }vw, 0, 0)`;
+        }
+      );
+  };
+
+  goToRight = () => {
+    this.setState(
+      prev => ({ videoButtonId: prev.videoButtonId + 1 }),
+      () => {
+        this.swiperInner.current.style.transform = `translate3d(${
+          25 - 50 * (this.state.videoButtonId - 1)
+        }vw, 0, 0)`;
+      }
+    );
+  };
+
   clickTeaName = id => {
-    id !== 0 && this.setState({ isFirst: false });
-    this.setState({ videoButtonId: id });
-    this.swiperInner.current.style.transform = `translate3d(${
-      25 - 50 * (id - 1)
-    }vw, 0, 0)`;
+    this.setState({ videoButtonId: id }, () => {
+      this.swiperInner.current.style.transform = `translate3d(${
+        25 - 50 * (this.state.videoButtonId - 1)
+      }vw, 0, 0)`;
+    });
+    console.log(25 - 50 * (this.state.videoButtonId - 1));
   };
 
   render() {
@@ -34,12 +58,12 @@ class VideoSlide extends React.Component {
               ))}
             </ul>
             <div className="transparentbox left-0">
-              <button className="left">
+              <button className="left" onClick={this.goToLeft}>
                 <i className="fas fa-chevron-left" />
               </button>
             </div>
             <div className="transparentbox right-0">
-              <button className="right">
+              <button className="right" onClick={this.goToRight}>
                 <i className="fas fa-chevron-right" />
               </button>
             </div>
