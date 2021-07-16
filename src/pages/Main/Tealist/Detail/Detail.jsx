@@ -14,8 +14,6 @@ class Detail extends React.Component {
   };
 
   kakaoSharePreference = () => {
-    const { description, main_image_url, name } = this.state.product;
-
     const URL = `http://localhost:3000/detail/${this.props.match.params.id}`;
 
     dotenv.config();
