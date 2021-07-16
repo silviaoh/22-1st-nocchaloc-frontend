@@ -17,7 +17,7 @@ class Tea extends Component {
           </button>
         </Link>
         <p className="name">
-          <Link to="" className="name-link">
+          <Link to={`detail/${pk}`} className="name-link">
             {name}
           </Link>
         </p>

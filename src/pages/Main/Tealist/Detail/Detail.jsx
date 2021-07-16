@@ -15,7 +15,9 @@ class Detail extends React.Component {
 
   kakaoSharePreference = () => {
     const { description, main_image_url, name } = this.state.product;
+
     const URL = `http://localhost:3000/detail/${this.props.match.params.id}`;
+
     dotenv.config();
 
     window.Kakao.init(process.env.REACT_APP_KAKAO_LINK_KEY);
@@ -24,19 +26,20 @@ class Detail extends React.Component {
       container: '#kakao-link-btn',
       objectType: 'feed',
       content: {
-        title: `${name}`,
-        description: `${description}`,
-        imageUrl: `${main_image_url}`,
+        title: '녹차록 상품 바로가기',
+        description: '녹차록 바로가기를 이용해보세요!',
+        imageUrl:
+          'https://raw.githubusercontent.com/JeonSoohyun27/nocchaloc_product_image_data/main/tea/tea-1.png',
         link: {
-          webUrl: `${URL}`,
+          webUrl: URL,
         },
       },
       buttons: [
         {
           title: '녹차록에서 확인하기',
           link: {
-            mobileWebUrl: `${URL}`,
-            webUrl: `${URL}`,
+            mobileWebUrl: URL,
+            webUrl: URL,
           },
         },
       ],
