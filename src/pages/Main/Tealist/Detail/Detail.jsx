@@ -125,7 +125,7 @@ class Detail extends React.Component {
                 <p className="value">
                   <strong className="bold">
                     {(
-                      20000 * this.state.count +
+                      price * this.state.count +
                       this.state.bagPrice
                     ).toLocaleString()}
                   </strong>
