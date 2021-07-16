@@ -10,17 +10,13 @@ class Nav extends React.Component {
     category: [],
   };
 
-  componentDidUpdate() {
-    if (localStorage.getItem('TOKEN') && !this.state.isLogin) {
-      this.setState({ isLogin: true });
-    } else if (localStorage.removeItem('TOKEN') && this.state.isLogin) {
-      this.setState({ isLogin: false });
-    }
-  }
+  removeItem = () => {
+    localStorage.removeItem('TOKEN');
+  };
 
   componentDidMount() {
-    fetch(`${PRODUCTS_API}/cateogory`)
-      .then(res => res.json()) //
+    fetch(`${PRODUCTS_API}`)
+      .then(res => res.json())
       .then(data => {
         this.setState({
           category: data.category_info,
@@ -56,7 +52,7 @@ class Nav extends React.Component {
                         <div className="depth-column">
                           {this.state.category.map((category, idx) => {
                             return (
-                              <li key={category.idx}>
+                              <li key={idx}>
                                 <Link to={`/tealist?category=${idx + 1}`}>
                                   {category.name}
                                 </Link>
@@ -103,14 +99,15 @@ class Nav extends React.Component {
           </nav>
           <div className="nav-side">
             <div className="menubox-icon">
-              <i class="fas fa-search"></i>
-              <i class="fas fa-cart-plus"></i>
+              <i className="fas fa-search"></i>
+              <i className="fas fa-cart-plus"></i>
             </div>
             <div className="menubox-member">
               <div className="nav-login">
                 <Link to="/login">
                   {this.state.isLogin ? '로그인' : '로그아웃'}
                 </Link>
+                <Link to="/login">로그인</Link>
               </div>
               <div className="nav-signup">
                 <Link to="/signup">회원가입</Link>

@@ -27,7 +27,7 @@ class Selectlist extends React.Component {
           <span className="value">쇼핑백(+100원)</span>
           {/*after */}
         </Link>
-        {this.state.isClicked && (
+        {this.state?.isClicked && (
           <ul className="options">
             {SELECT_SHOPPINGBAG.map((enabled, idx) => {
               return (

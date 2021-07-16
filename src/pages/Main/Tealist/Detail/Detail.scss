@@ -8,7 +8,7 @@
 
   .item-thumbnail-wrapper {
     position: relative;
-    @include flex-common(auto, center, center);
+    @include flex-common(70%, center, center);
     @include width-height(49.5%, 70vh);
     max-width: 580px;
     margin: calc(#{$margin-value} + 11px);
@@ -42,6 +42,7 @@
   }
 
   .item-info {
+    flex: 0 0 30%;
     margin: calc(#{$margin-value} + 15px);
     max-width: 560px;
 
@@ -70,15 +71,17 @@
       .product-title {
         margin-bottom: $margin-value;
         font-size: 36px;
+        font-family: 'arita-buri', 'sans-serif';
+        font-weight: bold;
       }
 
       .description {
         color: $color-black;
-        font-size: $font-large;
+        font-size: $font-xlarge;
       }
 
       .share-price {
-        @include flex-common(auto, space-between, flex-start);
+        @include flex-common(auto, space-between, center);
         padding: calc(#{$margin-value} * 2) 0;
         border-bottom: 1px solid $color-border;
 

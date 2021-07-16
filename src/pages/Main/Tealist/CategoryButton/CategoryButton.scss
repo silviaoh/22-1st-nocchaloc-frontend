@@ -1,0 +1,29 @@
+@import '../../../../styles/variable.scss';
+@import '../../../../styles/variableListDetail.scss';
+
+.aside-menu-container {
+  .menu-name {
+    margin: 0 0 30px 40px;
+    color: $color-black;
+
+    .name-item {
+      margin-bottom: margin-value;
+      color: $color-black;
+      font-size: calc(#{$font-small} + 2px);
+      font-family: 'arita-buri', 'sans-serif';
+      font-weight: bold;
+      border: 3px solid transparent;
+      text-decoration: none;
+
+      &:hover,
+      &.active {
+        border-bottom: 3px solid $color-green;
+      }
+
+      &:active,
+      &:visited {
+        color: $color-black;
+      }
+    }
+  }
+}

@@ -51,7 +51,7 @@ class Login extends React.Component {
     const allValid = this.doValidation();
 
     return (
-      <>
+      <section className="login">
         <section className="login-container">
           <div className="wrap">
             <h1 className="login-text">Log in</h1>
@@ -89,7 +89,7 @@ class Login extends React.Component {
             </div>
           </div>
         </section>
-      </>
+      </section>
     );
   }
 }
