@@ -10,6 +10,7 @@ class Login extends React.Component {
     this.state = {
       userId: '',
       userPw: '',
+      isLogin: false,
     };
   }
 

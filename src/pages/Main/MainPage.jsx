@@ -17,7 +17,7 @@ class MainPage extends React.Component {
   prevSlide = () => {
     if (this.state.slideIndex > 0) {
       this.setState({
-        slideIndex: 3,
+        slideIndex: this.state.slideIndex - 1,
       });
     } else {
       this.setState({ slideIndex: 3 });
@@ -117,7 +117,7 @@ class MainPage extends React.Component {
               {this.state.products.map((products, id) => (
                 <Product
                   key={id}
-                  title={products.title}
+                  name={products.name}
                   img={products.main_image_url}
                   hover={products.hover_image_url}
                   price={Math.floor(products.price)

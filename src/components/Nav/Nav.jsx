@@ -8,13 +8,6 @@ class Nav extends React.Component {
   state = {
     lists: [],
     category: [],
-    isLogin: false,
-  };
-
-  logOut = () => {
-    this.setState({
-      isLogin: false,
-    });
   };
 
   componentDidUpdate() {
@@ -61,10 +54,12 @@ class Nav extends React.Component {
                     <ul className="depth-content">
                       <div className="depth-row">
                         <div className="depth-column">
-                          {this.state.category.map(category => {
+                          {this.state.category.map((category, idx) => {
                             return (
-                              <li key={category.id}>
-                                <Link to="#">{category.name}</Link>
+                              <li key={category.idx}>
+                                <Link to={`/tealist?category=${idx + 1}`}>
+                                  {category.name}
+                                </Link>
                               </li>
                             );
                           })}
@@ -114,7 +109,7 @@ class Nav extends React.Component {
             <div className="menubox-member">
               <div className="nav-login">
                 <Link to="/login">
-                  {this.state.isLogin ? '로그아웃' : '로그인'}
+                  {this.state.isLogin ? '로그인' : '로그아웃'}
                 </Link>
               </div>
               <div className="nav-signup">
