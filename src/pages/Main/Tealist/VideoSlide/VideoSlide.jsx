@@ -12,7 +12,7 @@ class VideoSlide extends React.Component {
     pressed: false,
     originalX: 0,
     translateX: 0,
-    lastTranslatX: 0,
+    lastTranslateX: 0,
     teaNameStr: '',
     innerStr: '',
   };
@@ -28,13 +28,14 @@ class VideoSlide extends React.Component {
       pressed: true,
       originalX: e.clientX,
     });
+    console.log(e);
   };
 
   handleMouseMove = e => {
     if (!this.state.pressed) return;
     e.preventDefault();
     this.setState({
-      translateX: e.clientX - this.state.originalX + this.state.lastTranslatX,
+      translateX: e.clientX - this.state.originalX + this.state.lastTranslateX,
     });
 
     if (this.state.translateX > 0) {

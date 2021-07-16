@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Sharebutton from './Sharebutton/Sharebutton';
 import Selectlist from './Selectlist/Selectlist';
 import { PRODUCT_API } from '../../../../config.js';
+import dotenv from 'dotenv';
 import './Detail.scss';
 
 class Detail extends React.Component {
@@ -13,27 +14,29 @@ class Detail extends React.Component {
   };
 
   kakaoSharePreference = () => {
-    window.Kakao.init(process.env.REACT_APP_KAKAOSHARE_API);
+    const { description, main_image_url, name } = this.state.product;
+    const URL = `http://localhost:3000/detail/${this.props.match.params.id}`;
+    dotenv.config();
+
+    window.Kakao.init(process.env.REACT_APP_KAKAO_LINK_KEY);
 
     window.Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn',
       objectType: 'feed',
       content: {
-        title: '프리미엄 말차',
-        description:
-          '즐겁고 행복한 티타임을 선사하는 달콤하고 향긋한 오설록만의 특별한 블렌디드 티 선물세트입니다.',
-        imageUrl:
-          'https://www.osulloc.com/upload/kr/ko/adminImage/PW/US/20180406140800938CQ.png?quality=80',
+        title: `${name}`,
+        description: `${description}`,
+        imageUrl: `${main_image_url}`,
         link: {
-          webUrl: 'http://localhost:3000/detail',
+          webUrl: `${URL}`,
         },
       },
       buttons: [
         {
           title: '녹차록에서 확인하기',
           link: {
-            mobileWebUrl: 'http://localhost:3000/detail',
-            webUrl: 'http://localhost:3000/detail',
+            mobileWebUrl: `${URL}`,
+            webUrl: `${URL}`,
           },
         },
       ],
@@ -43,12 +46,7 @@ class Detail extends React.Component {
   componentDidMount() {
     fetch(`${PRODUCT_API}/${this.props.match.params.id}`)
       .then(response => response.json())
-      .then(data =>
-        this.setState(
-          { product: data.product_info[0] },
-          console.log(data.product_info[0])
-        )
-      );
+      .then(data => this.setState({ product: data.product_info[0] }));
     this.kakaoSharePreference();
   }
 

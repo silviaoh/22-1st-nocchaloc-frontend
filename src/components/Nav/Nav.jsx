@@ -8,26 +8,15 @@ class Nav extends React.Component {
   state = {
     lists: [],
     category: [],
-    isLogin: false,
   };
 
-  logOut = () => {
-    this.setState({
-      isLogin: false,
-    });
+  removeItem = () => {
+    localStorage.removeItem('TOKEN');
   };
-
-  componentDidUpdate() {
-    if (localStorage.getItem('TOKEN') && !this.state.isLogin) {
-      this.setState({ isLogin: true });
-    } else if (localStorage.removeItem('TOKEN') && this.state.isLogin) {
-      this.setState({ isLogin: false });
-    }
-  }
 
   componentDidMount() {
-    fetch(`${PRODUCTS_API}/cateogory`)
-      .then(res => res.json()) //
+    fetch(`${PRODUCTS_API}`)
+      .then(res => res.json())
       .then(data => {
         this.setState({
           category: data.category_info,
@@ -61,10 +50,12 @@ class Nav extends React.Component {
                     <ul className="depth-content">
                       <div className="depth-row">
                         <div className="depth-column">
-                          {this.state.category.map(category => {
+                          {this.state.category.map((category, idx) => {
                             return (
-                              <li key={category.id}>
-                                <Link to="#">{category.name}</Link>
+                              <li key={idx}>
+                                <Link to={`/tealist?category=${idx + 1}`}>
+                                  {category.name}
+                                </Link>
                               </li>
                             );
                           })}
@@ -108,14 +99,12 @@ class Nav extends React.Component {
           </nav>
           <div className="nav-side">
             <div className="menubox-icon">
-              <i class="fas fa-search"></i>
-              <i class="fas fa-cart-plus"></i>
+              <i className="fas fa-search"></i>
+              <i className="fas fa-cart-plus"></i>
             </div>
             <div className="menubox-member">
               <div className="nav-login">
-                <Link to="/login">
-                  {this.state.isLogin ? '로그아웃' : '로그인'}
-                </Link>
+                <Link to="/login">로그인</Link>
               </div>
               <div className="nav-signup">
                 <Link to="/signup">회원가입</Link>
