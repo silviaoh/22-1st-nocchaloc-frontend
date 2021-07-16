@@ -10,7 +10,7 @@ class FilterButton extends React.Component {
   removeQueryArray = (splited, id) => {
     return splited.map(element => {
       const [query, value] = element.split('=');
-      if (Number(value) === id) {
+      if (query.includes('product_type') && Number(value) === id) {
         return null;
       }
       return element;
@@ -30,29 +30,23 @@ class FilterButton extends React.Component {
   };
 
   appendQuery = (key, value) => {
-    let pathname = this.props.location.pathname;
     let searchParams = new URLSearchParams(this.props.location.search);
     searchParams.append(key, value);
 
     this.props.history.push({
-      pathname: pathname,
       search: searchParams.toString(),
     });
   };
 
   removeQuery = id => {
-    const { location } = this.props;
-    const nowQuery = location.search;
+    const nowQuery = this.props.location.search;
 
     const splitedQuery = nowQuery.replace('?', '').split('&');
     const removeResult = this.removeQueryArray(splitedQuery, id);
     const queryString = this.reduceQueryArray(removeResult);
-
-    let searchParams = new URLSearchParams(queryString);
-    searchParams.delete('product_name', id);
+    console.log(queryString);
 
     this.props.history.push({
-      pathname: location.pathname,
       search: queryString,
     });
   };

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Sharebutton from './Sharebutton/Sharebutton';
 import Selectlist from './Selectlist/Selectlist';
 import { PRODUCT_API } from '../../../../config.js';
+import dotenv from 'dotenv';
 import './Detail.scss';
 
 class Detail extends React.Component {
@@ -13,27 +14,30 @@ class Detail extends React.Component {
   };
 
   kakaoSharePreference = () => {
-    window.Kakao.init(process.env.REACT_APP_KAKAOSHARE_API);
+    const URL = `http://localhost:3000/detail/${this.props.match.params.id}`;
+
+    dotenv.config();
+
+    window.Kakao.init(process.env.REACT_APP_KAKAO_LINK_KEY);
 
     window.Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn',
       objectType: 'feed',
       content: {
-        title: '프리미엄 말차',
-        description:
-          '즐겁고 행복한 티타임을 선사하는 달콤하고 향긋한 오설록만의 특별한 블렌디드 티 선물세트입니다.',
+        title: '녹차록 상품 바로가기',
+        description: '녹차록 바로가기를 이용해보세요!',
         imageUrl:
-          'https://www.osulloc.com/upload/kr/ko/adminImage/PW/US/20180406140800938CQ.png?quality=80',
+          'https://raw.githubusercontent.com/JeonSoohyun27/nocchaloc_product_image_data/main/tea/tea-1.png',
         link: {
-          webUrl: 'http://localhost:3000/detail',
+          webUrl: URL,
         },
       },
       buttons: [
         {
           title: '녹차록에서 확인하기',
           link: {
-            mobileWebUrl: 'http://localhost:3000/detail',
-            webUrl: 'http://localhost:3000/detail',
+            mobileWebUrl: URL,
+            webUrl: URL,
           },
         },
       ],
@@ -43,12 +47,7 @@ class Detail extends React.Component {
   componentDidMount() {
     fetch(`${PRODUCT_API}/${this.props.match.params.id}`)
       .then(response => response.json())
-      .then(data =>
-        this.setState(
-          { product: data.product_info[0] },
-          console.log(data.product_info[0])
-        )
-      );
+      .then(data => this.setState({ product: data.product_info[0] }));
     this.kakaoSharePreference();
   }
 
@@ -126,7 +125,7 @@ class Detail extends React.Component {
                 <p className="value">
                   <strong className="bold">
                     {(
-                      20000 * this.state.count +
+                      price * this.state.count +
                       this.state.bagPrice
                     ).toLocaleString()}
                   </strong>

@@ -59,7 +59,7 @@ class Signup extends Component {
     const { userName, userBirth, userNum, userId, userPw } = this.state;
     const allValid = this.doValidation();
     return (
-      <>
+      <section className="sign-up">
         <div className="header">
           <h1 className="header-text">뷰티포인트 X 녹차록 쇼핑몰 회원가입 </h1>
         </div>
@@ -70,7 +70,7 @@ class Signup extends Component {
               <input
                 value={userName}
                 type="text"
-                class="input-username"
+                className="input-username"
                 name="userName"
                 placeholder="이름(실명으로 입력해주세요)"
                 onChange={this.handleInput}
@@ -78,7 +78,7 @@ class Signup extends Component {
               <input
                 value={userBirth}
                 type="text"
-                class="input-birth"
+                className="input-birth"
                 name="userBirth"
                 placeholder="생년월일8자리(ex.19980905)"
                 onChange={this.handleInput}
@@ -86,7 +86,7 @@ class Signup extends Component {
               <input
                 value={userNum}
                 type="text"
-                class="input-Num"
+                className="input-Num"
                 name="userNum"
                 placeholder="전화번호입력"
                 onChange={this.handleInput}
@@ -95,7 +95,7 @@ class Signup extends Component {
               <input
                 value={userId}
                 type="text"
-                class="input-userId"
+                className="input-userId"
                 id="userId"
                 name="userId"
                 placeholder="아이디 (4~12자 영문)"
@@ -104,7 +104,7 @@ class Signup extends Component {
               <input
                 value={userPw}
                 type="password"
-                class="input-userPw"
+                className="input-userPw"
                 id="userPw"
                 name="userPw"
                 placeholder="비밀번호는 영문 대문자, 소문자, 숫자, 특수문자 중 최소 1가지 이상의 문자조합 8자 이상으로 입력해주세요"
@@ -119,7 +119,7 @@ class Signup extends Component {
             </div>
           </div>
         </div>
-      </>
+      </section>
     );
   }
 }

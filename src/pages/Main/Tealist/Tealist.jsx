@@ -45,7 +45,6 @@ class TeaList extends React.Component {
   };
 
   addQuery = (key, value) => {
-    let pathname = this.props.location.pathname;
     let searchParams = new URLSearchParams(this.props.location.search);
     searchParams.set(key, value);
 
