@@ -26,13 +26,17 @@
   #### 2. Login
   #### 3. Register
   #### 4. List
+  #### 5. Detail
+
+## 내가 구현한 사항
+#### List
   + Video Carousel
   + Routing
   + Sorting
   + Filtering
   + Pagination
 
-  #### 5. Detail
+  #### Detail
   + Price calculate
   + Kakao Link API
   + URL Paste
